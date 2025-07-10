@@ -918,3 +918,102 @@ button {
 }
 
 /** CV **/
+
+.cv {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 2vh;
+}
+
+.cvStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.cvBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 86%;
+    padding: 20px 2%;
+}
+
+.PDFViewBtn,
+.DownLoadPDFBtn {
+    font-family: poppins-SB;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    color: #1c1c1c;
+    border: 2px solid #ffffff88;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.PDFViewBtn:hover,
+.DownLoadPDFBtn:hover {
+    background-color: #1c1c1c;
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .cvBtns {
+        flex-direction: column;
+    }
+
+    .PDFViewBtn,
+    .DownLoadPDFBtn {
+        width: 100%;
+    }
+}
+
+/** Err Page 404 **/
+
+.errPage {
+    display: flex;
+    justify-content: center;
+}
+
+.errPageStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sadFaceImg {
+    width: 250px;
+}
+
+.errStatus {
+    font-family: poppins-B;
+    font-size: 24px;
+}
+
+.errStatusType {
+    font-family: poppins-SB;
+    font-size: 20px;
+}
+
+@media (max-width: 400px) {
+    .sadFaceImg {
+        width: 250px;
+    }
+}
