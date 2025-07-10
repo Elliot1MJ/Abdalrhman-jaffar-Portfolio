@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import myPic from "../assets/images/myPic.jpg";
-import BlisscetImg from "../../public/projects-Images//MERN/E-commerce-store.png";
-import TodoAppImg from "../../public/projects-Images/React/TodoApp-website-main.png";
+import BlisscetImg from "../assets/images/projects-Images/MERN/E-commerce-store.png";
+import TodoAppImg from "../assets/images/projects-Images/React/TodoApp-website-main.png";
 import {
     FaHtml5,
     FaCss3,
