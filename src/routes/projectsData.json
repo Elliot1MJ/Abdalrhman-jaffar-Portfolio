@@ -1,0 +1,114 @@
+[
+    {
+        "name": "Age Calculator App",
+        "category": "js",
+        "image": "../public/projects-Images/JS/age-calculator-app.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/AgeCalculator-Website_JS",
+        "LiveWebAppURL": "https://age-calculator-website-js.vercel.app/"
+    },
+    {
+        "name": "Sunnyside Agency",
+        "category": "js",
+        "image": "../public/projects-Images/JS/Sunnyside-Agency-LP.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/SunnysideAgencyLP-Website_JS",
+        "LiveWebAppURL": "https://age-calculator-website-js-zbka.vercel.app/"
+    },
+    {
+        "name": "Book Mark Master",
+        "category": "js",
+        "image": "../public/projects-Images/JS/Book-Mark-Master-LP.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/BookMarkMasterLP-Website_JS",
+        "LiveWebAppURL": "https://book-mark-master-lp-website-js.vercel.app/"
+    },
+    {
+        "name": "Contact Form Page",
+        "category": "js",
+        "image": "../public/projects-Images/JS/contact-form-main.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/ContactFormMain-Website_JS",
+        "LiveWebAppURL": "https://contact-form-main-website-js.vercel.app/"
+    },
+    {
+        "name": "CURDS App",
+        "category": "js",
+        "image": "../public/projects-Images/JS/CURDS-app.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/CURDSApp-Website_JS",
+        "LiveWebAppURL": "https://curds-app-website-js.vercel.app/"
+    },
+    {
+        "name": "Mortgage Calculator",
+        "category": "js",
+        "image": "../public/projects-Images/JS/mortgage-repayment-calculator-app.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/MortgageRepaymentCalculatorApp-Website_JS",
+        "LiveWebAppURL": "https://mortgage-repayment-calculator-app-w.vercel.app/"
+    },
+    {
+        "name": "Multi Step App",
+        "category": "js",
+        "image": "../public/projects-Images/JS/Multi-Step-App.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/MultiStepApp-Website_JS",
+        "LiveWebAppURL": "https://multi-step-app-website-js.vercel.app/"
+    },
+    {
+        "name": "Product List App",
+        "category": "js",
+        "image": "../public/projects-Images/JS/product-list-with-cart-app.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/ProductListWithCart-Website_JS",
+        "LiveWebAppURL": "https://product-list-with-cart-website-js.vercel.app/"
+    },
+    {
+        "name": "Faq Accordion Page",
+        "category": "react",
+        "image": "../public/projects-Images/React/faq-accordion-main.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/FaqAccordion-Website-React",
+        "LiveWebAppURL": "https://faq-accordion-website-react.vercel.app/"
+    },
+    {
+        "name": "Interactive Rating Page",
+        "category": "react",
+        "image": "../public/projects-Images/React/interactive-rating-component-main.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/InteractiveRatingComponent-Website_React",
+        "LiveWebAppURL": "https://interactive-rating-component-websit.vercel.app/"
+    },
+    {
+        "name": "Article Preview Page",
+        "category": "react",
+        "image": "../public/projects-Images/React/article-preview-component-master.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/ArticlePreviewComponent-Website_React",
+        "LiveWebAppURL": "https://article-preview-component-website-r.vercel.app/"
+    },
+    {
+        "name": "Base Apparel Page",
+        "category": "react",
+        "image": "../public/projects-Images/React/base-apparel-coming-soon-master.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/BaseApparelComingSoon-Website_React",
+        "LiveWebAppURL": "https://base-apparel-coming-soon-website-re.vercel.app/"
+    },
+    {
+        "name": "Intro Signup Form Page",
+        "category": "react",
+        "image": "../public/projects-Images/React/intro-component-with-signup-form-master.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/IntroSignupForm-Website_React",
+        "LiveWebAppURL": "https://intro-signup-form-website-react.vercel.app/"
+    },
+    {
+        "name": "Ping Coming Soon Page",
+        "category": "react",
+        "image": "../public/projects-Images/React/ping-coming-soon-page-master.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/PingComingSoon-Website-React",
+        "LiveWebAppURL": "https://ping-coming-soon-website-react.vercel.app/"
+    },
+    {
+        "name": "Todo App",
+        "category": "react",
+        "image": "../public/projects-Images/React/TodoApp-website-main.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/TodoApp-website_React",
+        "LiveWebAppURL": "https://todo-app-website-react.vercel.app/"
+    },
+    {
+        "name": "BlisscetStore",
+        "category": "mern",
+        "image": "../public/projects-Images/MERN/E-commerce-store.png",
+        "gitHubURL": "https://github.com/Elliot1MJ/BlisscetStore-Website-MERN",
+        "LiveWebAppURL": "https://blisscet-store-website-mern.vercel.app/login"
+    }
+]
