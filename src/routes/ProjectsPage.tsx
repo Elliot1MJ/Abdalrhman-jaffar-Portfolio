@@ -23,6 +23,7 @@ import baseApparelPage from "../assets/images/projects-Images/React/base-apparel
 import introSignupFormPage from "../assets/images/projects-Images/React/intro-component-with-signup-form-master.png";
 import pingComingSoonPage from "../assets/images/projects-Images/React/ping-coming-soon-page-master.png";
 import todoApp from "../assets/images/projects-Images/React/TodoApp-website-main.png";
+import weatherApp from "../assets/images/projects-Images/React/WeatherApp.png";
 // mern
 import blisscetStore from "../assets/images/projects-Images/MERN/E-commerce-store.png";
 
@@ -140,6 +141,13 @@ let data = [
         image: todoApp,
         gitHubURL: "https://github.com/Elliot1MJ/TodoApp-website_React",
         LiveWebAppURL: "https://todo-app-website-react.vercel.app/",
+    },
+    {
+        name: "Weatherly App",
+        category: "react",
+        image: weatherApp,
+        gitHubURL: "https://github.com/Elliot1MJ/WeatherApp-Website_React",
+        LiveWebAppURL: "https://weather-app-website-react.vercel.app/",
     },
     {
         name: "Blisscet Store",
