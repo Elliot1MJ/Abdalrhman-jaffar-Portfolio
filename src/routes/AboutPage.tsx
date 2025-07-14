@@ -2,6 +2,7 @@ import { FaStar, FaCode, FaGraduationCap, FaLanguage } from "react-icons/fa";
 import { FiGitPullRequest } from "react-icons/fi";
 import myPic from "../assets/images/myPic.jpg";
 import "../index.css";
+import { data } from "./ProjectsPage";
 
 const AboutPage = () => {
     return (
@@ -81,7 +82,7 @@ const AboutPage = () => {
 
                             <div className="statsBox">
                                 <FiGitPullRequest size={50} />
-                                <div>+17 Projects Completed</div>
+                                <div>+{data.length} Projects Completed</div>
                             </div>
 
                             <div className="statsBox">

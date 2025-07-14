@@ -27,7 +27,7 @@ import weatherApp from "../assets/images/projects-Images/React/WeatherApp.png";
 // mern
 import blisscetStore from "../assets/images/projects-Images/MERN/E-commerce-store.png";
 
-let data = [
+export let data = [
     {
         name: "Age Calculator App",
         category: "js",

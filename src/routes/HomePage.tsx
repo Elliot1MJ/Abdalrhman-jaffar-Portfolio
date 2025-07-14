@@ -7,16 +7,13 @@ import {
     FaCss3,
     FaJs,
     FaReact,
-    FaVuejs,
     FaNodeJs,
     FaStar,
     FaExternalLinkSquareAlt,
 } from "react-icons/fa";
 import {
     SiTypescript,
-    SiNextdotjs,
     SiExpress,
-    SiNestjs,
     SiMongodb,
     SiMysql,
     SiGithub,
@@ -107,40 +104,16 @@ const HomePage = () => {
                                 <div className="lineItemName">React js</div>
                             </div>
 
-                            {/* Vue */}
-                            <div className="lineItem">
-                                <FaVuejs size={40} />
-                                <div className="lineItemName">Vue.js</div>
-                            </div>
-
-                            {/* next js */}
-                            <div className="lineItem">
-                                <SiNextdotjs size={40} />
-                                <div className="lineItemName">Next.js</div>
-                            </div>
-
                             {/* Node js */}
                             <div className="lineItem">
                                 <FaNodeJs size={45} />
                                 <div className="lineItemName">Node Js</div>
                             </div>
 
-                            {/* JS */}
-                            <div className="lineItem">
-                                <FaJs size={40} />
-                                <div className="lineItemName">Javascript</div>
-                            </div>
-
                             {/* Express js */}
                             <div className="lineItem">
                                 <SiExpress size={40} />
                                 <div className="lineItemName">Express js</div>
-                            </div>
-
-                            {/* Nest */}
-                            <div className="lineItem">
-                                <SiNestjs size={35} />
-                                <div className="lineItemName">Nest js</div>
                             </div>
 
                             {/* Mongodb */}
