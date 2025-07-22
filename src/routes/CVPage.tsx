@@ -1,4 +1,4 @@
-import myCVPDF from "../assets/CV.pdf";
+import myCVPDF from "../assets/Abdalrhman_Jaffar's_CV.pdf";
 import "../index.css";
 
 const CVPage = () => {

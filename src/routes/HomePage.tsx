@@ -30,7 +30,7 @@ const HomePage = () => {
                         <div className="myInf">
                             <div className="hpMyName">
                                 Hi, I'm Abdalrhman Mohammed Jaffar
-                                <br />A Full Stack Developer
+                                <br />A Full-Stack Developer
                             </div>
                             <div className="hpWorkInf">
                                 I'm a passionate developer who loves creating
@@ -69,8 +69,6 @@ const HomePage = () => {
                         <div className="SkillTitle">
                             <FaStar size={25} /> Technical Skills{" "}
                             <FaStar size={25} />
-                            <br />
-                            (Front & Back)
                         </div>
 
                         <div className="skillsLines">

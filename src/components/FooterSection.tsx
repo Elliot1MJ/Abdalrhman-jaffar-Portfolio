@@ -25,7 +25,7 @@ const FooterSection = () => {
                         </Link>
 
                         <Link
-                            to={"https://wa.me/qr/UG7XUCIS5KQRO1"}
+                            to={"https://wa.me/message/6JSWUGX5ELVKB1"}
                             target="_blank"
                             className="contactTag"
                         >

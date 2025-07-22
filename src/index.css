@@ -76,7 +76,7 @@ button {
     top: 2vh;
     width: fit-content;
     height: 6vh;
-    padding: 0 8px;
+    padding: 0px 15px;
     border-radius: 50px;
     background-color: #1c1c1c;
     border: 1px solid #ffffff88;
@@ -91,14 +91,15 @@ button {
     text-decoration: none;
     font-size: 18px;
     width: fit-content;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.5s;
 }
 
 .activeNavTag {
-    background-color: #ffffff11;
+    background-color: #ffffff;
+    color: #1c1c1c;
 }
 
 @media (max-width: 800px) {
@@ -693,26 +694,37 @@ button {
 .projectCard {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     gap: 20px;
-    width: 250px;
-    padding: 0px 0px 10px 0px;
+    width: 400px;
+    height: 450px;
+    padding: 0px 0px 15px 0px;
     background-color: #1c1c1c;
     border-radius: 10px;
     border: 1px solid #ffffff88;
+    overflow: hidden;
 }
 
 .projectImg {
-    width: 250px;
+    width: 400px;
+    height: 300px;
     object-fit: cover;
     border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.projectImg:hover {
+    transform: scale(1.1);
 }
 
 .projectName {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     font-family: poppins-SB;
-    font-size: 18px;
+    font-size: 26px;
     line-height: 24px;
 }
 
@@ -725,6 +737,7 @@ button {
     border-radius: 5px;
     margin-top: 10px;
     margin-right: 10px;
+    z-index: 98;
 }
 
 .projectBtns {
@@ -740,6 +753,7 @@ button {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    font-size: 16px;
     color: #1c1c1c;
     padding: 5px 20px;
     background-color: white;
