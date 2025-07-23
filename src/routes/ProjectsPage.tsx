@@ -6,12 +6,12 @@ import "../index.css";
 
 // images
 // JS
-import ageCalculator from "../assets/images/projects-Images/JS/age-calculator-app.png";
+// import ageCalculator from "../assets/images/projects-Images/JS/age-calculator-app.png";
 import sunnysideAgency from "../assets/images/projects-Images/JS/Sunnyside-Agency-LP.png";
 import bookMarkMaster from "../assets/images/projects-Images/JS/Book-Mark-Master-LP.png";
 import contactFormPage from "../assets/images/projects-Images/JS/contact-form-main.png";
 import CURDSApp from "../assets/images/projects-Images/JS/CURDS-app.png";
-import mortgageCalculator from "../assets/images/projects-Images/JS/mortgage-repayment-calculator-app.png";
+// import mortgageCalculator from "../assets/images/projects-Images/JS/mortgage-repayment-calculator-app.png";
 import multiStepApp from "../assets/images/projects-Images/JS/Multi-Step-App.png";
 import productListApp from "../assets/images/projects-Images/JS/product-list-with-cart-app.png";
 
@@ -28,13 +28,13 @@ import weatherApp from "../assets/images/projects-Images/React/WeatherApp.png";
 import blisscetStore from "../assets/images/projects-Images/MERN/E-commerce-store.png";
 
 export let data = [
-    {
-        name: "Age Calculator App",
-        category: "js",
-        image: ageCalculator,
-        gitHubURL: "https://github.com/Elliot1MJ/AgeCalculator-Website_JS",
-        LiveWebAppURL: "https://age-calculator-website-js.vercel.app/",
-    },
+    // {
+    //     name: "Age Calculator App",
+    //     category: "js",
+    //     image: ageCalculator,
+    //     gitHubURL: "https://github.com/Elliot1MJ/AgeCalculator-Website_JS",
+    //     LiveWebAppURL: "https://age-calculator-website-js.vercel.app/",
+    // },
     {
         name: "Sunnyside Agency",
         category: "js",
@@ -63,15 +63,15 @@ export let data = [
         gitHubURL: "https://github.com/Elliot1MJ/CURDSApp-Website_JS",
         LiveWebAppURL: "https://curds-app-website-js.vercel.app/",
     },
-    {
-        name: "Mortgage Calculator",
-        category: "js",
-        image: mortgageCalculator,
-        gitHubURL:
-            "https://github.com/Elliot1MJ/MortgageRepaymentCalculatorApp-Website_JS",
-        LiveWebAppURL:
-            "https://mortgage-repayment-calculator-app-w.vercel.app/",
-    },
+    // {
+    //     name: "Mortgage Calculator",
+    //     category: "js",
+    //     image: mortgageCalculator,
+    //     gitHubURL:
+    //         "https://github.com/Elliot1MJ/MortgageRepaymentCalculatorApp-Website_JS",
+    //     LiveWebAppURL:
+    //         "https://mortgage-repayment-calculator-app-w.vercel.app/",
+    // },
     {
         name: "Multi Step App",
         category: "js",
