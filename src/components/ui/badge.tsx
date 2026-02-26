@@ -8,9 +8,9 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-    default: "bg-primary/20 text-primary border-primary/40",
-    secondary: "bg-secondary text-secondary-foreground border-border/90",
-    outline: "bg-transparent text-muted-foreground border-border/80",
+    default: "bg-primary/15 text-primary border-primary/40",
+    secondary: "bg-white/5 text-secondary-foreground border-white/10",
+    outline: "bg-transparent text-muted-foreground border-white/10",
 };
 
 export function Badge({ className, variant = "default", ...props }: BadgeProps) {

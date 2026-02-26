@@ -17,16 +17,21 @@ export default function CVPage() {
             </MotionReveal>
 
             <MotionReveal>
-                <Card className="border-border/70 bg-card/75">
-                    <CardContent className="space-y-5 p-6 sm:p-7">
-                        <div className="flex flex-wrap gap-3">
+                <Card className="border-white/10 bg-card/45">
+                    <CardContent className="space-y-5 p-6 text-center sm:p-7">
+                        <div className="flex flex-wrap justify-center gap-3">
                             <a href={myCVPDF} target="_blank" rel="noreferrer">
                                 <Button>
                                     <FiExternalLink />
                                     Open CV
                                 </Button>
                             </a>
-                            <a href={myCVPDF} download target="_blank" rel="noreferrer">
+                            <a
+                                href={myCVPDF}
+                                download
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 <Button variant="outline">
                                     <FiDownload />
                                     Download PDF
@@ -34,7 +39,7 @@ export default function CVPage() {
                             </a>
                         </div>
 
-                        <div className="overflow-hidden rounded-xl border border-border/70 bg-secondary/30">
+                        <div className="overflow-hidden rounded-2xl border border-white/10 bg-secondary/20">
                             <iframe
                                 title="Abdalrhman CV"
                                 src={`${myCVPDF}#toolbar=0&view=FitH`}
@@ -42,8 +47,9 @@ export default function CVPage() {
                                 className="hidden h-[700px] w-full md:block"
                             />
                             <div className="p-5 text-sm text-muted-foreground md:hidden">
-                                CV preview is disabled on small screens for better performance.
-                                Use the buttons above to open or download the PDF.
+                                CV preview is disabled on small screens for
+                                better performance. Use the buttons above to
+                                open or download the PDF.
                             </div>
                         </div>
                     </CardContent>

@@ -24,7 +24,7 @@ export default function SectionHeading({
             )}
         >
             {eyebrow && (
-                <span className="inline-flex w-fit rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <span className="inline-flex w-fit rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                     {eyebrow}
                 </span>
             )}

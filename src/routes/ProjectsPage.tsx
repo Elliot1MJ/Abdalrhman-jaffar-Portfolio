@@ -48,7 +48,10 @@ export default function ProjectsPage() {
                 </div>
             </MotionReveal>
 
-            <m.section layout className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <m.section
+                layout
+                className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+            >
                 {filteredProjects.map((project) => (
                     <ProjectCard key={project.name} project={project} />
                 ))}

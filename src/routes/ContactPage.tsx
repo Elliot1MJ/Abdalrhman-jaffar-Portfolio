@@ -69,7 +69,7 @@ export default function ContactPage() {
                 `My email: ${data.email}`,
                 "",
                 data.message,
-            ].join("\n")
+            ].join("\n"),
         );
 
         const mailtoLink = `mailto:${profile.email}?subject=${subject}&body=${body}`;
@@ -89,11 +89,17 @@ export default function ContactPage() {
 
             <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
                 <MotionReveal>
-                    <Card className="border-border/70 bg-card/75">
+                    <Card className="border-white/10 bg-card/45">
                         <CardContent className="p-6 sm:p-7">
-                            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+                            <form
+                                className="space-y-5"
+                                onSubmit={handleSubmit(onSubmit)}
+                            >
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-semibold-alt">
+                                    <label
+                                        htmlFor="name"
+                                        className="text-sm font-semibold-alt"
+                                    >
                                         Name
                                     </label>
                                     <Input
@@ -103,12 +109,17 @@ export default function ContactPage() {
                                         {...register("name")}
                                     />
                                     {errors.name && (
-                                        <p className="text-xs text-destructive">{errors.name.message}</p>
+                                        <p className="text-xs text-destructive">
+                                            {errors.name.message}
+                                        </p>
                                     )}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-semibold-alt">
+                                    <label
+                                        htmlFor="email"
+                                        className="text-sm font-semibold-alt"
+                                    >
                                         Email
                                     </label>
                                     <Input
@@ -119,12 +130,17 @@ export default function ContactPage() {
                                         {...register("email")}
                                     />
                                     {errors.email && (
-                                        <p className="text-xs text-destructive">{errors.email.message}</p>
+                                        <p className="text-xs text-destructive">
+                                            {errors.email.message}
+                                        </p>
                                     )}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-semibold-alt">
+                                    <label
+                                        htmlFor="message"
+                                        className="text-sm font-semibold-alt"
+                                    >
                                         Message
                                     </label>
                                     <Textarea
@@ -133,13 +149,22 @@ export default function ContactPage() {
                                         {...register("message")}
                                     />
                                     {errors.message && (
-                                        <p className="text-xs text-destructive">{errors.message.message}</p>
+                                        <p className="text-xs text-destructive">
+                                            {errors.message.message}
+                                        </p>
                                     )}
                                 </div>
 
-                                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                                <Button
+                                    type="submit"
+                                    size="lg"
+                                    className="w-full"
+                                    disabled={isSubmitting}
+                                >
                                     <FiSend />
-                                    {isSubmitting ? "Preparing email..." : "Send message"}
+                                    {isSubmitting
+                                        ? "Preparing email..."
+                                        : "Send message"}
                                 </Button>
                             </form>
                         </CardContent>
@@ -147,17 +172,26 @@ export default function ContactPage() {
                 </MotionReveal>
 
                 <MotionReveal>
-                    <div className="space-y-3">
+                    <div className="flex flex-col gap-2">
                         {contactWays.map((item) => (
-                            <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                                <Card className="border-border/70 bg-card/70 transition-colors hover:border-primary/35">
-                                    <CardContent className="flex items-center gap-3 p-4">
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <Card className="border-white/10 bg-card/40 transition-colors hover:border-primary/35">
+                                    <CardContent className="flex items-start gap-2">
                                         <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground">
                                             {item.icon}
                                         </div>
                                         <div className="space-y-0.5">
-                                            <p className="text-sm font-semibold-alt">{item.label}</p>
-                                            <p className="text-xs text-muted-foreground">{item.value}</p>
+                                            <p className="text-sm font-semibold-alt">
+                                                {item.label}
+                                            </p>
+                                            <p className="text-xs text-muted-foreground">
+                                                {item.value}
+                                            </p>
                                         </div>
                                     </CardContent>
                                 </Card>

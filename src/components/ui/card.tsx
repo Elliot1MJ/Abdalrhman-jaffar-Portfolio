@@ -6,12 +6,12 @@ const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         <div
             ref={ref}
             className={cn(
-                "rounded-xl border border-border/80 bg-card/80 text-card-foreground shadow-[0_18px_60px_-40px_rgba(2,10,22,0.85)] backdrop-blur-sm",
-                className
+                "rounded-3xl border border-white/10 bg-card/45 text-card-foreground shadow-[0_24px_70px_-45px_rgba(2,12,30,0.9)] backdrop-blur-2xl",
+                className,
             )}
             {...props}
         />
-    )
+    ),
 );
 Card.displayName = "Card";
 
@@ -22,19 +22,20 @@ const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
             className={cn("flex flex-col gap-1.5 p-6", className)}
             {...props}
         />
-    )
+    ),
 );
 CardHeader.displayName = "CardHeader";
 
-const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
-    ({ className, ...props }, ref) => (
-        <h3
-            ref={ref}
-            className={cn("font-display text-xl leading-tight", className)}
-            {...props}
-        />
-    )
-);
+const CardTitle = forwardRef<
+    HTMLHeadingElement,
+    HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+    <h3
+        ref={ref}
+        className={cn("font-display text-xl leading-tight", className)}
+        {...props}
+    />
+));
 CardTitle.displayName = "CardTitle";
 
 const CardDescription = forwardRef<
@@ -51,8 +52,8 @@ CardDescription.displayName = "CardDescription";
 
 const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
     ({ className, ...props }, ref) => (
-        <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-    )
+        <div ref={ref} className={cn("p-6", className)} {...props} />
+    ),
 );
 CardContent.displayName = "CardContent";
 
@@ -63,8 +64,15 @@ const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
             className={cn("flex items-center p-6 pt-0", className)}
             {...props}
         />
-    )
+    ),
 );
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
+export {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
+};

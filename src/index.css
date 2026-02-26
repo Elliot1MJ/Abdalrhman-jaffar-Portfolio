@@ -19,26 +19,26 @@
 }
 
 :root {
-    --background: 218 58% 6%;
+    --background: 225 38% 7%;
     --foreground: 210 40% 98%;
-    --card: 221 43% 10%;
+    --card: 224 34% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 220 43% 11%;
+    --popover: 224 28% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 163 93% 42%;
+    --primary: 189 100% 45%;
     --primary-foreground: 222 47% 11%;
-    --secondary: 220 28% 17%;
+    --secondary: 220 25% 16%;
     --secondary-foreground: 210 40% 96%;
-    --muted: 220 28% 17%;
-    --muted-foreground: 214 16% 72%;
-    --accent: 189 94% 43%;
+    --muted: 220 25% 16%;
+    --muted-foreground: 215 18% 72%;
+    --accent: 32 100% 56%;
     --accent-foreground: 222 47% 11%;
-    --destructive: 0 79% 63%;
+    --destructive: 0 80% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 216 27% 23%;
-    --input: 216 27% 23%;
-    --ring: 163 93% 42%;
-    --radius: 1rem;
+    --border: 218 22% 25%;
+    --input: 218 22% 25%;
+    --ring: 189 100% 45%;
+    --radius: 1.25rem;
 }
 
 @theme inline {
@@ -78,10 +78,19 @@ body,
     min-height: 100%;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: "Poppins-Regular", "Trebuchet MS", sans-serif;
-    background: hsl(var(--background));
+    background-color: hsl(var(--background));
+    background-image:
+        radial-gradient(1200px circle at 12% 12%, hsl(var(--primary) / 0.18), transparent 55%),
+        radial-gradient(900px circle at 88% 18%, hsl(var(--accent) / 0.16), transparent 55%),
+        radial-gradient(800px circle at 50% 100%, hsl(var(--primary) / 0.12), transparent 60%);
+    background-attachment: fixed;
     color: hsl(var(--foreground));
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -122,24 +131,24 @@ body {
     position: fixed;
     z-index: -1;
     border-radius: 999px;
-    filter: blur(90px);
+    filter: blur(120px);
     pointer-events: none;
 }
 
 .page-shell::before {
-    width: 26rem;
-    height: 26rem;
-    top: -5rem;
+    width: 30rem;
+    height: 30rem;
+    top: -8rem;
     left: -6rem;
-    background: hsl(var(--accent) / 0.2);
+    background: hsl(var(--primary) / 0.2);
 }
 
 .page-shell::after {
-    width: 30rem;
-    height: 30rem;
-    bottom: -8rem;
+    width: 34rem;
+    height: 34rem;
+    bottom: -10rem;
     right: -8rem;
-    background: hsl(var(--primary) / 0.22);
+    background: hsl(var(--accent) / 0.22);
 }
 
 @media (max-width: 640px) {
@@ -147,5 +156,15 @@ body {
     .page-shell::after {
         filter: blur(75px);
         opacity: 0.8;
+    }
+}
+
+.section-block {
+    scroll-margin-top: 6rem;
+}
+
+@media (min-width: 768px) {
+    .section-block {
+        scroll-margin-top: 7.5rem;
     }
 }

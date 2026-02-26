@@ -31,8 +31,8 @@ function ProjectCardComponent({ project }: ProjectCardProps) {
             }
             className="h-full"
         >
-            <Card className="group flex h-full flex-col overflow-hidden border-border/70 bg-card/75">
-                <div className="relative aspect-[16/10] overflow-hidden border-b border-border/70 bg-secondary/40">
+            <Card className="group flex h-full flex-col overflow-hidden border-white/10 bg-card/45">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-secondary/30">
                     <img
                         src={project.image}
                         alt={project.name}
@@ -48,14 +48,14 @@ function ProjectCardComponent({ project }: ProjectCardProps) {
                     </Badge>
                 </div>
 
-                <CardHeader className="pb-3">
+                <CardHeader className="pb-3 text-center">
                     <CardTitle className="text-xl">{project.name}</CardTitle>
                     <CardDescription className="leading-relaxed">
                         {project.description}
                     </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex flex-wrap gap-2 pb-5">
+                <CardContent className="flex flex-wrap justify-center gap-2 pb-5">
                     {project.stack.map((item) => (
                         <Badge key={`${project.name}-${item}`} variant="outline">
                             {item}
@@ -63,7 +63,7 @@ function ProjectCardComponent({ project }: ProjectCardProps) {
                     ))}
                 </CardContent>
 
-                <CardFooter className="mt-auto gap-2">
+                <CardFooter className="mt-auto justify-center gap-2">
                     <a
                         href={project.githubUrl}
                         target="_blank"

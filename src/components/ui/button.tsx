@@ -18,13 +18,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
     default:
-        "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:ring-ring",
+        "bg-primary/90 text-primary-foreground shadow-[0_16px_40px_-22px_rgba(14,165,233,0.75)] hover:bg-primary focus-visible:ring-ring",
     secondary:
-        "bg-secondary text-secondary-foreground hover:bg-secondary/80 focus-visible:ring-ring",
+        "bg-secondary/80 text-secondary-foreground hover:bg-secondary/70 focus-visible:ring-ring",
     outline:
-        "border border-border bg-transparent text-foreground hover:bg-secondary/70 focus-visible:ring-ring",
+        "border border-white/15 bg-white/5 text-foreground hover:bg-white/10 focus-visible:ring-ring",
     ghost:
-        "text-foreground hover:bg-secondary/60 focus-visible:ring-ring",
+        "text-foreground hover:bg-white/5 focus-visible:ring-ring",
     link: "text-primary underline-offset-4 hover:underline focus-visible:ring-ring",
     destructive:
         "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive",

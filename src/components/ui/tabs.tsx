@@ -26,7 +26,7 @@ export function Tabs<T extends string>({
     return (
         <div
             className={cn(
-                "inline-flex rounded-full border border-border/90 bg-secondary/70 p-1",
+                "inline-flex rounded-full border border-white/10 bg-card/60 p-1 backdrop-blur",
                 className
             )}
             role="tablist"
@@ -44,7 +44,7 @@ export function Tabs<T extends string>({
                             "rounded-full px-4 py-1.5 text-sm font-semibold-alt transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                             fullWidth && "min-w-[8.75rem]",
                             isActive
-                                ? "bg-primary text-primary-foreground shadow"
+                                ? "bg-primary/85 text-primary-foreground shadow-[0_12px_30px_-20px_rgba(14,165,233,0.8)]"
                                 : "text-muted-foreground hover:text-foreground"
                         )}
                         onClick={() => onChange(option.value)}
