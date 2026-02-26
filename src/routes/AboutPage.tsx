@@ -1,105 +1,108 @@
-import { FaStar, FaCode, FaGraduationCap, FaLanguage } from "react-icons/fa";
-import { FiGitPullRequest } from "react-icons/fi";
-import myPic from "../assets/images/myPic.jpg";
-import "../index.css";
-import { data } from "./ProjectsPage";
+import MotionReveal from "../components/shared/MotionReveal";
+import SectionHeading from "../components/shared/SectionHeading";
+import { Badge } from "../components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+import {
+    education,
+    profile,
+    quickStats,
+    values,
+} from "../data/portfolio";
 
-const AboutPage = () => {
+export default function AboutPage() {
     return (
-        <>
-            <div className="aboutPage">
-                <div className="aboutPageStyle">
-                    {/* MyImg */}
-                    <img src={myPic} className="hpMyPic" />
+        <div className="space-y-14">
+            <MotionReveal>
+                <section className="space-y-6">
+                    <SectionHeading
+                        eyebrow="About me"
+                        title={`${profile.shortName}, ${profile.title}`}
+                        description="Computer Science Engineering student focused on full-stack applications that feel fast and intuitive."
+                    />
 
-                    {/* About Text */}
-                    <div className="aboutText">
-                        <div className="aboutHeadText">
-                            Hi, This is Abdalrhman Mohammed Jaffar, a
-                            21-year-old Computer Science Engineering student
-                            from Syria.
-                        </div>
-                        <div className="aboutMainText">
-                            Currently I'm in my third year at Lattakia
-                            University (formerly Tishreen University), I'm
-                            passionate about full-stack development and creating
-                            efficient, user-friendly web applications. My
-                            technical journey focuses on JavaScript ecosystems,
-                            particularly React and Node.js. I enjoy solving
-                            complex problems and turning ideas into functional
-                            applications that provide real value to users. When
-                            I'm not coding, I'm learning new technologies,
-                            contributing to open-source projects, or improving
-                            my language skills in English and Turkish.
-                        </div>
-                    </div>
+                    <Card className="border-border/70 bg-card/70">
+                        <CardContent className="space-y-4 p-6 leading-relaxed text-muted-foreground sm:text-base">
+                            <p>
+                                I am currently in my third year at Lattakia University. My work
+                                centers on the JavaScript and TypeScript ecosystem, especially
+                                React for interfaces and Node.js for backend services.
+                            </p>
+                            <p>
+                                I enjoy translating ideas into maintainable products, with strong
+                                attention to architecture, performance, and user experience.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </section>
+            </MotionReveal>
 
-                    <div className="line"></div>
+            <MotionReveal>
+                <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    {quickStats.map((stat) => (
+                        <Card key={stat.label} className="border-border/70 bg-card/65">
+                            <CardContent className="space-y-2 p-5">
+                                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                                    {stat.label}
+                                </p>
+                                <p className="font-display text-2xl text-primary">{stat.value}</p>
+                                <p className="text-xs text-muted-foreground">{stat.detail}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </section>
+            </MotionReveal>
 
-                    {/* Education */}
-                    <div className="edu">
-                        <div className="eduTitle">
-                            <FaStar /> Education <FaStar />
-                        </div>
-                        <div className="eduInf">
-                            <div>Bachelor of Computer Science Engineering</div>
-                            <div>
-                                Lattakia University (formerly Tishreen
-                                University)
-                            </div>
-                            <div>
-                                <span>Location:</span> Lattakia, Syria
-                            </div>
-                            <div>
-                                <span>Duration:</span> 2022 - 2028 (Expected)
-                            </div>
-                            <div>
-                                <span>Current Status:</span> 3rd Year Student
-                            </div>
-                            <div>
-                                <span>Relevant Coursework:</span> Data
-                                Structures, Algorithms, Database Systems, Web
-                                Development, Software Engineering
-                            </div>
-                        </div>
-                    </div>
+            <Separator className="bg-border/70" />
 
-                    <div className="line"></div>
-
-                    {/* Stats */}
-                    <div className="stats">
-                        {/* Title */}
-                        <div className="statsTitle">
-                            <FaStar /> Stats <FaStar />
-                        </div>
-
-                        {/* Stats Inf */}
-                        <div className="statsInfCon">
-                            <div className="statsBox">
-                                <FaCode size={50} />
-                                <div>+2 Years Experience</div>
+            <MotionReveal>
+                <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+                    <Card className="border-border/70 bg-card/70">
+                        <CardHeader>
+                            <CardTitle>Education</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4 pt-0">
+                            <div className="space-y-1">
+                                <p className="font-semibold-alt text-base">{education.degree}</p>
+                                <p className="text-sm text-muted-foreground">{education.university}</p>
                             </div>
-
-                            <div className="statsBox">
-                                <FiGitPullRequest size={50} />
-                                <div>+{data.length} Projects Completed</div>
+                            <div className="grid gap-2 text-sm text-muted-foreground">
+                                <p>
+                                    <span className="font-semibold-alt text-foreground">Duration:</span>{" "}
+                                    {education.duration}
+                                </p>
+                                <p>
+                                    <span className="font-semibold-alt text-foreground">Status:</span>{" "}
+                                    {education.status}
+                                </p>
                             </div>
-
-                            <div className="statsBox">
-                                <FaLanguage size={50} />
-                                <div>3 Languages</div>
+                            <div className="flex flex-wrap gap-2">
+                                {education.coursework.map((item) => (
+                                    <Badge key={item} variant="outline">
+                                        {item}
+                                    </Badge>
+                                ))}
                             </div>
+                        </CardContent>
+                    </Card>
 
-                            <div className="statsBox">
-                                <FaGraduationCap size={50} />
-                                <div>3rd University Year</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+                    <Card className="border-border/70 bg-card/70">
+                        <CardHeader>
+                            <CardTitle>Working principles</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4 pt-0">
+                            {values.map((value) => (
+                                <div key={value.title} className="space-y-1">
+                                    <p className="font-semibold-alt text-foreground">{value.title}</p>
+                                    <p className="text-sm leading-relaxed text-muted-foreground">
+                                        {value.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </CardContent>
+                    </Card>
+                </section>
+            </MotionReveal>
+        </div>
     );
-};
-
-export default AboutPage;
+}

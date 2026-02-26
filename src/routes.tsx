@@ -1,11 +1,13 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import MainWebsitePage from "./MainWebsitePage";
-import HomePage from "./routes/HomePage";
-import AboutPage from "./routes/AboutPage";
-import ProjectsPage from "./routes/ProjectsPage";
-import ContactPage from "./routes/ContactPage";
-import CVPage from "./routes/CVPage";
 import ErrPage from "./components/ErrPage";
+
+const MainWebsitePage = lazy(() => import("./MainWebsitePage"));
+const HomePage = lazy(() => import("./routes/HomePage"));
+const AboutPage = lazy(() => import("./routes/AboutPage"));
+const ProjectsPage = lazy(() => import("./routes/ProjectsPage"));
+const ContactPage = lazy(() => import("./routes/ContactPage"));
+const CVPage = lazy(() => import("./routes/CVPage"));
 
 const router = createBrowserRouter([
     {

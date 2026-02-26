@@ -1,145 +1,171 @@
-import { FaWhatsapp } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "../index.css";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { FaWhatsapp } from "react-icons/fa";
+import { FiGithub, FiMail, FiSend } from "react-icons/fi";
+import MotionReveal from "../components/shared/MotionReveal";
+import SectionHeading from "../components/shared/SectionHeading";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { profile } from "../data/portfolio";
 
 const schema = z.object({
     name: z
         .string()
-        .min(3, { message: "Name must be at least 3 characters long" })
-        .max(16, { message: "Name must be at most 16 characters long" }),
+        .trim()
+        .min(2, { message: "Name must be at least 2 characters." })
+        .max(40, { message: "Name must be under 40 characters." }),
     email: z
         .string()
-        .email({ message: "Please enter a valid email" })
-        .refine((email) => email.endsWith("@gmail.com"), {
-            message: "Only gmail.com emails allowed",
-        }),
+        .trim()
+        .email({ message: "Please enter a valid email address." }),
     message: z
         .string()
-        .min(3, { message: "Message must be at least 3 characters long" }),
+        .trim()
+        .min(10, { message: "Message must contain at least 10 characters." })
+        .max(1000, { message: "Message is too long." }),
 });
 
 type ContactFormData = z.infer<typeof schema>;
 
-const ContactPage = () => {
+const contactWays = [
+    {
+        label: "Email",
+        value: profile.email,
+        href: `mailto:${profile.email}`,
+        icon: <FiMail />,
+    },
+    {
+        label: "WhatsApp",
+        value: "Quick chat",
+        href: profile.whatsapp,
+        icon: <FaWhatsapp />,
+    },
+    {
+        label: "GitHub",
+        value: "@Elliot1MJ",
+        href: profile.github,
+        icon: <FiGithub />,
+    },
+] as const;
+
+export default function ContactPage() {
     const {
         register,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<ContactFormData>({ resolver: zodResolver(schema) });
 
+    const onSubmit = (data: ContactFormData) => {
+        const subject = encodeURIComponent(`Project inquiry from ${data.name}`);
+        const body = encodeURIComponent(
+            [
+                `Hi ${profile.shortName},`,
+                "",
+                `My name: ${data.name}`,
+                `My email: ${data.email}`,
+                "",
+                data.message,
+            ].join("\n")
+        );
+
+        const mailtoLink = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+        window.open(mailtoLink, "_blank", "noopener,noreferrer");
+        reset();
+    };
+
     return (
-        <>
-            <div className="contactPage">
-                <div className="contactPageStyle">
-                    {/* forms to contact */}
-                    <form
-                        onSubmit={handleSubmit((data) => {
-                            const subject = encodeURIComponent(
-                                "New Contact from Portfolio"
-                            );
-                            const body = encodeURIComponent(
-                                `Hi, This is ${data.name}, and this is my message form your portfoilo:\n${data.message}`
-                            );
-                            const mailtoLink = `mailto:dev.elliot.j@gmail.com?subject=${subject}&body=${body}`;
-                            window.open(mailtoLink, "_blank");
-                            reset();
-                        })}
-                        className="contactForm"
-                    >
-                        {/* New Email Message */}
-                        <div className="ContactWay">
-                            Get in touch and send me an Email:
-                        </div>
+        <div className="space-y-10">
+            <MotionReveal>
+                <SectionHeading
+                    eyebrow="Contact"
+                    title="Let us build your next project"
+                    description="Tell me what you are building, timeline, and goals. I will reply with a clear execution plan."
+                />
+            </MotionReveal>
 
-                        {/* Name */}
-                        <label htmlFor="name">
-                            <div className="inputTitle">Name</div>
-                            <input
-                                {...register("name")}
-                                type="text"
-                                id="name"
-                                className={
-                                    errors.name ? "inputActive" : "input"
-                                }
-                                placeholder="Enter Your Name"
-                            />
-                            <div
-                                className={
-                                    errors.name ? "errValActive" : "errVal"
-                                }
-                            >
-                                {errors.name && errors.name.message}
-                            </div>
-                        </label>
+            <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+                <MotionReveal>
+                    <Card className="border-border/70 bg-card/75">
+                        <CardContent className="p-6 sm:p-7">
+                            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+                                <div className="space-y-2">
+                                    <label htmlFor="name" className="text-sm font-semibold-alt">
+                                        Name
+                                    </label>
+                                    <Input
+                                        id="name"
+                                        placeholder="Your name"
+                                        autoComplete="name"
+                                        {...register("name")}
+                                    />
+                                    {errors.name && (
+                                        <p className="text-xs text-destructive">{errors.name.message}</p>
+                                    )}
+                                </div>
 
-                        {/* Email */}
-                        <label htmlFor="email">
-                            <div className="inputTitle">Email</div>
-                            <input
-                                {...register("email")}
-                                type="text"
-                                id="email"
-                                className={
-                                    errors.email ? "inputActive" : "input"
-                                }
-                                placeholder="Enter Your Email"
-                            />
-                            <div
-                                className={
-                                    errors.email ? "errValActive" : "errVal"
-                                }
-                            >
-                                {errors.email && errors.email.message}
-                            </div>
-                        </label>
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="text-sm font-semibold-alt">
+                                        Email
+                                    </label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        placeholder="you@example.com"
+                                        autoComplete="email"
+                                        {...register("email")}
+                                    />
+                                    {errors.email && (
+                                        <p className="text-xs text-destructive">{errors.email.message}</p>
+                                    )}
+                                </div>
 
-                        {/* Message */}
-                        <label htmlFor="msg">
-                            <div className="inputTitle">Message</div>
-                            <textarea
-                                {...register("message")}
-                                id="msg"
-                                className={
-                                    errors.message ? "inputActive" : "input"
-                                }
-                                placeholder="Enter Your Message"
-                            />
-                            <div
-                                className={
-                                    errors.message ? "errValActive" : "errVal"
-                                }
-                            >
-                                {errors.message && errors.message.message}
-                            </div>
-                        </label>
+                                <div className="space-y-2">
+                                    <label htmlFor="message" className="text-sm font-semibold-alt">
+                                        Message
+                                    </label>
+                                    <Textarea
+                                        id="message"
+                                        placeholder="Share your project goals, deadline, and required features."
+                                        {...register("message")}
+                                    />
+                                    {errors.message && (
+                                        <p className="text-xs text-destructive">{errors.message.message}</p>
+                                    )}
+                                </div>
 
-                        {/* Submit Button */}
-                        <button className="SubmitBtn">Submit</button>
+                                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                                    <FiSend />
+                                    {isSubmitting ? "Preparing email..." : "Send message"}
+                                </Button>
+                            </form>
+                        </CardContent>
+                    </Card>
+                </MotionReveal>
 
-                        <div className="line"></div>
-
-                        {/* Another Way */}
-                        <div className="ContactWay">
-                            OR you can message me on Whatsapp:
-                        </div>
-
-                        {/* Whatsapp Button */}
-                        <Link
-                            to={"https://wa.me/message/6JSWUGX5ELVKB1"}
-                            target="_blank"
-                            className="whatsappBtn"
-                        >
-                            <FaWhatsapp size={22} /> Whatsapp
-                        </Link>
-                    </form>
-                </div>
-            </div>
-        </>
+                <MotionReveal>
+                    <div className="space-y-3">
+                        {contactWays.map((item) => (
+                            <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                                <Card className="border-border/70 bg-card/70 transition-colors hover:border-primary/35">
+                                    <CardContent className="flex items-center gap-3 p-4">
+                                        <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground">
+                                            {item.icon}
+                                        </div>
+                                        <div className="space-y-0.5">
+                                            <p className="text-sm font-semibold-alt">{item.label}</p>
+                                            <p className="text-xs text-muted-foreground">{item.value}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </a>
+                        ))}
+                    </div>
+                </MotionReveal>
+            </section>
+        </div>
     );
-};
-
-export default ContactPage;
+}

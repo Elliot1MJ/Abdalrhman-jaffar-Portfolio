@@ -1,78 +1,60 @@
-import { FiHome } from "react-icons/fi";
-import "../index.css";
-import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
+import { FiHome, FiMail } from "react-icons/fi";
+import { type ReactNode } from "react";
+import { NavLink } from "react-router-dom";
+import { cn } from "../lib/utils";
+import { Button } from "./ui/button";
 
-const NavigationBar = () => {
-    const location = useLocation();
-    const URLEndPoint = location.pathname;
+interface NavItem {
+    label: string;
+    path: string;
+    icon?: ReactNode;
+}
+
+const navItems: NavItem[] = [
+    { label: "Home", path: "/", icon: <FiHome className="text-[15px]" /> },
+    { label: "About", path: "/about" },
+    { label: "Projects", path: "/projects" },
+    { label: "Contact", path: "/contact" },
+    { label: "CV", path: "/cv" },
+];
+
+export default function NavigationBar() {
+    const shouldReduceMotion = useReducedMotion();
+
     return (
-        <>
-            <motion.div
-                className="navbar"
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ type: "tween" }}
-            >
-                <div className="navbarStyle">
-                    <Link
-                        to={"/"}
-                        className={
-                            URLEndPoint === "/"
-                                ? "navTag activeNavTag"
-                                : "navTag"
-                        }
-                    >
-                        <FiHome size={22} />
-                    </Link>
-
-                    <Link
-                        to={"/about"}
-                        className={
-                            URLEndPoint === "/about"
-                                ? "navTag activeNavTag"
-                                : "navTag"
-                        }
-                    >
-                        About
-                    </Link>
-
-                    <Link
-                        to={"/projects"}
-                        className={
-                            URLEndPoint === "/projects"
-                                ? "navTag activeNavTag"
-                                : "navTag"
-                        }
-                    >
-                        Projects
-                    </Link>
-
-                    <Link
-                        to={"/contact"}
-                        className={
-                            URLEndPoint === "/contact"
-                                ? "navTag activeNavTag"
-                                : "navTag"
-                        }
-                    >
-                        Contact
-                    </Link>
-
-                    <Link
-                        to={"/cv"}
-                        className={
-                            URLEndPoint === "/cv"
-                                ? "navTag activeNavTag"
-                                : "navTag"
-                        }
-                    >
-                        CV
-                    </Link>
+        <m.header
+            initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
+            animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="sticky top-0 z-50 border-b border-border/70 bg-background/75 backdrop-blur-xl"
+        >
+            <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+                <div className="scrollbar-hidden inline-flex max-w-[calc(100vw-2rem)] min-w-0 items-center gap-2 overflow-x-auto rounded-full border border-border/80 bg-card/85 px-2 py-1">
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                cn(
+                                    "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs text-muted-foreground transition-colors sm:text-sm",
+                                    isActive && "bg-primary text-primary-foreground"
+                                )
+                            }
+                        >
+                            {item.icon}
+                            <span>{item.label}</span>
+                        </NavLink>
+                    ))}
                 </div>
-            </motion.div>
-        </>
-    );
-};
 
-export default NavigationBar;
+                <NavLink to="/contact" className="hidden sm:block">
+                    <Button size="sm" className="h-9 rounded-full px-4">
+                        <FiMail />
+                        Hire Me
+                    </Button>
+                </NavLink>
+            </div>
+        </m.header>
+    );
+}
