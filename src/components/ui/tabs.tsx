@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { useI18n } from "../../i18n/useI18n";
 import { cn } from "../../lib/utils";
 
 interface TabOption<T extends string> {
@@ -10,6 +11,7 @@ interface TabsProps<T extends string> {
     value: T;
     onChange: (value: T) => void;
     options: TabOption<T>[];
+    ariaLabel?: string;
     className?: string;
     fullWidth?: boolean;
     icon?: ReactNode;
@@ -19,18 +21,21 @@ export function Tabs<T extends string>({
     value,
     onChange,
     options,
+    ariaLabel = "Tabs",
     className,
     fullWidth = false,
     icon,
 }: TabsProps<T>) {
+    const { isRtl } = useI18n();
+
     return (
         <div
             className={cn(
-                "inline-flex rounded-full border border-white/10 bg-card/60 p-1 backdrop-blur",
+                "inline-flex gap-4 border-b border-foreground/15 pb-2",
                 className
             )}
             role="tablist"
-            aria-label="Project filter tabs"
+            aria-label={ariaLabel}
         >
             {options.map((option) => {
                 const isActive = option.value === value;
@@ -41,10 +46,13 @@ export function Tabs<T extends string>({
                         role="tab"
                         aria-selected={isActive}
                         className={cn(
-                            "rounded-full px-4 py-1.5 text-sm font-semibold-alt transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                            "relative px-1 py-2 font-semibold-alt transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                            isRtl
+                                ? "text-sm"
+                                : "text-xs uppercase tracking-[0.22em]",
                             fullWidth && "min-w-[8.75rem]",
                             isActive
-                                ? "bg-primary/85 text-primary-foreground shadow-[0_12px_30px_-20px_rgba(14,165,233,0.8)]"
+                                ? "text-foreground"
                                 : "text-muted-foreground hover:text-foreground"
                         )}
                         onClick={() => onChange(option.value)}
@@ -53,6 +61,9 @@ export function Tabs<T extends string>({
                             {isActive && icon}
                             {option.label}
                         </span>
+                        {isActive && (
+                            <span className="absolute left-0 top-full mt-1 h-[2px] w-full bg-primary" />
+                        )}
                     </button>
                 );
             })}

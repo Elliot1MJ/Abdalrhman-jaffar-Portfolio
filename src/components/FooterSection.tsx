@@ -1,88 +1,100 @@
-import { FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { profile } from "../data/portfolio";
-import { Badge } from "./ui/badge";
-
-const contactLinks = [
-    {
-        label: "GitHub",
-        href: profile.github,
-        icon: <FaGithub className="text-base" />,
-    },
-    {
-        label: "WhatsApp",
-        href: profile.whatsapp,
-        icon: <FaWhatsapp className="text-base" />,
-    },
-    {
-        label: "Email",
-        href: `mailto:${profile.email}`,
-        icon: <FiMail className="text-base" />,
-    },
-] as const;
-
-const quickLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "CV", href: "#cv" },
-    { label: "Contact", href: "#contact" },
-] as const;
+import { useI18n } from "../i18n/useI18n";
+import { cn } from "../lib/utils";
 
 export default function FooterSection() {
+    const { isRtl, text } = useI18n();
+
+    const contactLinks = [
+        {
+            label: text.contact.ways.whatsappLabel,
+            href: profile.whatsapp,
+            icon: <FaWhatsapp className="text-base" />,
+        },
+        {
+            label: text.contact.ways.instagramLabel,
+            href: profile.instagram,
+            icon: <FaInstagram className="text-base" />,
+        },
+        {
+            label: text.contact.ways.emailLabel,
+            href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+                profile.email,
+            )}`,
+            icon: <FiMail className="text-base" />,
+        },
+    ] as const;
+
     return (
-        <footer className="border-t border-border/60 bg-background/70">
-            <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8">
-                <div className="grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
-                    <div className="space-y-4">
-                        <Badge variant="outline" className="w-fit text-xs uppercase tracking-[0.2em]">
-                            Open for projects
-                        </Badge>
-                        <div className="space-y-2">
-                            <p className="font-display text-2xl sm:text-3xl">
-                                Let us build a modern, fast web experience together.
+        <footer className="border-t border-border/60 bg-background/70 backdrop-blur-xl">
+            <div className="mx-auto flex w-[90%] max-w-none flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8">
+                <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+                    <div className="space-y-6">
+                        <div className="space-y-3">
+                            <p className="font-display text-4xl sm:text-5xl">
+                                {text.footer.headline}
                             </p>
                             <p className="text-sm text-muted-foreground sm:text-base">
-                                I ship glassy, high-performance interfaces that feel premium on
-                                every device.
+                                {text.footer.description}
                             </p>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2">
-                            {contactLinks.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
-                                >
-                                    {item.icon}
-                                    {item.label}
-                                </a>
-                            ))}
                         </div>
                     </div>
 
-                    <div className="space-y-4 rounded-3xl border border-border/60 bg-card/55 p-5 backdrop-blur-2xl">
-                        <div className="space-y-2">
-                            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                                Quick links
+                    <div className="space-y-3 text-sm text-muted-foreground">
+                        <div className="space-y-3">
+                            <p
+                                className={cn(
+                                    "text-muted-foreground",
+                                    isRtl
+                                        ? "text-sm"
+                                        : "text-[11px] uppercase tracking-[0.3em]",
+                                )}
+                            >
+                                {text.footer.contactLabel}
                             </p>
-                            <div className="grid gap-2 text-sm">
-                                {quickLinks.map((item) => (
-                                    <a
-                                        key={item.label}
-                                        href={item.href}
-                                        className="text-muted-foreground transition hover:text-foreground"
-                                    >
-                                        {item.label}
-                                    </a>
-                                ))}
+                            <div className="space-y-2 text-sm text-muted-foreground">
+                                <p className="text-foreground">
+                                    {profile.email}
+                                </p>
+                                <p>{text.profile.location}</p>
+                                <p>{text.footer.availability}</p>
                             </div>
                         </div>
-                        <div className="border-t border-border/60 pt-4 text-xs text-muted-foreground">
-                            {new Date().getFullYear()} © {profile.shortName}. All rights reserved.
-                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-6 border-t border-border/60 pt-6 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex flex-wrap items-center gap-4">
+                        {contactLinks.map((item) => (
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={cn(
+                                    "inline-flex items-center gap-2 border-b border-transparent font-semibold-alt text-muted-foreground transition hover:border-primary hover:text-foreground",
+                                    isRtl
+                                        ? "text-sm"
+                                        : "text-[11px] uppercase tracking-[0.3em]",
+                                )}
+                            >
+                                {item.icon}
+                                {item.label}
+                            </a>
+                        ))}
+                    </div>
+                    <div
+                        className={cn(
+                            "text-muted-foreground",
+                            isRtl
+                                ? "text-sm"
+                                : "text-xs uppercase tracking-[0.28em]",
+                        )}
+                    >
+                        {new Date().getFullYear()} © {text.profile.shortName}.{" "}
+                        {text.footer.rightsReserved}
                     </div>
                 </div>
             </div>

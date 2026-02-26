@@ -5,35 +5,40 @@ import MotionReveal from "../components/shared/MotionReveal";
 import ProjectCard from "../components/shared/ProjectCard";
 import SectionHeading from "../components/shared/SectionHeading";
 import { Tabs } from "../components/ui/tabs";
-import { projects, type PortfolioProject } from "../data/portfolio";
+import { useI18n } from "../i18n/useI18n";
+import {
+    featuredProjects,
+    projects,
+} from "../data/portfolio";
 
-type ProjectFilter = "all" | PortfolioProject["category"];
-
-const filterOptions: { label: string; value: ProjectFilter }[] = [
-    { label: "All", value: "all" },
-    { label: "JavaScript", value: "javascript" },
-    { label: "React", value: "react" },
-    { label: "Full Stack", value: "fullstack" },
-];
+type ProjectFilter = "featured" | "all";
 
 export default function ProjectsPage() {
-    const [filter, setFilter] = useState<ProjectFilter>("all");
+    const { text } = useI18n();
+    const [filter, setFilter] = useState<ProjectFilter>("featured");
+    const filterOptions: { label: string; value: ProjectFilter }[] = useMemo(
+        () => [
+            { label: text.projects.filters.featured, value: "featured" },
+            { label: text.projects.filters.all, value: "all" },
+        ],
+        [text.projects.filters.all, text.projects.filters.featured],
+    );
 
     const filteredProjects = useMemo(() => {
-        if (filter === "all") {
-            return projects;
+        if (filter === "featured") {
+            return featuredProjects.slice(0, 3);
         }
 
-        return projects.filter((project) => project.category === filter);
+        return projects;
     }, [filter]);
 
     return (
         <div className="space-y-9">
             <MotionReveal>
                 <SectionHeading
-                    eyebrow="Portfolio"
-                    title="Projects I shipped"
-                    description="Filter by stack and explore live demos and source code. Each card is optimized with lazy image loading and lightweight motion."
+                    eyebrow={text.projects.eyebrow}
+                    title={text.projects.title}
+                    description={text.projects.description}
                 />
             </MotionReveal>
 
@@ -43,6 +48,7 @@ export default function ProjectsPage() {
                         value={filter}
                         onChange={setFilter}
                         options={filterOptions}
+                        ariaLabel={text.projects.filtersAria}
                         icon={<FiFilter className="text-xs" />}
                     />
                 </div>

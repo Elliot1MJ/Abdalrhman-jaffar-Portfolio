@@ -7,32 +7,27 @@ import {
     CardHeader,
     CardTitle,
 } from "../components/ui/card";
-import { education, profile, quickStats, values } from "../data/portfolio";
+import { cn } from "../lib/utils";
+import { useI18n } from "../i18n/useI18n";
 
 export default function AboutPage() {
+    const { isRtl, text } = useI18n();
+
     return (
         <div className="space-y-14">
             <MotionReveal>
                 <section className="space-y-6">
                     <SectionHeading
-                        eyebrow="About me"
-                        title={`${profile.shortName}, ${profile.title}`}
-                        description="Computer Science Engineering student focused on full-stack applications that feel fast and intuitive."
+                        eyebrow={text.about.eyebrow}
+                        title={text.about.title}
+                        description={text.about.description}
                     />
 
-                    <Card className="border-white/10 bg-card/45">
+                    <Card className="border-foreground/10 bg-card">
                         <CardContent className="space-y-4 p-6 text-center leading-relaxed text-muted-foreground sm:text-base">
-                            <p>
-                                I am currently in my third year at Lattakia
-                                University. My work centers on the JavaScript
-                                and TypeScript ecosystem, especially React for
-                                interfaces and Node.js for backend services.
-                            </p>
-                            <p>
-                                I enjoy translating ideas into maintainable
-                                products, with strong attention to architecture,
-                                performance, and user experience.
-                            </p>
+                            <p>{text.about.paragraphOne}</p>
+                            <p>{text.about.paragraphTwo}</p>
+                            <p>{text.about.paragraphThree}</p>
                         </CardContent>
                     </Card>
                 </section>
@@ -40,13 +35,20 @@ export default function AboutPage() {
 
             <MotionReveal>
                 <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                    {quickStats.map((stat) => (
+                    {text.stats.map((stat) => (
                         <Card
-                            key={stat.label}
-                            className="border-white/10 bg-card/40"
+                            key={`${stat.label}-${stat.value}`}
+                            className="border-foreground/10 bg-card"
                         >
                             <CardContent className="space-y-2 p-5 text-center">
-                                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                                <p
+                                    className={cn(
+                                        "text-muted-foreground",
+                                        isRtl
+                                            ? "text-sm"
+                                            : "text-xs uppercase tracking-[0.14em]",
+                                    )}
+                                >
                                     {stat.label}
                                 </p>
                                 <p className="font-display text-2xl text-primary">
@@ -63,35 +65,35 @@ export default function AboutPage() {
 
             <MotionReveal>
                 <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-                    <Card className="border-white/10 bg-card/45">
+                    <Card className="border-foreground/10 bg-card">
                         <CardHeader className="text-center">
-                            <CardTitle>Education</CardTitle>
+                            <CardTitle>{text.about.educationTitle}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4 pt-0 text-center">
                             <div className="space-y-1">
                                 <p className="font-semibold-alt text-base">
-                                    {education.degree}
+                                    {text.education.degree}
                                 </p>
                                 <p className="text-sm text-muted-foreground">
-                                    {education.university}
+                                    {text.education.university}
                                 </p>
                             </div>
                             <div className="grid gap-2 text-sm text-muted-foreground">
                                 <p>
                                     <span className="font-semibold-alt text-foreground">
-                                        Duration:
+                                        {text.about.durationLabel}:
                                     </span>{" "}
-                                    {education.duration}
+                                    {text.education.duration}
                                 </p>
                                 <p>
                                     <span className="font-semibold-alt text-foreground">
-                                        Status:
+                                        {text.about.statusLabel}:
                                     </span>{" "}
-                                    {education.status}
+                                    {text.education.status}
                                 </p>
                             </div>
                             <div className="flex flex-wrap justify-center gap-2">
-                                {education.coursework.map((item) => (
+                                {text.education.coursework.map((item) => (
                                     <Badge key={item} variant="outline">
                                         {item}
                                     </Badge>
@@ -100,13 +102,16 @@ export default function AboutPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="border-white/10 bg-card/45">
+                    <Card className="border-foreground/10 bg-card">
                         <CardHeader className="text-center">
-                            <CardTitle>Working principles</CardTitle>
+                            <CardTitle>{text.about.principlesTitle}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4 pt-0 text-center">
-                            {values.map((value) => (
-                                <div key={value.title} className="space-y-1">
+                            {text.values.map((value) => (
+                                <div
+                                    key={`${value.title}-${value.description}`}
+                                    className="space-y-1"
+                                >
                                     <p className="font-semibold-alt text-foreground">
                                         {value.title}
                                     </p>

@@ -24,13 +24,23 @@ export default function MotionReveal({
     return (
         <m.div
             className={cn(className)}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once, amount: 0.2 }}
+            initial={{
+                opacity: 0,
+                y: 40,
+                scale: 0.98,
+                filter: "blur(6px)",
+            }}
+            whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)",
+            }}
+            viewport={{ once, amount: 0.3 }}
             transition={{
-                duration: 0.5,
+                duration: 0.55,
                 delay,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.16, 1, 0.3, 1],
             }}
         >
             {children}

@@ -10,14 +10,14 @@ export interface PortfolioProject {
 }
 
 export const profile = {
-    name: "Abdalrhman Mohammed Jaffar",
+    name: "Abdalrhman Jaffar",
     shortName: "Abdalrhman",
-    title: "Full-Stack Developer",
+    title: "Frontend Developer",
     roleSummary:
-        "I build high-performance web apps with clean architecture, smooth UX, and production-ready code.",
+        "Frontend Developer specialized in building dashboards and booking/tracking systems with React.js and TypeScript. I focus on fast, structured, scalable interfaces with high UI quality and smooth user experience.",
     location: "Lattakia, Syria",
     email: "dev.elliot.j@gmail.com",
-    github: "https://github.com/Elliot1MJ",
+    instagram: "https://www.instagram.com/abdalrhman_jaffar/",
     whatsapp: "https://wa.me/message/6JSWUGX5ELVKB1",
     yearsOfExperience: "2+",
     education: "Computer Science Engineering Student",
@@ -25,64 +25,117 @@ export const profile = {
 
 export const quickStats = [
     {
-        label: "Projects Delivered",
-        value: "15+",
-        detail: "Frontend and full-stack builds shipped on Vercel.",
+        label: "Dashboards",
+        value: "Admin-Grade",
+        detail: "Structured, scalable dashboards built for real operations.",
     },
     {
-        label: "Core Stack",
-        value: "React + Node",
-        detail: "Modern TypeScript stack focused on DX and scalability.",
+        label: "Booking Systems",
+        value: "End-to-End",
+        detail: "From scheduling to payments and tracking workflows.",
     },
     {
-        label: "Performance Focus",
-        value: "90+",
-        detail: "Optimized for lightweight bundles, lazy loading, and smooth motion.",
+        label: "Role-Based Access",
+        value: "RBAC",
+        detail: "Secure permissions and role-driven experiences.",
     },
     {
         label: "Languages",
-        value: "3",
-        detail: "Arabic, English, Turkish.",
+        value: "2",
+        detail: "Arabic, English",
     },
 ] as const;
 
 export const skillGroups = [
     {
-        title: "Frontend",
+        title: "Frontend Stack",
         skills: [
+            "React.js",
             "TypeScript",
-            "React",
-            "Framer Motion",
             "Tailwind CSS",
-            "Accessibility",
-            "Responsive UI",
+            "shadcn/ui",
+            "Framer Motion",
+            "UI Systems",
         ],
     },
     {
-        title: "Backend",
+        title: "Product Systems",
         skills: [
-            "Node.js",
-            "Express",
-            "REST APIs",
-            "MongoDB",
-            "MySQL",
-            "Auth Flows",
+            "Admin Dashboards",
+            "Booking Engines",
+            "Role-Based Access",
+            "Tracking Systems",
+            "Payments",
+            "Data Export",
         ],
     },
     {
-        title: "Tooling",
+        title: "Experience & Quality",
         skills: [
-            "Git + GitHub",
-            "Vite",
-            "React Hook Form",
-            "Zod",
-            "React Query",
-            "Deployment",
+            "Dynamic Forms",
+            "API Integration",
+            "UX Optimization",
+            "Performance Tuning",
+            "Clean Architecture",
+            "Scalable UI",
         ],
     },
 ] as const;
 
 export const projects: PortfolioProject[] = [
+    {
+        name: "LUJJH – Boat Booking Platform",
+        category: "fullstack",
+        description:
+            "Boat booking platform for the Saudi market, built with a conversion-focused landing page, a full admin dashboard, and an end-to-end booking and payment flow.",
+        stack: ["React.js", "TypeScript", "Booking Flow", "Payments"],
+        image: "/projects-Images/MERN/E-commerce-store.png",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+    },
+    {
+        name: "Tariq Al-Shahba – Logistics & Cargo Management System",
+        category: "react",
+        description:
+            "Digital system for managing cargo shipments from UAE to Syria, featuring customs-based pricing inputs, QR tracking, dashboards, and PDF/Excel exports.",
+        stack: ["React.js", "TypeScript", "QR Tracking", "PDF/Excel"],
+        image: "/projects-Images/React/TodoApp-website-main.png",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+    },
+    {
+        name: "Ibtisama Clinic – Dental Booking System",
+        category: "fullstack",
+        description:
+            "Dental booking system with a two-month scheduling calendar, role-based dashboards (Doctor/Reception), and full clinic workflow management.",
+        stack: ["React.js", "TypeScript", "Express.js", "MySQL"],
+        image: "/projects-Images/JS/Sunnyside-Agency-LP.png",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+    },
+    {
+        name: "TATABU – Location Tracking Platform",
+        category: "react",
+        description:
+            "Revamped a location tracking dashboard with better data organization, improved performance, and a cleaner UX.",
+        stack: ["React.js", "Dashboard Revamp", "Performance", "UX"],
+        image: "/projects-Images/React/faq-accordion-main.png",
+        githubUrl: "",
+        liveUrl: "",
+    },
+    {
+        name: "YOGO Kids – Childcare Booking Platform",
+        category: "react",
+        description:
+            "Under-development childcare booking platform with a modern admin dashboard, registrations, and scheduling built on shadcn/ui.",
+        stack: ["React.js", "TypeScript", "shadcn/ui"],
+        image: "/projects-Images/React/article-preview-component-master.png",
+        githubUrl: "",
+        liveUrl: "",
+    },
     {
         name: "Blisscet Store",
         category: "fullstack",
@@ -92,7 +145,6 @@ export const projects: PortfolioProject[] = [
         image: "/projects-Images/MERN/E-commerce-store.png",
         githubUrl: "https://github.com/Elliot1MJ/BlisscetStore-Website-MERN",
         liveUrl: "https://blisscet-store-website-mern.vercel.app/login",
-        featured: true,
     },
     {
         name: "Todo App",
@@ -103,7 +155,6 @@ export const projects: PortfolioProject[] = [
         image: "/projects-Images/React/TodoApp-website-main.png",
         githubUrl: "https://github.com/Elliot1MJ/TodoApp-website_React",
         liveUrl: "https://todo-app-website-react.vercel.app/",
-        featured: true,
     },
     {
         name: "Sunnyside Agency",
@@ -114,7 +165,6 @@ export const projects: PortfolioProject[] = [
         image: "/projects-Images/JS/Sunnyside-Agency-LP.png",
         githubUrl: "https://github.com/Elliot1MJ/SunnysideAgencyLP-Website_JS",
         liveUrl: "https://age-calculator-website-js-zbka.vercel.app/",
-        featured: true,
     },
     {
         name: "Book Mark Master",
@@ -163,7 +213,8 @@ export const projects: PortfolioProject[] = [
             "Interactive cart experience with product listing, quantity controls, and persistent cart behavior.",
         stack: ["JavaScript", "Cart Logic", "Responsive Design"],
         image: "/projects-Images/JS/product-list-with-cart-app.png",
-        githubUrl: "https://github.com/Elliot1MJ/ProductListWithCart-Website_JS",
+        githubUrl:
+            "https://github.com/Elliot1MJ/ProductListWithCart-Website_JS",
         liveUrl: "https://product-list-with-cart-website-js.vercel.app/",
     },
     {

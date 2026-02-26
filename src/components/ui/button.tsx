@@ -18,22 +18,22 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
     default:
-        "bg-primary/90 text-primary-foreground shadow-[0_16px_40px_-22px_rgba(14,165,233,0.75)] hover:bg-primary focus-visible:ring-ring",
+        "bg-primary text-primary-foreground shadow-[0_18px_40px_-24px_rgba(147,51,234,0.65)] hover:bg-primary/90 focus-visible:ring-ring",
     secondary:
-        "bg-secondary/80 text-secondary-foreground hover:bg-secondary/70 focus-visible:ring-ring",
+        "bg-secondary text-secondary-foreground hover:bg-secondary/80 focus-visible:ring-ring",
     outline:
-        "border border-white/15 bg-white/5 text-foreground hover:bg-white/10 focus-visible:ring-ring",
+        "border border-foreground/25 bg-transparent text-foreground hover:bg-foreground/10 focus-visible:ring-ring",
     ghost:
-        "text-foreground hover:bg-white/5 focus-visible:ring-ring",
+        "text-foreground hover:bg-foreground/10 focus-visible:ring-ring",
     link: "text-primary underline-offset-4 hover:underline focus-visible:ring-ring",
     destructive:
         "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-    default: "h-10 px-4 py-2 text-sm",
-    sm: "h-9 rounded-md px-3 text-xs",
-    lg: "h-11 rounded-lg px-6 text-base",
+    default: "h-10 px-5 py-2 text-sm",
+    sm: "h-9 px-4 text-xs",
+    lg: "h-12 px-7 text-base",
     icon: "h-10 w-10",
 };
 
@@ -47,7 +47,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 ref={ref}
                 type={type}
                 className={cn(
-                    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-semibold-alt transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold-alt uppercase tracking-[0.2em] transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     variantStyles[variant],
                     sizeStyles[size],
                     className

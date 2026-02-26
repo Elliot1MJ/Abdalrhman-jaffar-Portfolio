@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { FaWhatsapp } from "react-icons/fa";
-import { FiGithub, FiMail, FiSend } from "react-icons/fi";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FiMail, FiSend } from "react-icons/fi";
 import MotionReveal from "../components/shared/MotionReveal";
 import SectionHeading from "../components/shared/SectionHeading";
 import { Button } from "../components/ui/button";
@@ -10,48 +11,70 @@ import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { profile } from "../data/portfolio";
+import { useI18n } from "../i18n/useI18n";
 
-const schema = z.object({
-    name: z
-        .string()
-        .trim()
-        .min(2, { message: "Name must be at least 2 characters." })
-        .max(40, { message: "Name must be under 40 characters." }),
-    email: z
-        .string()
-        .trim()
-        .email({ message: "Please enter a valid email address." }),
-    message: z
-        .string()
-        .trim()
-        .min(10, { message: "Message must contain at least 10 characters." })
-        .max(1000, { message: "Message is too long." }),
-});
-
-type ContactFormData = z.infer<typeof schema>;
-
-const contactWays = [
-    {
-        label: "Email",
-        value: profile.email,
-        href: `mailto:${profile.email}`,
-        icon: <FiMail />,
-    },
-    {
-        label: "WhatsApp",
-        value: "Quick chat",
-        href: profile.whatsapp,
-        icon: <FaWhatsapp />,
-    },
-    {
-        label: "GitHub",
-        value: "@Elliot1MJ",
-        href: profile.github,
-        icon: <FiGithub />,
-    },
-] as const;
+type ContactFormData = {
+    name: string;
+    email: string;
+    message: string;
+};
 
 export default function ContactPage() {
+    const { text } = useI18n();
+
+    const schema = useMemo(
+        () =>
+            z.object({
+                name: z
+                    .string()
+                    .trim()
+                    .min(2, { message: text.contact.validation.nameMin })
+                    .max(40, { message: text.contact.validation.nameMax }),
+                email: z
+                    .string()
+                    .trim()
+                    .email({ message: text.contact.validation.emailInvalid }),
+                message: z
+                    .string()
+                    .trim()
+                    .min(10, { message: text.contact.validation.messageMin })
+                    .max(1000, { message: text.contact.validation.messageMax }),
+            }),
+        [text.contact.validation],
+    );
+
+    const contactWays = useMemo(
+        () => [
+            {
+                label: text.contact.ways.whatsappLabel,
+                value: text.contact.ways.whatsappValue,
+                href: profile.whatsapp,
+                icon: <FaWhatsapp />,
+            },
+            {
+                label: text.contact.ways.instagramLabel,
+                value: text.contact.ways.instagramValue,
+                href: profile.instagram,
+                icon: <FaInstagram />,
+            },
+            {
+                label: text.contact.ways.emailLabel,
+                value: profile.email,
+                href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+                    profile.email,
+                )}`,
+                icon: <FiMail />,
+            },
+        ],
+        [
+            text.contact.ways.emailLabel,
+            text.contact.ways.instagramLabel,
+            text.contact.ways.instagramValue,
+            text.contact.ways.whatsappLabel,
+            text.contact.ways.whatsappValue,
+        ],
+    );
+
     const {
         register,
         handleSubmit,
@@ -60,20 +83,27 @@ export default function ContactPage() {
     } = useForm<ContactFormData>({ resolver: zodResolver(schema) });
 
     const onSubmit = (data: ContactFormData) => {
-        const subject = encodeURIComponent(`Project inquiry from ${data.name}`);
+        const subject = encodeURIComponent(
+            `${text.contact.emailTemplate.subjectPrefix} ${data.name}`,
+        );
         const body = encodeURIComponent(
             [
-                `Hi ${profile.shortName},`,
+                `${text.contact.emailTemplate.greeting} ${text.profile.shortName},`,
                 "",
-                `My name: ${data.name}`,
-                `My email: ${data.email}`,
+                `${text.contact.emailTemplate.myName}: ${data.name}`,
+                `${text.contact.emailTemplate.myEmail}: ${data.email}`,
                 "",
                 data.message,
             ].join("\n"),
         );
 
-        const mailtoLink = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-        window.open(mailtoLink, "_blank", "noopener,noreferrer");
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+            profile.email,
+        )}&su=${subject}&body=${body}`;
+        const opened = window.open(gmailLink, "_blank", "noopener,noreferrer");
+        if (!opened) {
+            window.location.href = gmailLink;
+        }
         reset();
     };
 
@@ -81,15 +111,15 @@ export default function ContactPage() {
         <div className="space-y-10">
             <MotionReveal>
                 <SectionHeading
-                    eyebrow="Contact"
-                    title="Let us build your next project"
-                    description="Tell me what you are building, timeline, and goals. I will reply with a clear execution plan."
+                    eyebrow={text.contact.eyebrow}
+                    title={text.contact.title}
+                    description={text.contact.description}
                 />
             </MotionReveal>
 
             <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
                 <MotionReveal>
-                    <Card className="border-white/10 bg-card/45">
+                    <Card className="border-foreground/10 bg-card">
                         <CardContent className="p-6 sm:p-7">
                             <form
                                 className="space-y-5"
@@ -100,11 +130,11 @@ export default function ContactPage() {
                                         htmlFor="name"
                                         className="text-sm font-semibold-alt"
                                     >
-                                        Name
+                                        {text.contact.fields.name}
                                     </label>
                                     <Input
                                         id="name"
-                                        placeholder="Your name"
+                                        placeholder={text.contact.placeholders.name}
                                         autoComplete="name"
                                         {...register("name")}
                                     />
@@ -120,12 +150,12 @@ export default function ContactPage() {
                                         htmlFor="email"
                                         className="text-sm font-semibold-alt"
                                     >
-                                        Email
+                                        {text.contact.fields.email}
                                     </label>
                                     <Input
                                         id="email"
                                         type="email"
-                                        placeholder="you@example.com"
+                                        placeholder={text.contact.placeholders.email}
                                         autoComplete="email"
                                         {...register("email")}
                                     />
@@ -141,11 +171,11 @@ export default function ContactPage() {
                                         htmlFor="message"
                                         className="text-sm font-semibold-alt"
                                     >
-                                        Message
+                                        {text.contact.fields.message}
                                     </label>
                                     <Textarea
                                         id="message"
-                                        placeholder="Share your project goals, deadline, and required features."
+                                        placeholder={text.contact.placeholders.message}
                                         {...register("message")}
                                     />
                                     {errors.message && (
@@ -163,8 +193,8 @@ export default function ContactPage() {
                                 >
                                     <FiSend />
                                     {isSubmitting
-                                        ? "Preparing email..."
-                                        : "Send message"}
+                                        ? text.contact.submitting
+                                        : text.contact.submit}
                                 </Button>
                             </form>
                         </CardContent>
@@ -180,7 +210,7 @@ export default function ContactPage() {
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <Card className="border-white/10 bg-card/40 transition-colors hover:border-primary/35">
+                                <Card className="border-foreground/10 bg-card transition-colors hover:border-primary/35">
                                     <CardContent className="flex items-start gap-2">
                                         <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground">
                                             {item.icon}

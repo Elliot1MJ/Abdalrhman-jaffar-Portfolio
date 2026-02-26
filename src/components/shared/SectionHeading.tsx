@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { useI18n } from "../../i18n/useI18n";
 import { cn } from "../../lib/utils";
 
 interface SectionHeadingProps {
@@ -16,6 +17,8 @@ export default function SectionHeading({
     align = "left",
     action,
 }: SectionHeadingProps) {
+    const { isRtl } = useI18n();
+
     return (
         <div
             className={cn(
@@ -24,11 +27,18 @@ export default function SectionHeading({
             )}
         >
             {eyebrow && (
-                <span className="inline-flex w-fit rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <span
+                    className={cn(
+                        "inline-flex w-fit rounded-full border border-foreground/15 bg-transparent px-3 py-1 text-muted-foreground",
+                        isRtl
+                            ? "text-sm"
+                            : "text-[11px] uppercase tracking-[0.3em]",
+                    )}
+                >
                     {eyebrow}
                 </span>
             )}
-            <h2 className="font-display text-3xl leading-tight text-foreground sm:text-4xl">
+            <h2 className="font-display text-4xl leading-[0.95] text-foreground sm:text-5xl">
                 {title}
             </h2>
             {description && (
