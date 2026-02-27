@@ -10,74 +10,68 @@ export interface PortfolioProject {
 }
 
 export const profile = {
-    name: "Abdalrhman Jaffar",
+    name: "Abdalrhman Mohammed Jaffar",
     shortName: "Abdalrhman",
-    title: "Frontend Developer",
+    title: "Frontend Engineer (React & Next.js Specialist)",
     roleSummary:
-        "Frontend Developer specialized in building dashboards and booking/tracking systems with React.js and TypeScript. I focus on fast, structured, scalable interfaces with high UI quality and smooth user experience.",
-    location: "Lattakia, Syria",
+        "Frontend engineer focused on scalable booking systems, structured dashboards, and production-ready business platforms.",
+    location: "Open to remote roles",
     email: "dev.elliot.j@gmail.com",
     instagram: "https://www.instagram.com/abdalrhman_jaffar/",
     whatsapp: "https://wa.me/message/6JSWUGX5ELVKB1",
-    yearsOfExperience: "2+",
-    education: "Computer Science Engineering Student",
+    yearsOfExperience: "3",
+    education:
+        "Bachelor's Degree in Computer & Control Engineering (Expected Graduation: 2028)",
 };
 
 export const quickStats = [
     {
-        label: "Dashboards",
-        value: "Admin-Grade",
-        detail: "Structured, scalable dashboards built for real operations.",
+        label: "Experience",
+        value: "3 Years",
+        detail: "Frontend delivery across freelance and team environments.",
     },
     {
-        label: "Booking Systems",
-        value: "End-to-End",
-        detail: "From scheduling to payments and tracking workflows.",
+        label: "Production Systems",
+        value: "Booking, Logistics, Healthcare",
+        detail: "Built for real operations and day-to-day workflows.",
     },
     {
-        label: "Role-Based Access",
-        value: "RBAC",
-        detail: "Secure permissions and role-driven experiences.",
+        label: "Specialization",
+        value: "Dashboards & Booking",
+        detail: "Structured admin interfaces and booking workflows.",
     },
     {
-        label: "Languages",
-        value: "2",
-        detail: "Arabic, English",
+        label: "Core Stack",
+        value: "React + Next.js",
+        detail: "TypeScript, TailwindCSS, Express.js, and REST APIs.",
     },
 ] as const;
 
 export const skillGroups = [
     {
-        title: "Frontend Stack",
-        skills: [
-            "React.js",
-            "TypeScript",
-            "Tailwind CSS",
-            "shadcn/ui",
-            "Framer Motion",
-            "UI Systems",
-        ],
+        title: "Primary Stack",
+        skills: ["React.js", "Next.js", "TypeScript", "TailwindCSS"],
     },
     {
-        title: "Product Systems",
+        title: "Systems Focus",
         skills: [
-            "Admin Dashboards",
-            "Booking Engines",
+            "Booking Workflows",
+            "Structured Dashboards",
             "Role-Based Access",
-            "Tracking Systems",
-            "Payments",
-            "Data Export",
+            "Authentication Flows",
+            "REST API Integration",
+            "MySQL Data Flows",
         ],
     },
     {
-        title: "Experience & Quality",
+        title: "Engineering Quality",
         skills: [
-            "Dynamic Forms",
-            "API Integration",
-            "UX Optimization",
-            "Performance Tuning",
-            "Clean Architecture",
-            "Scalable UI",
+            "Maintainable Code",
+            "Frontend Architecture",
+            "Performance Awareness",
+            "Security-Conscious UI",
+            "AI-Assisted Workflows",
+            "Production Readiness",
         ],
     },
 ] as const;
@@ -85,10 +79,10 @@ export const skillGroups = [
 export const projects: PortfolioProject[] = [
     {
         name: "LUJJH – Boat Booking Platform",
-        category: "fullstack",
+        category: "react",
         description:
-            "Boat booking platform for the Saudi market, built with a conversion-focused landing page, a full admin dashboard, and an end-to-end booking and payment flow.",
-        stack: ["React.js", "TypeScript", "Booking Flow", "Payments"],
+            "Built the full booking and reservation flow, developed the admin dashboard, and delivered a conversion-focused landing page while owning the frontend architecture.",
+        stack: ["React.js", "TypeScript"],
         image: "/projects-Images/MERN/E-commerce-store.png",
         githubUrl: "",
         liveUrl: "",
@@ -98,18 +92,18 @@ export const projects: PortfolioProject[] = [
         name: "Tariq Al-Shahba – Logistics & Cargo Management System",
         category: "react",
         description:
-            "Digital system for managing cargo shipments from UAE to Syria, featuring customs-based pricing inputs, QR tracking, dashboards, and PDF/Excel exports.",
-        stack: ["React.js", "TypeScript", "QR Tracking", "PDF/Excel"],
+            "Built a shipment registration system for UAE-to-Syria logistics operations, with QR-based tracking, structured customs pricing forms, and PDF/Excel export flows.",
+        stack: ["React.js", "TypeScript"],
         image: "/projects-Images/React/TodoApp-website-main.png",
         githubUrl: "",
         liveUrl: "",
         featured: true,
     },
     {
-        name: "Ibtisama Clinic – Dental Booking System",
+        name: "Ibtisama Clinic – Appointment Booking System",
         category: "fullstack",
         description:
-            "Dental booking system with a two-month scheduling calendar, role-based dashboards (Doctor/Reception), and full clinic workflow management.",
+            "Developed a two-month appointment scheduling system with role-based dashboards, authentication and permissions, and backend integration using Express.js and MySQL.",
         stack: ["React.js", "TypeScript", "Express.js", "MySQL"],
         image: "/projects-Images/JS/Sunnyside-Agency-LP.png",
         githubUrl: "",
@@ -117,201 +111,57 @@ export const projects: PortfolioProject[] = [
         featured: true,
     },
     {
-        name: "TATABU – Location Tracking Platform",
+        name: "Yogo Kids – Childcare Booking Platform",
         category: "react",
         description:
-            "Revamped a location tracking dashboard with better data organization, improved performance, and a cleaner UX.",
-        stack: ["React.js", "Dashboard Revamp", "Performance", "UX"],
-        image: "/projects-Images/React/faq-accordion-main.png",
-        githubUrl: "",
-        liveUrl: "",
-    },
-    {
-        name: "YOGO Kids – Childcare Booking Platform",
-        category: "react",
-        description:
-            "Under-development childcare booking platform with a modern admin dashboard, registrations, and scheduling built on shadcn/ui.",
+            "In progress: building child registration workflows and a full admin dashboard for structured childcare operations.",
         stack: ["React.js", "TypeScript", "shadcn/ui"],
         image: "/projects-Images/React/article-preview-component-master.png",
         githubUrl: "",
         liveUrl: "",
     },
     {
-        name: "Blisscet Store",
-        category: "fullstack",
-        description:
-            "MERN e-commerce platform with authentication, protected routes, cart workflows, and dashboard-ready architecture.",
-        stack: ["MongoDB", "Express", "React", "Node.js"],
-        image: "/projects-Images/MERN/E-commerce-store.png",
-        githubUrl: "https://github.com/Elliot1MJ/BlisscetStore-Website-MERN",
-        liveUrl: "https://blisscet-store-website-mern.vercel.app/login",
-    },
-    {
-        name: "Todo App",
+        name: "Tatabu – Location Tracking Platform",
         category: "react",
         description:
-            "Task management app with clean component structure, fast interactions, and simple productivity flow.",
-        stack: ["React", "TypeScript", "CSS"],
-        image: "/projects-Images/React/TodoApp-website-main.png",
-        githubUrl: "https://github.com/Elliot1MJ/TodoApp-website_React",
-        liveUrl: "https://todo-app-website-react.vercel.app/",
-    },
-    {
-        name: "Sunnyside Agency",
-        category: "javascript",
-        description:
-            "Marketing landing page emphasizing responsive design, modern layout composition, and animated interactions.",
-        stack: ["JavaScript", "HTML", "CSS"],
-        image: "/projects-Images/JS/Sunnyside-Agency-LP.png",
-        githubUrl: "https://github.com/Elliot1MJ/SunnysideAgencyLP-Website_JS",
-        liveUrl: "https://age-calculator-website-js-zbka.vercel.app/",
-    },
-    {
-        name: "Book Mark Master",
-        category: "javascript",
-        description:
-            "Product-style landing page with UI sections, smooth interactions, and mobile-first responsiveness.",
-        stack: ["JavaScript", "HTML", "CSS"],
-        image: "/projects-Images/JS/Book-Mark-Master-LP.png",
-        githubUrl: "https://github.com/Elliot1MJ/BookMarkMasterLP-Website_JS",
-        liveUrl: "https://book-mark-master-lp-website-js.vercel.app/",
-    },
-    {
-        name: "Contact Form Page",
-        category: "javascript",
-        description:
-            "Client-side validation workflow for robust forms with error states and accessible interaction patterns.",
-        stack: ["JavaScript", "Form Validation", "CSS"],
-        image: "/projects-Images/JS/contact-form-main.png",
-        githubUrl: "https://github.com/Elliot1MJ/ContactFormMain-Website_JS",
-        liveUrl: "https://contact-form-main-website-js.vercel.app/",
-    },
-    {
-        name: "CURDS App",
-        category: "javascript",
-        description:
-            "CRUD app with efficient state updates, table rendering, and straightforward local data handling.",
-        stack: ["JavaScript", "DOM APIs", "Local Storage"],
-        image: "/projects-Images/JS/CURDS-app.png",
-        githubUrl: "https://github.com/Elliot1MJ/CURDSApp-Website_JS",
-        liveUrl: "https://curds-app-website-js.vercel.app/",
-    },
-    {
-        name: "Multi Step App",
-        category: "javascript",
-        description:
-            "Multi-step user flow with validation, progress states, and polished UI transitions.",
-        stack: ["JavaScript", "Form UX", "CSS"],
-        image: "/projects-Images/JS/Multi-Step-App.png",
-        githubUrl: "https://github.com/Elliot1MJ/MultiStepApp-Website_JS",
-        liveUrl: "https://multi-step-app-website-js.vercel.app/",
-    },
-    {
-        name: "Product List App",
-        category: "javascript",
-        description:
-            "Interactive cart experience with product listing, quantity controls, and persistent cart behavior.",
-        stack: ["JavaScript", "Cart Logic", "Responsive Design"],
-        image: "/projects-Images/JS/product-list-with-cart-app.png",
-        githubUrl:
-            "https://github.com/Elliot1MJ/ProductListWithCart-Website_JS",
-        liveUrl: "https://product-list-with-cart-website-js.vercel.app/",
-    },
-    {
-        name: "FAQ Accordion",
-        category: "react",
-        description:
-            "Accessible accordion with reusable components and state-driven visibility transitions.",
-        stack: ["React", "State Management", "CSS"],
+            "Improved an existing tracking platform by restructuring dashboard flows for clearer operations, better performance, and easier long-term maintenance.",
+        stack: ["React.js"],
         image: "/projects-Images/React/faq-accordion-main.png",
-        githubUrl: "https://github.com/Elliot1MJ/FaqAccordion-Website-React",
-        liveUrl: "https://faq-accordion-website-react.vercel.app/",
-    },
-    {
-        name: "Interactive Rating",
-        category: "react",
-        description:
-            "Component-focused rating interface with instant feedback and success screens.",
-        stack: ["React", "Component Design", "CSS"],
-        image: "/projects-Images/React/interactive-rating-component-main.png",
-        githubUrl:
-            "https://github.com/Elliot1MJ/InteractiveRatingComponent-Website_React",
-        liveUrl: "https://interactive-rating-component-websit.vercel.app/",
-    },
-    {
-        name: "Article Preview",
-        category: "react",
-        description:
-            "Share card interaction with polished layout details and responsive behavior across breakpoints.",
-        stack: ["React", "UI States", "CSS"],
-        image: "/projects-Images/React/article-preview-component-master.png",
-        githubUrl:
-            "https://github.com/Elliot1MJ/ArticlePreviewComponent-Website_React",
-        liveUrl: "https://article-preview-component-website-r.vercel.app/",
-    },
-    {
-        name: "Base Apparel",
-        category: "react",
-        description:
-            "Conversion-focused coming-soon page with email capture and validation experience.",
-        stack: ["React", "Validation", "CSS"],
-        image: "/projects-Images/React/base-apparel-coming-soon-master.png",
-        githubUrl:
-            "https://github.com/Elliot1MJ/BaseApparelComingSoon-Website_React",
-        liveUrl: "https://base-apparel-coming-soon-website-re.vercel.app/",
-    },
-    {
-        name: "Intro Signup Form",
-        category: "react",
-        description:
-            "Form-focused page with clear validation feedback and semantic structure.",
-        stack: ["React", "Forms", "Accessibility"],
-        image: "/projects-Images/React/intro-component-with-signup-form-master.png",
-        githubUrl: "https://github.com/Elliot1MJ/IntroSignupForm-Website_React",
-        liveUrl: "https://intro-signup-form-website-react.vercel.app/",
-    },
-    {
-        name: "Ping Coming Soon",
-        category: "react",
-        description:
-            "Minimal launch page with lightweight structure and responsive presentation.",
-        stack: ["React", "Micro UI", "CSS"],
-        image: "/projects-Images/React/ping-coming-soon-page-master.png",
-        githubUrl: "https://github.com/Elliot1MJ/PingComingSoon-Website-React",
-        liveUrl: "https://ping-coming-soon-website-react.vercel.app/",
+        githubUrl: "",
+        liveUrl: "",
     },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
 
 export const education = {
-    degree: "BSc in Computer Science Engineering",
+    degree: "Bachelor's Degree in Computer & Control Engineering",
     university: "Lattakia University (formerly Tishreen University)",
-    duration: "2022 - 2028 (Expected)",
-    status: "3rd Year Student",
+    duration: "Expected Graduation: 2028",
+    status: "Undergraduate student",
     coursework: [
-        "Data Structures",
+        "Computer Engineering Fundamentals",
+        "Control Systems",
         "Algorithms",
         "Database Systems",
         "Software Engineering",
-        "Web Development",
     ],
 };
 
 export const values = [
     {
-        title: "Performance First",
+        title: "Clean & Maintainable Code",
         description:
-            "I prioritize lazy loading, compact bundles, and smooth rendering from day one.",
+            "Readable code, reusable patterns, and clear ownership across components and modules.",
     },
     {
-        title: "Clean Architecture",
+        title: "Structured Architecture",
         description:
-            "Readable, maintainable code and predictable component boundaries are part of every project.",
+            "Feature structure, state boundaries, and API contracts are planned before implementation.",
     },
     {
-        title: "Product Thinking",
+        title: "Performance, Security & AI Workflow",
         description:
-            "I build features with user behavior, conversion, and long-term scaling in mind.",
+            "Rendering optimization, permission-aware implementation, and AI-assisted workflows for reliable delivery.",
     },
 ] as const;

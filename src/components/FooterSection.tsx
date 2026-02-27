@@ -58,7 +58,7 @@ export default function FooterSection() {
                                 <p className="text-foreground">
                                     {profile.email}
                                 </p>
-                                <p>{text.profile.location}</p>
+                                <p>{text.profile.title}</p>
                                 <p>{text.footer.availability}</p>
                             </div>
                         </div>

@@ -125,7 +125,7 @@ export default function ContactPage() {
                                 className="space-y-5"
                                 onSubmit={handleSubmit(onSubmit)}
                             >
-                                <div className="space-y-2">
+                                <div className="space-y-2 flex flex-col items-start gap-0.5">
                                     <label
                                         htmlFor="name"
                                         className="text-sm font-semibold-alt"
@@ -134,7 +134,9 @@ export default function ContactPage() {
                                     </label>
                                     <Input
                                         id="name"
-                                        placeholder={text.contact.placeholders.name}
+                                        placeholder={
+                                            text.contact.placeholders.name
+                                        }
                                         autoComplete="name"
                                         {...register("name")}
                                     />
@@ -145,7 +147,7 @@ export default function ContactPage() {
                                     )}
                                 </div>
 
-                                <div className="space-y-2">
+                                <div className="space-y-2 flex flex-col items-start gap-0.5">
                                     <label
                                         htmlFor="email"
                                         className="text-sm font-semibold-alt"
@@ -155,7 +157,9 @@ export default function ContactPage() {
                                     <Input
                                         id="email"
                                         type="email"
-                                        placeholder={text.contact.placeholders.email}
+                                        placeholder={
+                                            text.contact.placeholders.email
+                                        }
                                         autoComplete="email"
                                         {...register("email")}
                                     />
@@ -166,7 +170,7 @@ export default function ContactPage() {
                                     )}
                                 </div>
 
-                                <div className="space-y-2">
+                                <div className="space-y-2 flex flex-col items-start gap-0.5">
                                     <label
                                         htmlFor="message"
                                         className="text-sm font-semibold-alt"
@@ -175,7 +179,9 @@ export default function ContactPage() {
                                     </label>
                                     <Textarea
                                         id="message"
-                                        placeholder={text.contact.placeholders.message}
+                                        placeholder={
+                                            text.contact.placeholders.message
+                                        }
                                         {...register("message")}
                                     />
                                     {errors.message && (
