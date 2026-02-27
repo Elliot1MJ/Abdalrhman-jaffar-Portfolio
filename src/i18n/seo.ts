@@ -43,7 +43,7 @@ export function applySeoTags(text: MessageCatalog) {
         'meta[property="og:site_name"]',
         "property",
         "og:site_name",
-        "Abdalrhman Jaffar Portfolio",
+        seo.title,
     );
     upsertMeta('meta[property="og:locale"]', "property", "og:locale", seo.locale);
     upsertMeta(

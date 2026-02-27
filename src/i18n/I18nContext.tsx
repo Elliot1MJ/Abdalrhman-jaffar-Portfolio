@@ -14,7 +14,7 @@ const LANGUAGE_STORAGE_KEY = "portfolio-language";
 
 function resolveInitialLanguage(): Language {
     if (typeof window === "undefined") {
-        return "en";
+        return "ar";
     }
 
     const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -22,9 +22,7 @@ function resolveInitialLanguage(): Language {
         return storedLanguage;
     }
 
-    return window.navigator.language.toLowerCase().startsWith("ar")
-        ? "ar"
-        : "en";
+    return "ar";
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {

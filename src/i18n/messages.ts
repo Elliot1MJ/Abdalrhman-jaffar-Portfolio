@@ -50,6 +50,7 @@ export interface MessageCatalog {
         summary: string;
         seeProjects: string;
         downloadCV: string;
+        stack: string;
         imageAlt: string;
     };
     about: {
@@ -171,30 +172,35 @@ export interface MessageCatalog {
 }
 
 const arabicProjectCopy: ProjectTranslationMap = {
-    "LUJJH – Boat Booking Platform": {
+    "UPAFA – University Digital Platform": {
+        name: "UPAFA - المنصة الرقمية الجامعية",
+        description:
+            "منصة جامعية رقمية متعددة اللغات مع هيكلة أكاديمية وتدفقات قبول منظمة وبنية واجهات قابلة للتوسع.",
+    },
+    "Yogo Kids – Child Care Booking Platform": {
+        name: "Yogo Kids - منصة حجز رعاية الأطفال",
+        description:
+            "منصة قيد التطوير لإدارة تسجيل الأطفال والجداول التشغيلية عبر لوحة تحكم شاملة.",
+    },
+    "Ibtisama Clinic – Dental Appointment Booking System": {
+        name: "Ibtisama Clinic - نظام حجز مواعيد الأسنان",
+        description:
+            "نظام حجز عيادة أسنان يتضمن تقويم مواعيد لشهرين ولوحات صلاحيات مخصصة للأطباء والاستقبال.",
+    },
+    "LUJJH – Boat Booking Platform (Saudi Arabia)": {
         name: "LUJJH - منصة حجز القوارب",
         description:
-            "منصة حجز قوارب للسوق السعودي تتضمن تدفق حجز كامل، ولوحة تحكم إدارية، وصفحة هبوط موجهة للتحويل.",
+            "منصة حجز قوارب للسوق السعودي تتضمن صفحة هبوط موجهة للتحويل، ولوحة إدارة، وتدفق حجز ودفع متكامل.",
     },
     "Tariq Al-Shahba – Logistics & Cargo Management System": {
         name: "Tariq Al-Shahba - نظام إدارة الشحن واللوجستيات",
         description:
-            "نظام تشغيلي لإدارة الشحن من الإمارات إلى سوريا مع تتبع عبر QR، ونماذج تسعير جمركي منظمة، وتصدير PDF وExcel.",
-    },
-    "Ibtisama Clinic – Appointment Booking System": {
-        name: "Ibtisama Clinic - نظام حجز المواعيد",
-        description:
-            "نظام مواعيد عيادة يتضمن تقويم جدولة لشهرين، ولوحات بحسب الدور (الطبيب/الاستقبال)، وصلاحيات دخول متدرجة.",
-    },
-    "Yogo Kids – Childcare Booking Platform": {
-        name: "Yogo Kids - منصة حجز ورعاية الأطفال",
-        description:
-            "منصة قيد التطوير لإدارة تسجيل الأطفال مع لوحة تحكم شاملة موجهة للتشغيل اليومي.",
+            "نظام شحن من الإمارات إلى سوريا مع تتبع QR من لوحة التحكم ونماذج جمركية منظمة وتصدير PDF وExcel.",
     },
     "Tatabu – Location Tracking Platform": {
         name: "Tatabu - منصة تتبع المواقع",
         description:
-            "تحسين منصة تتبع قائمة عبر إعادة تنظيم تدفقات لوحة التحكم لرفع الوضوح والأداء وسهولة الصيانة.",
+            "تحسين منصة تتبع مواقع عبر إعادة تنظيم لوحة التحكم ورفع وضوح البيانات والأداء وقابلية الصيانة.",
     },
 };
 
@@ -226,18 +232,19 @@ export const messages: Record<Language, MessageCatalog> = {
         profile: {
             fullName: "Abdalrhman Mohammed Jaffar",
             shortName: "Abdalrhman",
-            title: "Frontend Engineer (React & Next.js Specialist)",
+            title: "Frontend Systems Engineer",
             location: "Open to remote roles",
         },
         hero: {
-            badge: "Frontend Engineer (React & Next.js Specialist)",
-            headingLine1: "Scalable Booking",
-            headingLine2: "& Dashboard Systems",
-            headingLine3: "for Real Operations",
+            badge: "Frontend Systems Engineer",
+            headingLine1: "Frontend Systems",
+            headingLine2: "Engineer",
+            headingLine3: "",
             summary:
-                "I build production-ready React and Next.js platforms for booking, operations, and admin workflows with clean architecture, performance awareness, and security-conscious implementation.",
-            seeProjects: "View projects",
-            downloadCV: "View resume",
+                "Specialized in building structured, scalable frontend systems for real-world business operations.\n\nI design and deliver production-ready React & Next.js platforms with clean architecture, performance awareness, and security-focused implementation.",
+            seeProjects: "View Projects",
+            downloadCV: "Download Resume",
+            stack: "React • Next.js • TypeScript • TailwindCSS • Dashboards • Operational Systems",
             imageAlt: "Abdalrhman Mohammed Jaffar portrait",
         },
         about: {
@@ -389,7 +396,7 @@ export const messages: Record<Language, MessageCatalog> = {
             rightsReserved: "All rights reserved.",
         },
         seo: {
-            title: "Abdalrhman Mohammed Jaffar | Frontend Engineer",
+            title: "Abdalrhman mohammed jaffar | Portfolio",
             description:
                 "Frontend portfolio of Abdalrhman Mohammed Jaffar, focused on scalable booking systems, structured dashboards, and production business platforms built with React and Next.js.",
             keywords:
@@ -440,18 +447,19 @@ export const messages: Record<Language, MessageCatalog> = {
         profile: {
             fullName: "عبد الرحمن محمد جعفر",
             shortName: "عبد الرحمن",
-            title: "مهندس واجهات أمامية (متخصص React وNext.js)",
+            title: "مهندس أنظمة واجهات أمامية",
             location: "متاح لفرص عمل عن بُعد",
         },
         hero: {
-            badge: "مهندس واجهات أمامية (متخصص React وNext.js)",
-            headingLine1: "أنظمة حجز قابلة للتوسع",
-            headingLine2: "ولوحات تحكم منظمة",
-            headingLine3: "لعمليات الأعمال الفعلية",
+            badge: "مهندس أنظمة واجهات أمامية",
+            headingLine1: "مهندس أنظمة",
+            headingLine2: "واجهات أمامية",
+            headingLine3: "",
             summary:
-                "أبني منصات React وNext.js جاهزة للإنتاج لأنظمة الحجز والتشغيل ولوحات الإدارة، مع بنية نظيفة، ووعي بالأداء، وتطبيقات تراعي الأمان.",
-            seeProjects: "استعرض المشاريع",
-            downloadCV: "عرض السيرة",
+                "متخصص في بناء أنظمة واجهات أمامية منظمة وقابلة للتوسع لعمليات الأعمال الواقعية.\n\nأصمم وأنفّذ منصات React وNext.js جاهزة للإنتاج ببنية نظيفة، ووعي بالأداء، وتنفيذ يركز على الأمان.",
+            seeProjects: "عرض المشاريع",
+            downloadCV: "تحميل السيرة الذاتية",
+            stack: "React • Next.js • TypeScript • TailwindCSS • لوحات تحكم • أنظمة تشغيلية",
             imageAlt: "صورة عبد الرحمن محمد جعفر",
         },
         about: {
@@ -602,7 +610,7 @@ export const messages: Record<Language, MessageCatalog> = {
             rightsReserved: "جميع الحقوق محفوظة.",
         },
         seo: {
-            title: "عبد الرحمن محمد جعفر | مهندس واجهات أمامية",
+            title: "عبد الرحمن محمد جعفر | معرض أعمال",
             description:
                 "موقع عبد الرحمن محمد جعفر، مهندس واجهات أمامية متخصص في بناء أنظمة حجز قابلة للتوسع ولوحات تحكم منظمة ومنصات أعمال إنتاجية باستخدام React وNext.js.",
             keywords:

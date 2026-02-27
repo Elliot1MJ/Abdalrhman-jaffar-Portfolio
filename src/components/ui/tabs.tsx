@@ -46,7 +46,7 @@ export function Tabs<T extends string>({
                         role="tab"
                         aria-selected={isActive}
                         className={cn(
-                            "relative px-1 py-2 font-semibold-alt transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                            "relative px-1 py-2 font-semibold-alt transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                             isRtl
                                 ? "text-sm"
                                 : "text-xs uppercase tracking-[0.22em]",
@@ -58,12 +58,28 @@ export function Tabs<T extends string>({
                         onClick={() => onChange(option.value)}
                     >
                         <span className="inline-flex items-center gap-2">
-                            {isActive && icon}
+                            {icon ? (
+                                <span
+                                    aria-hidden
+                                    className={cn(
+                                        "inline-flex overflow-hidden transition-all duration-300 ease-out",
+                                        isActive
+                                            ? "max-w-6 scale-100 opacity-100"
+                                            : "max-w-0 scale-75 opacity-0"
+                                    )}
+                                >
+                                    {icon}
+                                </span>
+                            ) : null}
                             {option.label}
                         </span>
-                        {isActive && (
-                            <span className="absolute left-0 top-full mt-1 h-[2px] w-full bg-primary" />
-                        )}
+                        <span
+                            aria-hidden
+                            className={cn(
+                                "absolute left-0 top-full mt-1 h-[2px] w-full origin-center bg-primary transition-transform duration-300 ease-out",
+                                isActive ? "scale-x-100" : "scale-x-0"
+                            )}
+                        />
                     </button>
                 );
             })}

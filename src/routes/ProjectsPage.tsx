@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { m } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { FiFilter } from "react-icons/fi";
 import MotionReveal from "../components/shared/MotionReveal";
 import ProjectCard from "../components/shared/ProjectCard";
@@ -14,6 +14,7 @@ import {
 type ProjectFilter = "featured" | "all";
 
 export default function ProjectsPage() {
+    const shouldReduceMotion = useReducedMotion();
     const { text } = useI18n();
     const [filter, setFilter] = useState<ProjectFilter>("featured");
     const filterOptions: { label: string; value: ProjectFilter }[] = useMemo(
@@ -54,13 +55,41 @@ export default function ProjectsPage() {
                 </div>
             </MotionReveal>
 
-            <m.section
-                layout
-                className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
-            >
-                {filteredProjects.map((project) => (
-                    <ProjectCard key={project.name} project={project} />
-                ))}
+            <m.section layout className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                <AnimatePresence mode="popLayout">
+                    {filteredProjects.map((project, index) => (
+                        <m.div
+                            key={project.name}
+                            layout
+                            initial={
+                                shouldReduceMotion
+                                    ? false
+                                    : { opacity: 0, y: 18, scale: 0.985 }
+                            }
+                            animate={
+                                shouldReduceMotion
+                                    ? undefined
+                                    : { opacity: 1, y: 0, scale: 1 }
+                            }
+                            exit={
+                                shouldReduceMotion
+                                    ? undefined
+                                    : { opacity: 0, y: -10, scale: 0.98 }
+                            }
+                            transition={
+                                shouldReduceMotion
+                                    ? undefined
+                                    : {
+                                          duration: 0.3,
+                                          delay: index * 0.04,
+                                          ease: [0.16, 1, 0.3, 1],
+                                      }
+                            }
+                        >
+                            <ProjectCard project={project} />
+                        </m.div>
+                    ))}
+                </AnimatePresence>
             </m.section>
         </div>
     );

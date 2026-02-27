@@ -1,6 +1,14 @@
+import ibtisamaImage from "../assets/images/projects-Images/Ibtisama.png";
+import lujjhImage from "../assets/images/projects-Images/lujjh.png";
+import tatabuImage from "../assets/images/projects-Images/tatabu.png";
+import tareekAlshahbaImage from "../assets/images/projects-Images/Tareek-alshahba.png";
+import upafaImage from "../assets/images/projects-Images/upafa-speical.png";
+import yogoKidsImage from "../assets/images/projects-Images/yogoKids.png";
+
 export interface PortfolioProject {
     name: string;
     category: "javascript" | "react" | "fullstack";
+    timeline: string;
     description: string;
     stack: string[];
     image: string;
@@ -78,55 +86,71 @@ export const skillGroups = [
 
 export const projects: PortfolioProject[] = [
     {
-        name: "LUJJH – Boat Booking Platform",
+        name: "UPAFA – University Digital Platform",
         category: "react",
+        timeline: "Jan 1, 2026 - Feb 28, 2026",
         description:
-            "Built the full booking and reservation flow, developed the admin dashboard, and delivered a conversion-focused landing page while owning the frontend architecture.",
-        stack: ["React.js", "TypeScript"],
-        image: "/projects-Images/MERN/E-commerce-store.png",
+            "Developed and structured UPAFA University's official multilingual platform with scalable architecture, structured academic/admissions flows, and production-focused performance optimization.",
+        stack: ["Next.js", "React.js", "TypeScript", "TailwindCSS"],
+        image: upafaImage,
         githubUrl: "",
         liveUrl: "",
         featured: true,
+    },
+    {
+        name: "Yogo Kids – Child Care Booking Platform",
+        category: "react",
+        timeline: "Dec 25, 2025 - Feb 1, 2026",
+        description:
+            "Building a childcare booking platform with child registration workflows and a full admin dashboard for schedules, operations, and structured class management.",
+        stack: ["React.js", "TypeScript", "shadcn/ui"],
+        image: yogoKidsImage,
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+    },
+    {
+        name: "Ibtisama Clinic – Dental Appointment Booking System",
+        category: "fullstack",
+        timeline: "Nov 15, 2025 - Dec 22, 2025",
+        description:
+            "Developed an online dental booking system with a two-month calendar scheduler and a role-based dashboard for doctors and reception staff.",
+        stack: ["React.js", "TypeScript", "Express.js", "MySQL"],
+        image: ibtisamaImage,
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+    },
+    {
+        name: "LUJJH – Boat Booking Platform (Saudi Arabia)",
+        category: "react",
+        timeline: "Jan 2025 - Aug 2025",
+        description:
+            "Designed and built a scalable Saudi market boat booking platform with a conversion-focused landing page, custom admin dashboard, and complete booking/payment flow.",
+        stack: ["React.js", "TypeScript"],
+        image: lujjhImage,
+        githubUrl: "",
+        liveUrl: "",
     },
     {
         name: "Tariq Al-Shahba – Logistics & Cargo Management System",
         category: "react",
+        timeline: "Aug 2025 - Oct 22, 2025",
         description:
-            "Built a shipment registration system for UAE-to-Syria logistics operations, with QR-based tracking, structured customs pricing forms, and PDF/Excel export flows.",
+            "Built a cargo registration system for UAE-to-Syria shipments with dashboard-generated QR tracking, customs-rule-based structured forms, and PDF/Excel export.",
         stack: ["React.js", "TypeScript"],
-        image: "/projects-Images/React/TodoApp-website-main.png",
-        githubUrl: "",
-        liveUrl: "",
-        featured: true,
-    },
-    {
-        name: "Ibtisama Clinic – Appointment Booking System",
-        category: "fullstack",
-        description:
-            "Developed a two-month appointment scheduling system with role-based dashboards, authentication and permissions, and backend integration using Express.js and MySQL.",
-        stack: ["React.js", "TypeScript", "Express.js", "MySQL"],
-        image: "/projects-Images/JS/Sunnyside-Agency-LP.png",
-        githubUrl: "",
-        liveUrl: "",
-        featured: true,
-    },
-    {
-        name: "Yogo Kids – Childcare Booking Platform",
-        category: "react",
-        description:
-            "In progress: building child registration workflows and a full admin dashboard for structured childcare operations.",
-        stack: ["React.js", "TypeScript", "shadcn/ui"],
-        image: "/projects-Images/React/article-preview-component-master.png",
+        image: tareekAlshahbaImage,
         githubUrl: "",
         liveUrl: "",
     },
     {
         name: "Tatabu – Location Tracking Platform",
         category: "react",
+        timeline: "Jul 4, 2025 - Sep 22, 2025",
         description:
-            "Improved an existing tracking platform by restructuring dashboard flows for clearer operations, better performance, and easier long-term maintenance.",
+            "Improved and extended an existing URL-based location tracking platform with stronger dashboard clarity, frontend performance, and maintainable architecture.",
         stack: ["React.js"],
-        image: "/projects-Images/React/faq-accordion-main.png",
+        image: tatabuImage,
         githubUrl: "",
         liveUrl: "",
     },

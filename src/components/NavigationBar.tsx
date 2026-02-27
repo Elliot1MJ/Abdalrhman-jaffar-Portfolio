@@ -35,7 +35,12 @@ export default function NavigationBar() {
 
     const navItems: NavItem[] = [
         { id: "home", label: text.nav.home, href: "#home", icon: <FiHome /> },
-        { id: "about", label: text.nav.about, href: "#about", icon: <FiUser /> },
+        {
+            id: "about",
+            label: text.nav.about,
+            href: "#about",
+            icon: <FiUser />,
+        },
         {
             id: "projects",
             label: text.nav.projects,
@@ -43,7 +48,12 @@ export default function NavigationBar() {
             icon: <FiBriefcase />,
         },
         { id: "cv", label: text.nav.cv, href: "#cv", icon: <FiFileText /> },
-        { id: "contact", label: text.nav.contact, href: "#contact", icon: <FiMail /> },
+        {
+            id: "contact",
+            label: text.nav.contact,
+            href: "#contact",
+            icon: <FiMail />,
+        },
     ];
 
     const handleSectionNavigation =
@@ -135,9 +145,7 @@ export default function NavigationBar() {
 
     return (
         <m.header
-            initial={
-                shouldReduceMotion ? false : { opacity: 0, y: -16 }
-            }
+            initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
             animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl"
@@ -174,7 +182,7 @@ export default function NavigationBar() {
                     </span>
                 </a>
 
-                <nav className="hidden items-center gap-6 md:flex">
+                <nav className="hidden items-center gap-6 lg:flex">
                     {navItems.map((item) => {
                         const isActive = activeId === item.id;
                         return (
@@ -200,7 +208,7 @@ export default function NavigationBar() {
                     })}
                 </nav>
 
-                <div className="hidden items-center gap-3 md:flex">
+                <div className="hidden items-center gap-3 lg:flex">
                     <button
                         type="button"
                         aria-label={text.nav.toggleLanguage}
@@ -219,7 +227,7 @@ export default function NavigationBar() {
                     </button>
                 </div>
 
-                <div className="flex items-center gap-2 md:hidden">
+                <div className="flex items-center gap-2 lg:hidden">
                     <button
                         type="button"
                         aria-label={text.nav.toggleLanguage}
