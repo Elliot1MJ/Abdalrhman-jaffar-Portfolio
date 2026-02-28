@@ -7,7 +7,7 @@ import yogoKidsImage from "../assets/images/projects-Images/yogoKids.png";
 
 export interface PortfolioProject {
     name: string;
-    category: "javascript" | "react" | "fullstack";
+    category: "javascript" | "react" | "next.js" | "fullstack";
     timeline: string;
     description: string;
     stack: string[];
@@ -99,12 +99,24 @@ export const projects: PortfolioProject[] = [
     },
     {
         name: "Yogo Kids – Child Care Booking Platform",
-        category: "react",
+        category: "next.js",
         timeline: "Dec 25, 2025 - Feb 1, 2026",
         description:
             "Building a childcare booking platform with child registration workflows and a full admin dashboard for schedules, operations, and structured class management.",
         stack: ["React.js", "TypeScript", "shadcn/ui"],
         image: yogoKidsImage,
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+    },
+    {
+        name: "Tariq Al-Shahba – Logistics & Cargo Management System",
+        category: "react",
+        timeline: "Aug 2025 - Oct 22, 2025",
+        description:
+            "Built a cargo registration system for UAE-to-Syria shipments with dashboard-generated QR tracking, customs-rule-based structured forms, and PDF/Excel export.",
+        stack: ["React.js", "TypeScript"],
+        image: tareekAlshahbaImage,
         githubUrl: "",
         liveUrl: "",
         featured: true,
@@ -119,27 +131,15 @@ export const projects: PortfolioProject[] = [
         image: ibtisamaImage,
         githubUrl: "",
         liveUrl: "",
-        featured: true,
     },
     {
         name: "LUJJH – Boat Booking Platform (Saudi Arabia)",
-        category: "react",
+        category: "next.js",
         timeline: "Jan 2025 - Aug 2025",
         description:
             "Designed and built a scalable Saudi market boat booking platform with a conversion-focused landing page, custom admin dashboard, and complete booking/payment flow.",
         stack: ["React.js", "TypeScript"],
         image: lujjhImage,
-        githubUrl: "",
-        liveUrl: "",
-    },
-    {
-        name: "Tariq Al-Shahba – Logistics & Cargo Management System",
-        category: "react",
-        timeline: "Aug 2025 - Oct 22, 2025",
-        description:
-            "Built a cargo registration system for UAE-to-Syria shipments with dashboard-generated QR tracking, customs-rule-based structured forms, and PDF/Excel export.",
-        stack: ["React.js", "TypeScript"],
-        image: tareekAlshahbaImage,
         githubUrl: "",
         liveUrl: "",
     },

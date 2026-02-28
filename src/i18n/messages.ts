@@ -326,6 +326,7 @@ export const messages: Record<Language, MessageCatalog> = {
             },
             filtersAria: "Project filter tabs",
             categories: {
+                "next.js": "next.js",
                 javascript: "JavaScript",
                 react: "React",
                 fullstack: "Fullstack",
@@ -541,6 +542,7 @@ export const messages: Record<Language, MessageCatalog> = {
             },
             filtersAria: "تبويبات تصفية المشاريع",
             categories: {
+                "next.js": "نيكست",
                 javascript: "جافاسكريبت",
                 react: "ريأكت",
                 fullstack: "متكامل",
