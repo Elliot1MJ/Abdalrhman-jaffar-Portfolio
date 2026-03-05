@@ -8,6 +8,7 @@ import {
 } from "react";
 import { I18nContext, type I18nContextValue } from "./context";
 import { messages, type Language } from "./messages";
+import { UI_MODE_SWITCH_ANIMATION_MS } from "../lib/motion";
 import { applySeoTags } from "./seo";
 
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
@@ -47,7 +48,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
             root.classList.add("lang-transition");
             const timeout = window.setTimeout(() => {
                 root.classList.remove("lang-transition");
-            }, 240);
+            }, UI_MODE_SWITCH_ANIMATION_MS);
 
             return () => window.clearTimeout(timeout);
         }

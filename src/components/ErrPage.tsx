@@ -3,6 +3,7 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import error404Illustration from "../assets/images/error-404-space.svg";
 import { useI18n } from "../i18n/useI18n";
+import { MOTION_DURATION, MOTION_EASE_EMPHASIS } from "../lib/motion";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 
@@ -25,7 +26,10 @@ export default function ErrPage() {
                     animate={
                         shouldReduceMotion ? undefined : { opacity: 1, y: 0 }
                     }
-                    transition={{ duration: shouldReduceMotion ? 0 : 0.36 }}
+                    transition={{
+                        duration: shouldReduceMotion ? 0 : MOTION_DURATION.base,
+                        ease: MOTION_EASE_EMPHASIS,
+                    }}
                     className="relative w-full max-h-[94vh] overflow-hidden rounded-[2rem] border border-foreground/14 p-4 shadow-[0_40px_90px_-60px_rgba(0,0,0,0.95)] sm:p-6 lg:p-8"
                     style={{
                         backgroundImage:

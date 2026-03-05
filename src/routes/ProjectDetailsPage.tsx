@@ -27,6 +27,12 @@ import { Button } from "../components/ui/button";
 import { getProjectBySlug } from "../data/portfolio";
 import { applyProjectSeoTags, applySeoTags } from "../i18n/seo";
 import { useI18n } from "../i18n/useI18n";
+import {
+    MOTION_DURATION,
+    MOTION_EASE_EMPHASIS,
+    MOTION_EASE_STANDARD,
+    MOTION_SPRING_GENTLE,
+} from "../lib/motion";
 
 type GalleryKind = "main" | "project" | "code";
 const PREVIEW_MIN_ZOOM = 1;
@@ -478,7 +484,10 @@ export default function ProjectDetailsPage() {
                     animate={
                         shouldReduceMotion ? undefined : { opacity: 1, y: 0 }
                     }
-                    transition={{ duration: shouldReduceMotion ? 0 : 0.28 }}
+                    transition={{
+                        duration: shouldReduceMotion ? 0 : MOTION_DURATION.base,
+                        ease: MOTION_EASE_EMPHASIS,
+                    }}
                     className="mx-auto w-[90%] max-w-none space-y-8 px-4 pb-16 pt-6 sm:px-6 sm:pt-8"
                 >
                     <div className="text-4xl font-display leading-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -701,7 +710,10 @@ export default function ProjectDetailsPage() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{
-                                duration: shouldReduceMotion ? 0 : 0.2,
+                                duration: shouldReduceMotion
+                                    ? 0
+                                    : MOTION_DURATION.fast,
+                                ease: MOTION_EASE_STANDARD,
                             }}
                             className="fixed inset-0 z-[90] bg-black/75 backdrop-blur-sm"
                             onClick={closePreview}
@@ -726,8 +738,10 @@ export default function ProjectDetailsPage() {
                                     : { opacity: 0, y: 20, scale: 0.98 }
                             }
                             transition={{
-                                duration: shouldReduceMotion ? 0 : 0.22,
-                                ease: [0.22, 1, 0.36, 1],
+                                duration: shouldReduceMotion
+                                    ? 0
+                                    : MOTION_DURATION.base,
+                                ease: MOTION_EASE_STANDARD,
                             }}
                             className="fixed inset-0 z-[100] grid place-items-center p-4"
                         >
@@ -839,35 +853,34 @@ export default function ProjectDetailsPage() {
                                             transition={{
                                                 x: shouldReduceMotion
                                                     ? { duration: 0 }
-                                                    : {
-                                                          type: "spring",
-                                                          stiffness: 270,
-                                                          damping: 30,
-                                                          mass: 0.8,
-                                                      },
+                                                    : MOTION_SPRING_GENTLE,
                                                 opacity: shouldReduceMotion
                                                     ? { duration: 0 }
                                                     : {
-                                                          duration: 0.22,
-                                                          ease: [0.22, 1, 0.36, 1],
+                                                          duration:
+                                                              MOTION_DURATION.fast,
+                                                          ease: MOTION_EASE_STANDARD,
                                                       },
                                                 scale: shouldReduceMotion
                                                     ? { duration: 0 }
                                                     : {
-                                                          duration: 0.22,
-                                                          ease: [0.22, 1, 0.36, 1],
+                                                          duration:
+                                                              MOTION_DURATION.fast,
+                                                          ease: MOTION_EASE_STANDARD,
                                                       },
                                                 rotate: shouldReduceMotion
                                                     ? { duration: 0 }
                                                     : {
-                                                          duration: 0.22,
-                                                          ease: [0.22, 1, 0.36, 1],
+                                                          duration:
+                                                              MOTION_DURATION.fast,
+                                                          ease: MOTION_EASE_STANDARD,
                                                       },
                                                 filter: shouldReduceMotion
                                                     ? { duration: 0 }
                                                     : {
-                                                          duration: 0.2,
-                                                          ease: [0.22, 1, 0.36, 1],
+                                                          duration:
+                                                              MOTION_DURATION.fast,
+                                                          ease: MOTION_EASE_STANDARD,
                                                       },
                                             }}
                                             className="mx-auto flex max-h-[82vh] w-full items-center justify-center will-change-transform"

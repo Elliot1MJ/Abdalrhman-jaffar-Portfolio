@@ -6,10 +6,12 @@ import {
     useState,
     type ReactNode,
 } from "react";
+import { UI_MODE_SWITCH_ANIMATION_MS } from "../lib/motion";
 import { ThemeContext, type ThemeContextValue, type Theme } from "./context";
 
 const THEME_STORAGE_KEY = "theme";
-const THEME_SWITCH_ANIMATION_MS = 240;
+
+const THEME_SWITCH_ANIMATION_MS = UI_MODE_SWITCH_ANIMATION_MS;
 
 function resolveInitialTheme(): Theme {
     if (typeof window === "undefined") {

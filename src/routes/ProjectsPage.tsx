@@ -10,6 +10,11 @@ import {
     featuredProjects,
     projects,
 } from "../data/portfolio";
+import {
+    MOTION_DURATION,
+    MOTION_EASE_EMPHASIS,
+    MOTION_STAGGER,
+} from "../lib/motion";
 
 type ProjectFilter = "featured" | "all";
 
@@ -27,7 +32,7 @@ export default function ProjectsPage() {
 
     const filteredProjects = useMemo(() => {
         if (filter === "featured") {
-            return featuredProjects.slice(0, 3);
+            return featuredProjects;
         }
 
         return projects;
@@ -80,9 +85,9 @@ export default function ProjectsPage() {
                                 shouldReduceMotion
                                     ? undefined
                                     : {
-                                          duration: 0.3,
-                                          delay: index * 0.04,
-                                          ease: [0.16, 1, 0.3, 1],
+                                          duration: MOTION_DURATION.base,
+                                          delay: index * MOTION_STAGGER.tight,
+                                          ease: MOTION_EASE_EMPHASIS,
                                       }
                             }
                         >

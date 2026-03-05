@@ -15,6 +15,12 @@ import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoMark from "../assets/images/logo.svg";
 import { useI18n } from "../i18n/useI18n";
+import {
+    MOTION_DURATION,
+    MOTION_EASE_EMPHASIS,
+    MOTION_EASE_STANDARD,
+    MOTION_STAGGER,
+} from "../lib/motion";
 import { cn } from "../lib/utils";
 import { navigateToSection } from "../lib/sectionNavigation";
 import { useTheme } from "../theme/useTheme";
@@ -46,6 +52,79 @@ export default function NavigationBar({
     const isDetailsMode = mode === "details";
     const [activeId, setActiveId] = useState("home");
     const [isOpen, setIsOpen] = useState(false);
+    const controlMotionProps = shouldReduceMotion
+        ? {}
+        : {
+              whileHover: { y: -1.5, scale: 1.03 },
+              whileTap: { scale: 0.96 },
+          };
+
+    const renderLanguageLabel = (keyPrefix: string) => (
+        <AnimatePresence mode="wait" initial={false}>
+            <m.span
+                key={`${keyPrefix}-${languageButtonLabel}`}
+                initial={
+                    shouldReduceMotion
+                        ? false
+                        : { opacity: 0, y: 4, scale: 0.92, filter: "blur(2px)" }
+                }
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                exit={
+                    shouldReduceMotion
+                        ? undefined
+                        : { opacity: 0, y: -4, scale: 0.92, filter: "blur(2px)" }
+                }
+                transition={{
+                    duration: shouldReduceMotion ? 0 : MOTION_DURATION.fast,
+                    ease: MOTION_EASE_STANDARD,
+                }}
+                className="block leading-none"
+            >
+                {languageButtonLabel}
+            </m.span>
+        </AnimatePresence>
+    );
+
+    const renderThemeIcon = (keyPrefix: string) => (
+        <AnimatePresence mode="wait" initial={false}>
+            <m.span
+                key={`${keyPrefix}-${theme}`}
+                initial={
+                    shouldReduceMotion
+                        ? false
+                        : {
+                              opacity: 0,
+                              scale: 0.7,
+                              rotate: theme === "dark" ? -36 : 36,
+                              filter: "blur(2px)",
+                          }
+                }
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotate: 0,
+                    filter: "blur(0px)",
+                }}
+                exit={
+                    shouldReduceMotion
+                        ? undefined
+                        : {
+                              opacity: 0,
+                              scale: 0.72,
+                              rotate: theme === "dark" ? 28 : -28,
+                              filter: "blur(2px)",
+                          }
+                }
+                transition={{
+                    duration: shouldReduceMotion ? 0 : MOTION_DURATION.fast,
+                    ease: MOTION_EASE_STANDARD,
+                }}
+                className="grid place-items-center"
+            >
+                {theme === "dark" ? <FiSun /> : <FiMoon />}
+            </m.span>
+        </AnimatePresence>
+    );
 
     const navItems: NavItem[] = [
         { id: "home", label: text.nav.home, href: "/#home", icon: <FiHome /> },
@@ -184,7 +263,10 @@ export default function NavigationBar({
         <m.header
             initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
             animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+                duration: shouldReduceMotion ? 0 : MOTION_DURATION.base,
+                ease: MOTION_EASE_EMPHASIS,
+            }}
             className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl"
         >
             <div className="mx-auto flex w-[90%] max-w-none items-center justify-between gap-3 py-3 sm:w-[88%] sm:px-6">
@@ -248,22 +330,24 @@ export default function NavigationBar({
                 )}
 
                 <div className="hidden items-center gap-3 lg:flex">
-                    <button
+                    <m.button
                         type="button"
                         aria-label={text.nav.toggleLanguage}
                         onClick={toggleLanguage}
-                        className="inline-flex h-10 min-w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 px-3 text-xs font-semibold-alt uppercase tracking-[0.14em] text-foreground transition hover:border-primary"
+                        className="relative inline-flex h-10 min-w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-foreground/20 px-3 text-xs font-semibold-alt uppercase tracking-[0.14em] text-foreground transition-[border-color,background-color,color,box-shadow] duration-300 hover:border-primary hover:shadow-[0_10px_24px_-16px_hsl(var(--primary)/0.9)]"
+                        {...controlMotionProps}
                     >
-                        {languageButtonLabel}
-                    </button>
-                    <button
+                        {renderLanguageLabel("desktop-lang")}
+                    </m.button>
+                    <m.button
                         type="button"
                         aria-label={text.nav.toggleTheme}
                         onClick={toggleTheme}
-                        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 text-foreground transition hover:border-primary"
+                        className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-foreground/20 text-foreground transition-[border-color,background-color,color,box-shadow] duration-300 hover:border-primary hover:shadow-[0_10px_24px_-16px_hsl(var(--primary)/0.9)]"
+                        {...controlMotionProps}
                     >
-                        {theme === "dark" ? <FiSun /> : <FiMoon />}
-                    </button>
+                        {renderThemeIcon("desktop-theme")}
+                    </m.button>
                     {isDetailsMode && (
                         <Button variant="outline" onClick={handleBackNavigation}>
                             <FiArrowLeft className="text-base" />
@@ -273,22 +357,24 @@ export default function NavigationBar({
                 </div>
 
                 <div className="flex items-center gap-2 lg:hidden">
-                    <button
+                    <m.button
                         type="button"
                         aria-label={text.nav.toggleLanguage}
                         onClick={toggleLanguage}
-                        className="inline-flex h-10 min-w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 px-3 text-xs font-semibold-alt uppercase tracking-[0.14em] text-foreground transition hover:border-primary/60"
+                        className="relative inline-flex h-10 min-w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-foreground/20 px-3 text-xs font-semibold-alt uppercase tracking-[0.14em] text-foreground transition-[border-color,background-color,color] duration-300 hover:border-primary/60"
+                        {...controlMotionProps}
                     >
-                        {languageButtonLabel}
-                    </button>
-                    <button
+                        {renderLanguageLabel("mobile-lang")}
+                    </m.button>
+                    <m.button
                         type="button"
                         aria-label={text.nav.toggleTheme}
                         onClick={toggleTheme}
-                        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 text-foreground transition hover:border-primary/60"
+                        className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-foreground/20 text-foreground transition-[border-color,background-color,color] duration-300 hover:border-primary/60"
+                        {...controlMotionProps}
                     >
-                        {theme === "dark" ? <FiSun /> : <FiMoon />}
-                    </button>
+                        {renderThemeIcon("mobile-theme")}
+                    </m.button>
                     {isDetailsMode ? (
                         <Button variant="outline" onClick={handleBackNavigation}>
                             <FiArrowLeft className="text-base" />
@@ -319,7 +405,10 @@ export default function NavigationBar({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{
-                                duration: shouldReduceMotion ? 0 : 0.2,
+                                duration: shouldReduceMotion
+                                    ? 0
+                                    : MOTION_DURATION.fast,
+                                ease: MOTION_EASE_STANDARD,
                             }}
                             className={cn(
                                 "fixed inset-0 z-40",
@@ -350,8 +439,10 @@ export default function NavigationBar({
                                 opacity: 0,
                             }}
                             transition={{
-                                duration: shouldReduceMotion ? 0 : 0.32,
-                                ease: [0.22, 1, 0.36, 1],
+                                duration: shouldReduceMotion
+                                    ? 0
+                                    : MOTION_DURATION.base,
+                                ease: MOTION_EASE_STANDARD,
                             }}
                             className={cn(
                                 "fixed inset-0 z-50 flex h-[100dvh] w-full flex-col overflow-hidden p-6 text-foreground",
@@ -413,34 +504,33 @@ export default function NavigationBar({
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <button
+                                        <m.button
                                             type="button"
                                             aria-label={text.nav.toggleLanguage}
                                             onClick={toggleLanguage}
-                                            className="inline-flex h-10 min-w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 px-3 text-xs font-semibold-alt uppercase tracking-[0.14em] text-foreground transition hover:border-primary"
+                                            className="relative inline-flex h-10 min-w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-foreground/20 px-3 text-xs font-semibold-alt uppercase tracking-[0.14em] text-foreground transition-[border-color,background-color,color] duration-300 hover:border-primary"
+                                            {...controlMotionProps}
                                         >
-                                            {languageButtonLabel}
-                                        </button>
-                                        <button
+                                            {renderLanguageLabel("menu-lang")}
+                                        </m.button>
+                                        <m.button
                                             type="button"
                                             aria-label={text.nav.toggleTheme}
                                             onClick={toggleTheme}
-                                            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 text-foreground transition hover:border-primary cursor-pointer"
+                                            className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-foreground/20 text-foreground transition-[border-color,background-color,color] duration-300 hover:border-primary"
+                                            {...controlMotionProps}
                                         >
-                                            {theme === "dark" ? (
-                                                <FiSun />
-                                            ) : (
-                                                <FiMoon />
-                                            )}
-                                        </button>
-                                        <button
+                                            {renderThemeIcon("menu-theme")}
+                                        </m.button>
+                                        <m.button
                                             type="button"
                                             aria-label={text.nav.closeMenu}
                                             onClick={() => setIsOpen(false)}
-                                            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 text-foreground transition hover:border-primary cursor-pointer"
+                                            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 text-foreground transition-[border-color,background-color,color] duration-300 hover:border-primary"
+                                            {...controlMotionProps}
                                         >
                                             <FiX />
-                                        </button>
+                                        </m.button>
                                     </div>
                                 </div>
 
@@ -472,8 +562,8 @@ export default function NavigationBar({
                                         show: {
                                             opacity: 1,
                                             transition: {
-                                                staggerChildren: 0.08,
-                                                delayChildren: 0.15,
+                                                staggerChildren: MOTION_STAGGER.tight,
+                                                delayChildren: MOTION_DURATION.fast,
                                             },
                                         },
                                     }}
@@ -532,8 +622,13 @@ export default function NavigationBar({
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: 12 }}
                                     transition={{
-                                        duration: shouldReduceMotion ? 0 : 0.3,
-                                        delay: shouldReduceMotion ? 0 : 0.25,
+                                        duration: shouldReduceMotion
+                                            ? 0
+                                            : MOTION_DURATION.base,
+                                        delay: shouldReduceMotion
+                                            ? 0
+                                            : MOTION_DURATION.fast,
+                                        ease: MOTION_EASE_STANDARD,
                                     }}
                                 >
                                     <a

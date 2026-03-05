@@ -13,6 +13,11 @@ import {
     type PortfolioProject,
 } from "../../data/portfolio";
 import { useI18n } from "../../i18n/useI18n";
+import {
+    MOTION_DURATION,
+    MOTION_EASE_EMPHASIS,
+    MOTION_EASE_STANDARD,
+} from "../../lib/motion";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
@@ -81,13 +86,19 @@ function ProjectCardComponent({ project }: ProjectCardProps) {
                 shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }
             }
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+                duration: shouldReduceMotion ? 0 : MOTION_DURATION.slow,
+                ease: MOTION_EASE_EMPHASIS,
+            }}
             whileHover={
                 shouldReduceMotion
                     ? undefined
                     : {
-                          y: -10,
-                          transition: { duration: 0.25 },
+                          y: -8,
+                          transition: {
+                              duration: MOTION_DURATION.fast,
+                              ease: MOTION_EASE_STANDARD,
+                          },
                       }
             }
             whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
@@ -105,6 +116,7 @@ function ProjectCardComponent({ project }: ProjectCardProps) {
                         alt={isFallbackDecorative ? "" : project.name}
                         aria-hidden={isFallbackDecorative ? true : undefined}
                         loading="lazy"
+                        fetchPriority="low"
                         decoding="async"
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
@@ -113,6 +125,7 @@ function ProjectCardComponent({ project }: ProjectCardProps) {
                             src={primaryImage}
                             alt={project.name}
                             loading="lazy"
+                            fetchPriority="low"
                             decoding="async"
                             onLoad={() => {
                                 loadedPrimaryImages.add(primaryImage);

@@ -16,6 +16,24 @@ function compareByNaturalPath(a: string, b: string) {
     });
 }
 
+function getPreferredImageFormatRank(path: string) {
+    const lowerPath = path.toLowerCase();
+    if (lowerPath.endsWith(".avif")) {
+        return 0;
+    }
+    if (lowerPath.endsWith(".webp")) {
+        return 1;
+    }
+    if (lowerPath.endsWith(".jpg") || lowerPath.endsWith(".jpeg")) {
+        return 2;
+    }
+    if (lowerPath.endsWith(".png")) {
+        return 3;
+    }
+
+    return 4;
+}
+
 function formatSectionTitle(rawKey: string) {
     if (rawKey === "production") {
         return "Production";
@@ -41,7 +59,15 @@ function collectProjectMedia(folderName: string) {
 
     const mainEntries = matchingEntries
         .filter(([path]) => path.includes("/mainPic/"))
-        .sort(([a], [b]) => compareByNaturalPath(a, b));
+        .sort(([a], [b]) => {
+            const rankDifference =
+                getPreferredImageFormatRank(a) - getPreferredImageFormatRank(b);
+            if (rankDifference !== 0) {
+                return rankDifference;
+            }
+
+            return compareByNaturalPath(a, b);
+        });
     const productionEntries = matchingEntries
         .filter(([path]) => path.includes("/Production/"))
         .sort(([a], [b]) => compareByNaturalPath(a, b));
@@ -104,6 +130,7 @@ const yogoKidsMedia = collectProjectMedia("yogoKids");
 const tareekAlshahbaMedia = collectProjectMedia("Tareek-alshahba");
 const ibtisamaMedia = collectProjectMedia("Ibtisama");
 const lujjhMedia = collectProjectMedia("lujjh");
+const tatabuMedia = collectProjectMedia("tatabu");
 
 export interface PortfolioProject {
     slug: string;
@@ -283,6 +310,24 @@ export const projects: PortfolioProject[] = [
         productionSections: lujjhMedia.productionSections,
         githubUrl: "",
         liveUrl: "",
+    },
+    {
+        slug: "tatabu-shipment-tracking-dashboard",
+        name: "Tatabu Shipment Tracking Platform",
+        category: "react",
+        timeline: "Apr 8, 2025 - Jun 2, 2025",
+        description:
+            "Shipment tracking platform focused on live status flow, route visibility, and operational monitoring.",
+        codeSummary:
+            "Highlights: • Built tracking-first dashboard screens for shipment lifecycle updates. • Structured reusable UI blocks for status timelines and operations panels. • Implemented responsive views for desktop and tablet logistics workflows.",
+        stack: ["React.js", "TypeScript", "TailwindCSS"],
+        image: tatabuMedia.image,
+        gallery: tatabuMedia.gallery,
+        codeGallery: tatabuMedia.codeGallery,
+        productionSections: tatabuMedia.productionSections,
+        githubUrl: "",
+        liveUrl: "",
+        featured: false,
     },
 ];
 

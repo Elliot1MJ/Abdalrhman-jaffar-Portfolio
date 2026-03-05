@@ -1,5 +1,11 @@
 import { type ReactNode } from "react";
 import { m, useReducedMotion } from "framer-motion";
+import {
+    MOTION_DURATION,
+    MOTION_EASE_EMPHASIS,
+    SECTION_REVEAL_ENTER,
+    SECTION_REVEAL_INITIAL,
+} from "../../lib/motion";
 import { cn } from "../../lib/utils";
 
 interface MotionRevealProps {
@@ -24,23 +30,13 @@ export default function MotionReveal({
     return (
         <m.div
             className={cn(className)}
-            initial={{
-                opacity: 0,
-                y: 40,
-                scale: 0.98,
-                filter: "blur(6px)",
-            }}
-            whileInView={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                filter: "blur(0px)",
-            }}
+            initial={SECTION_REVEAL_INITIAL}
+            whileInView={SECTION_REVEAL_ENTER}
             viewport={{ once, amount: 0.3 }}
             transition={{
-                duration: 0.55,
+                duration: MOTION_DURATION.slow,
                 delay,
-                ease: [0.16, 1, 0.3, 1],
+                ease: MOTION_EASE_EMPHASIS,
             }}
         >
             {children}
