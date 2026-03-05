@@ -1,8 +1,17 @@
 const CACHE_NAME = "portfolio-offline-v2";
 const OFFLINE_URL = "/offline.html";
 const PRECACHE_URLS = ["/", "/index.html", OFFLINE_URL];
+const IS_LOCALHOST =
+    self.location.hostname === "localhost" ||
+    self.location.hostname === "127.0.0.1" ||
+    self.location.hostname === "[::1]";
 
 self.addEventListener("install", (event) => {
+    if (IS_LOCALHOST) {
+        event.waitUntil(self.skipWaiting());
+        return;
+    }
+
     event.waitUntil(
         caches
             .open(CACHE_NAME)
@@ -12,6 +21,17 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
+    if (IS_LOCALHOST) {
+        event.waitUntil(
+            (async () => {
+                const keys = await caches.keys();
+                await Promise.all(keys.map((key) => caches.delete(key)));
+                await self.clients.claim();
+            })(),
+        );
+        return;
+    }
+
     event.waitUntil(
         (async () => {
             const keys = await caches.keys();
@@ -37,6 +57,10 @@ self.addEventListener("fetch", (event) => {
     const { request } = event;
 
     if (request.method !== "GET") {
+        return;
+    }
+
+    if (IS_LOCALHOST) {
         return;
     }
 
