@@ -4,6 +4,7 @@ import type { Language, MessageCatalog } from "./messages";
 interface ProjectText {
     name: string;
     description: string;
+    codeSummary: string;
 }
 
 export interface I18nContextValue {
@@ -13,7 +14,11 @@ export interface I18nContextValue {
     languageButtonLabel: string;
     isRtl: boolean;
     text: MessageCatalog;
-    getProjectText: (name: string, description: string) => ProjectText;
+    getProjectText: (
+        name: string,
+        description: string,
+        codeSummary: string,
+    ) => ProjectText;
 }
 
 export const I18nContext = createContext<I18nContextValue | null>(null);

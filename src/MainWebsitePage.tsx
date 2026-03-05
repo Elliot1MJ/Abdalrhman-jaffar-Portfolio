@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import FooterSection from "./components/FooterSection";
 import NavigationBar from "./components/NavigationBar";
 // import { Separator } from "./components/ui/separator";
@@ -7,10 +8,15 @@ import ContactPage from "./routes/ContactPage";
 import CVPage from "./routes/CVPage";
 import HomePage from "./routes/HomePage";
 import ProjectsPage from "./routes/ProjectsPage";
+import { applySeoTags } from "./i18n/seo";
 import { useI18n } from "./i18n/useI18n";
 
 export default function MainWebsitePage() {
     const { text } = useI18n();
+
+    useEffect(() => {
+        applySeoTags(text);
+    }, [text]);
 
     return (
         <div className="page-shell min-h-screen bg-background text-foreground">

@@ -60,15 +60,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const getProjectText = useCallback(
-        (name: string, description: string) => {
+        (name: string, description: string, codeSummary: string) => {
             if (language !== "ar") {
-                return { name, description };
+                return { name, description, codeSummary };
             }
 
             const projectTranslation = text.projects.projectCopy[name];
             return {
                 name: projectTranslation?.name ?? name,
                 description: projectTranslation?.description ?? description,
+                codeSummary: projectTranslation?.codeSummary ?? codeSummary,
             };
         },
         [language, text.projects.projectCopy],

@@ -481,6 +481,38 @@ html[dir="rtl"] .hero-title span {
     }
 }
 
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-shimmer {
+    background-color: hsl(var(--secondary) / 0.55);
+    background-image: linear-gradient(
+        110deg,
+        hsl(var(--secondary) / 0.65) 8%,
+        hsl(var(--foreground) / 0.16) 20%,
+        hsl(var(--secondary) / 0.65) 34%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 2.8s ease-in-out infinite;
+}
+
+.theme-light .skeleton-shimmer {
+    background-color: hsl(var(--secondary) / 0.8);
+    background-image: linear-gradient(
+        110deg,
+        hsl(var(--secondary) / 0.9) 8%,
+        hsl(var(--foreground) / 0.12) 20%,
+        hsl(var(--secondary) / 0.9) 34%
+    );
+}
+
 .section-block {
     scroll-margin-top: 6rem;
     content-visibility: auto;
@@ -575,5 +607,10 @@ html[dir="rtl"] .scroll-indicator {
     .hero-glyph--float-b,
     .hero-glyph--float-c {
         animation: none;
+    }
+
+    .skeleton-shimmer {
+        animation: none;
+        background-position: 0 0;
     }
 }

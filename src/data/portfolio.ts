@@ -1,17 +1,123 @@
-import ibtisamaImage from "../assets/images/projects-Images/Ibtisama.png";
-import lujjhImage from "../assets/images/projects-Images/lujjh.png";
-import tatabuImage from "../assets/images/projects-Images/tatabu.png";
-import tareekAlshahbaImage from "../assets/images/projects-Images/Tareek-alshahba.png";
-import upafaImage from "../assets/images/projects-Images/upafa-speical.png";
-import yogoKidsImage from "../assets/images/projects-Images/yogoKids.png";
+const projectCodeGalleryAssets = import.meta.glob<{ default: string }>(
+    "../assets/images/Project_Code_Gallery/**/*.{png,jpg,jpeg,webp,avif}",
+    { eager: true },
+);
+
+export interface ProductionSection {
+    key: string;
+    title: string;
+    images: string[];
+}
+
+function compareByNaturalPath(a: string, b: string) {
+    return a.localeCompare(b, undefined, {
+        numeric: true,
+        sensitivity: "base",
+    });
+}
+
+function formatSectionTitle(rawKey: string) {
+    if (rawKey === "production") {
+        return "Production";
+    }
+
+    const normalized = rawKey
+        .replace(/[-_]+/g, " ")
+        .replace(/([a-z])([A-Z])/g, "$1 $2")
+        .trim();
+
+    if (!normalized) {
+        return "Production";
+    }
+
+    return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+}
+
+function collectProjectMedia(folderName: string) {
+    const baseSegment = `/Project_Code_Gallery/${folderName}/`;
+    const matchingEntries = Object.entries(projectCodeGalleryAssets).filter(
+        ([path]) => path.includes(baseSegment),
+    );
+
+    const mainEntries = matchingEntries
+        .filter(([path]) => path.includes("/mainPic/"))
+        .sort(([a], [b]) => compareByNaturalPath(a, b));
+    const productionEntries = matchingEntries
+        .filter(([path]) => path.includes("/Production/"))
+        .sort(([a], [b]) => compareByNaturalPath(a, b));
+    const codeEntries = matchingEntries
+        .filter(([path]) => path.includes("/Code/"))
+        .sort(([a], [b]) => compareByNaturalPath(a, b));
+
+    const mainImage = mainEntries[0]?.[1].default ?? "";
+    const productionSectionMap = new Map<
+        string,
+        { path: string; src: string }[]
+    >();
+    for (const [path, mod] of productionEntries) {
+        const productionPathPart = path.split("/Production/")[1] ?? "";
+        const pathSegments = productionPathPart.split("/").filter(Boolean);
+        const sectionKey =
+            pathSegments.length > 1 ? pathSegments[0] : "production";
+        const sectionItems = productionSectionMap.get(sectionKey) ?? [];
+        sectionItems.push({ path, src: mod.default });
+        productionSectionMap.set(sectionKey, sectionItems);
+    }
+
+    const productionSectionKeys = Array.from(productionSectionMap.keys()).sort(
+        compareByNaturalPath,
+    );
+    const productionSections: ProductionSection[] = productionSectionKeys.map(
+        (key) => {
+            const sortedItems = (productionSectionMap.get(key) ?? []).sort(
+                (a, b) => compareByNaturalPath(a.path, b.path),
+            );
+            return {
+                key,
+                title: formatSectionTitle(key),
+                images: sortedItems.map((item) => item.src),
+            };
+        },
+    );
+    const productionImages = productionSections.flatMap(
+        (section) => section.images,
+    );
+    const gallery = productionImages;
+    const codeGallery = codeEntries.map(([, mod]) => mod.default);
+
+    const firstAvailableImage =
+        mainImage ||
+        productionImages[0] ||
+        codeGallery[0] ||
+        "/images/project-fallback.svg";
+
+    return {
+        image: firstAvailableImage,
+        gallery,
+        codeGallery: codeGallery.length ? codeGallery : productionImages,
+        productionSections,
+    };
+}
+
+const upafaMedia = collectProjectMedia("upafa");
+const yogoKidsMedia = collectProjectMedia("yogoKids");
+const tareekAlshahbaMedia = collectProjectMedia("Tareek-alshahba");
+const ibtisamaMedia = collectProjectMedia("Ibtisama");
+const lujjhMedia = collectProjectMedia("lujjh");
+const tatabuMedia = collectProjectMedia("tatabu");
 
 export interface PortfolioProject {
+    slug: string;
     name: string;
     category: "javascript" | "react" | "next.js" | "fullstack";
     timeline: string;
     description: string;
+    codeSummary: string;
     stack: string[];
     image: string;
+    gallery: string[];
+    codeGallery: string[];
+    productionSections: ProductionSection[];
     githubUrl: string;
     liveUrl: string;
     featured?: boolean;
@@ -86,77 +192,121 @@ export const skillGroups = [
 
 export const projects: PortfolioProject[] = [
     {
+        slug: "upafa-university-digital-platform",
         name: "UPAFA – University Digital Platform",
         category: "react",
-        timeline: "Jan 1, 2026 - Feb 28, 2026",
+        timeline: "Jan 1, 2026 - Feb 22, 2026",
         description:
-            "Developed and structured UPAFA University's official multilingual platform with scalable architecture, structured academic/admissions flows, and production-focused performance optimization.",
-        stack: ["Next.js", "React.js", "TypeScript", "TailwindCSS"],
-        image: upafaImage,
+            "Developed UPAFA University's official digital platform with a strong focus on scalability, structured information architecture, and production-ready performance.",
+        codeSummary:
+            "Built maintainable frontend modules for academic content, admissions workflows, and program pages while optimizing loading behavior and deployment performance.",
+        stack: ["React.js", "TypeScript", "TailwindCSS"],
+        image: upafaMedia.image,
+        gallery: upafaMedia.gallery,
+        codeGallery: upafaMedia.codeGallery,
+        productionSections: upafaMedia.productionSections,
         githubUrl: "",
-        liveUrl: "",
+        liveUrl: "https://upafa-edu.com/",
         featured: true,
     },
     {
+        slug: "yogo-kids-child-care-booking-platform",
         name: "Yogo Kids – Child Care Booking Platform",
         category: "next.js",
         timeline: "Dec 25, 2025 - Feb 1, 2026",
         description:
-            "Building a childcare booking platform with child registration workflows and a full admin dashboard for schedules, operations, and structured class management.",
-        stack: ["React.js", "TypeScript", "shadcn/ui"],
-        image: yogoKidsImage,
+            "Building a childcare booking system for registering children into organized classes with clear UX flows for parents and admins.",
+        codeSummary:
+            "Developing a full admin dashboard to manage registrations, schedules, and day-to-day operations using structured, reusable frontend patterns.",
+        stack: ["React.js", "TypeScript"],
+        image: yogoKidsMedia.image,
+        gallery: yogoKidsMedia.gallery,
+        codeGallery: yogoKidsMedia.codeGallery,
+        productionSections: yogoKidsMedia.productionSections,
         githubUrl: "",
-        liveUrl: "",
+        liveUrl: "https://yogokids.ae/",
         featured: true,
     },
     {
+        slug: "tariq-al-shahba-logistics-cargo-management-system",
         name: "Tariq Al-Shahba – Logistics & Cargo Management System",
         category: "react",
-        timeline: "Aug 2025 - Oct 22, 2025",
+        timeline: "Aug 2, 2025 - Oct 22, 2025",
         description:
-            "Built a cargo registration system for UAE-to-Syria shipments with dashboard-generated QR tracking, customs-rule-based structured forms, and PDF/Excel export.",
-        stack: ["React.js", "TypeScript"],
-        image: tareekAlshahbaImage,
+            "Built a full logistics system to digitize cargo registration for UAE-to-Syria shipments with operational clarity for admins and staff.",
+        codeSummary:
+            "Implemented QR-code shipment tracking from the dashboard, customs-rule-based cargo forms, and structured export flows to PDF and Excel formats.",
+        stack: ["React.js", "TypeScript", "TailwindCSS"],
+        image: tareekAlshahbaMedia.image,
+        gallery: tareekAlshahbaMedia.gallery,
+        codeGallery: tareekAlshahbaMedia.codeGallery,
+        productionSections: tareekAlshahbaMedia.productionSections,
         githubUrl: "",
         liveUrl: "",
         featured: true,
     },
     {
+        slug: "ibtisama-clinic-dental-appointment-booking-system",
         name: "Ibtisama Clinic – Dental Appointment Booking System",
         category: "fullstack",
         timeline: "Nov 15, 2025 - Dec 22, 2025",
         description:
-            "Developed an online dental booking system with a two-month calendar scheduler and a role-based dashboard for doctors and reception staff.",
-        stack: ["React.js", "TypeScript", "Express.js", "MySQL"],
-        image: ibtisamaImage,
+            "Developed an online dental appointment booking system with smooth scheduling and organized clinic workflow management.",
+        codeSummary:
+            "Implemented a two-month calendar scheduling flow and role-based dashboard access for doctors and reception staff with reliable booking handling.",
+        stack: ["React.js", "TypeScript", "TailwindCSS", "Express.js", "MySQL"],
+        image: ibtisamaMedia.image,
+        gallery: ibtisamaMedia.gallery,
+        codeGallery: ibtisamaMedia.codeGallery,
+        productionSections: ibtisamaMedia.productionSections,
         githubUrl: "",
         liveUrl: "",
     },
     {
+        slug: "lujjh-boat-booking-platform-saudi-arabia",
         name: "LUJJH – Boat Booking Platform (Saudi Arabia)",
         category: "next.js",
-        timeline: "Jan 2025 - Aug 2025",
+        timeline: "Jun 6, 2025 - Aug 8, 2025",
         description:
-            "Designed and built a scalable Saudi market boat booking platform with a conversion-focused landing page, custom admin dashboard, and complete booking/payment flow.",
-        stack: ["React.js", "TypeScript"],
-        image: lujjhImage,
+            "Designed and built a scalable boat booking platform targeting the Saudi market with a structure ready for regional expansion.",
+        codeSummary:
+            "Delivered a conversion-focused landing page and a custom admin dashboard for bookings and operations while owning frontend architecture and delivery.",
+        stack: ["React.js", "TypeScript", "TailwindCSS"],
+        image: lujjhMedia.image,
+        gallery: lujjhMedia.gallery,
+        codeGallery: lujjhMedia.codeGallery,
+        productionSections: lujjhMedia.productionSections,
         githubUrl: "",
         liveUrl: "",
     },
     {
+        slug: "tatabu-location-tracking-platform",
         name: "Tatabu – Location Tracking Platform",
         category: "react",
         timeline: "Jul 4, 2025 - Sep 22, 2025",
         description:
-            "Improved and extended an existing URL-based location tracking platform with stronger dashboard clarity, frontend performance, and maintainable architecture.",
+            "Improved and extended an existing URL-based location tracking platform integrated with Google Tag Manager.",
+        codeSummary:
+            "Enhanced admin dashboard visibility and usability with a focus on frontend performance, interface clarity, and long-term maintainability.",
         stack: ["React.js"],
-        image: tatabuImage,
+        image: tatabuMedia.image,
+        gallery: tatabuMedia.gallery,
+        codeGallery: tatabuMedia.codeGallery,
+        productionSections: tatabuMedia.productionSections,
         githubUrl: "",
-        liveUrl: "",
+        liveUrl: "https://dashboard.tatabu.io/#/login",
     },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
+
+export function getProjectBySlug(slug: string) {
+    return projects.find((project) => project.slug === slug);
+}
+
+export function getProjectDetailsPath(slug: string) {
+    return `/projects/${slug}`;
+}
 
 export const education = {
     degree: "Bachelor's Degree in Computer & Control Engineering",

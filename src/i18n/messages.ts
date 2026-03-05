@@ -9,6 +9,7 @@ type ProjectTranslationMap = Record<
     {
         name?: string;
         description?: string;
+        codeSummary?: string;
     }
 >;
 
@@ -94,6 +95,20 @@ export interface MessageCatalog {
         actions: {
             github: string;
             live: string;
+            details: string;
+        };
+        details: {
+            back: string;
+            aboutTitle: string;
+            galleryTitle: string;
+            linksTitle: string;
+            codeSummaryTitle: string;
+            codeGalleryTitle: string;
+            openImage: string;
+            closePreview: string;
+            nextImage: string;
+            previousImage: string;
+            imageAlt: string;
         };
         projectCopy: ProjectTranslationMap;
     };
@@ -175,32 +190,44 @@ const arabicProjectCopy: ProjectTranslationMap = {
     "UPAFA – University Digital Platform": {
         name: "UPAFA - المنصة الرقمية الجامعية",
         description:
-            "منصة جامعية رقمية متعددة اللغات مع هيكلة أكاديمية وتدفقات قبول منظمة وبنية واجهات قابلة للتوسع.",
+            "تطوير المنصة الرقمية الرسمية لجامعة UPAFA مع تركيز على القابلية للتوسع، وتنظيم بنية المعلومات، والأداء الجاهز للإنتاج.",
+        codeSummary:
+            "تم بناء وحدات Frontend قابلة للصيانة للمحتوى الأكاديمي وتدفقات القبول وصفحات البرامج، مع تحسين التحميل والأداء في بيئة الإنتاج.",
     },
     "Yogo Kids – Child Care Booking Platform": {
         name: "Yogo Kids - منصة حجز رعاية الأطفال",
         description:
-            "منصة قيد التطوير لإدارة تسجيل الأطفال والجداول التشغيلية عبر لوحة تحكم شاملة.",
+            "منصة قيد التطوير لحجز رعاية الأطفال وتسجيلهم ضمن صفوف منظمة مع تجربة واضحة للأهل والإدارة.",
+        codeSummary:
+            "تطوير لوحة تحكم إدارية متكاملة لإدارة التسجيلات والجداول والعمليات اليومية عبر مكونات Frontend منظمة وقابلة لإعادة الاستخدام.",
     },
     "Ibtisama Clinic – Dental Appointment Booking System": {
         name: "Ibtisama Clinic - نظام حجز مواعيد الأسنان",
         description:
-            "نظام حجز عيادة أسنان يتضمن تقويم مواعيد لشهرين ولوحات صلاحيات مخصصة للأطباء والاستقبال.",
+            "نظام حجز مواعيد إلكتروني لعيادة أسنان مع إدارة سلسة للمواعيد وتنظيم واضح لسير العمل داخل العيادة.",
+        codeSummary:
+            "تنفيذ تقويم جدولة لمدة شهرين مع لوحة صلاحيات منفصلة للأطباء والاستقبال لضمان إدارة مواعيد مستقرة ومرنة.",
     },
     "LUJJH – Boat Booking Platform (Saudi Arabia)": {
         name: "LUJJH - منصة حجز القوارب",
         description:
-            "منصة حجز قوارب للسوق السعودي تتضمن صفحة هبوط موجهة للتحويل، ولوحة إدارة، وتدفق حجز ودفع متكامل.",
+            "تصميم وبناء منصة حجز قوارب موجهة للسوق السعودي مع بنية قابلة للتوسع نحو أسواق إقليمية.",
+        codeSummary:
+            "تطوير صفحة هبوط عالية التحويل ولوحة إدارة مخصصة للحجوزات والعمليات مع امتلاك كامل لبنية Frontend وتسليمها.",
     },
     "Tariq Al-Shahba – Logistics & Cargo Management System": {
         name: "Tariq Al-Shahba - نظام إدارة الشحن واللوجستيات",
         description:
-            "نظام شحن من الإمارات إلى سوريا مع تتبع QR من لوحة التحكم ونماذج جمركية منظمة وتصدير PDF وExcel.",
+            "نظام لوجستي متكامل لرقمنة تسجيل الشحنات بين الإمارات وسوريا مع وضوح تشغيلي أعلى لفريق الإدارة.",
+        codeSummary:
+            "تنفيذ تتبع شحنات عبر QR من لوحة التحكم مع نماذج إدخال مبنية على قواعد التسعير الجمركي ودعم التصدير إلى PDF وExcel.",
     },
     "Tatabu – Location Tracking Platform": {
         name: "Tatabu - منصة تتبع المواقع",
         description:
-            "تحسين منصة تتبع مواقع عبر إعادة تنظيم لوحة التحكم ورفع وضوح البيانات والأداء وقابلية الصيانة.",
+            "تحسين وتوسيع منصة تتبع مواقع مبنية على روابط URL ومتكاملة مع Google Tag Manager.",
+        codeSummary:
+            "تحسين وضوح البيانات وسهولة الاستخدام في لوحة الإدارة مع التركيز على الأداء وقابلية صيانة الواجهة على المدى الطويل.",
     },
 };
 
@@ -334,6 +361,20 @@ export const messages: Record<Language, MessageCatalog> = {
             actions: {
                 github: "GitHub",
                 live: "Live",
+                details: "More details",
+            },
+            details: {
+                back: "Back",
+                aboutTitle: "About This Project",
+                galleryTitle: "Project Gallery",
+                linksTitle: "Project Links",
+                codeSummaryTitle: "Code Overview",
+                codeGalleryTitle: "Code Gallery",
+                openImage: "Open image preview",
+                closePreview: "Close gallery preview",
+                nextImage: "Next image",
+                previousImage: "Previous image",
+                imageAlt: "Project gallery image",
             },
             projectCopy: {},
         },
@@ -550,6 +591,20 @@ export const messages: Record<Language, MessageCatalog> = {
             actions: {
                 github: "جيت هب",
                 live: "معاينة",
+                details: "مزيد من التفاصيل",
+            },
+            details: {
+                back: "عودة",
+                aboutTitle: "شرح المشروع",
+                galleryTitle: "معرض المشروع",
+                linksTitle: "روابط المشروع",
+                codeSummaryTitle: "نبذة عن الكود",
+                codeGalleryTitle: "معرض الكود",
+                openImage: "فتح معاينة الصورة",
+                closePreview: "إغلاق معاينة المعرض",
+                nextImage: "الصورة التالية",
+                previousImage: "الصورة السابقة",
+                imageAlt: "صورة من معرض المشروع",
             },
             projectCopy: arabicProjectCopy,
         },

@@ -1,5 +1,6 @@
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import {
+    FiArrowLeft,
     FiBriefcase,
     FiFileText,
     FiHome,
@@ -11,6 +12,7 @@ import {
     FiX,
 } from "react-icons/fi";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import logoMark from "../assets/images/logo.svg";
 import { useI18n } from "../i18n/useI18n";
 import { cn } from "../lib/utils";
@@ -25,33 +27,45 @@ interface NavItem {
     icon?: ReactNode;
 }
 
-export default function NavigationBar() {
+interface NavigationBarProps {
+    mode?: "default" | "details";
+    onBack?: () => void;
+}
+
+export default function NavigationBar({
+    mode = "default",
+    onBack,
+}: NavigationBarProps) {
     const shouldReduceMotion = useReducedMotion();
+    const location = useLocation();
+    const navigate = useNavigate();
     const { isRtl, languageButtonLabel, text, toggleLanguage } = useI18n();
     const { theme, toggleTheme } = useTheme();
     const isLightTheme = theme === "light";
+    const isOnHomeRoute = location.pathname === "/";
+    const isDetailsMode = mode === "details";
     const [activeId, setActiveId] = useState("home");
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems: NavItem[] = [
-        { id: "home", label: text.nav.home, href: "#home", icon: <FiHome /> },
+        { id: "home", label: text.nav.home, href: "/#home", icon: <FiHome /> },
         {
             id: "about",
             label: text.nav.about,
-            href: "#about",
+            href: "/#about",
             icon: <FiUser />,
         },
         {
             id: "projects",
             label: text.nav.projects,
-            href: "#projects",
+            href: "/#projects",
             icon: <FiBriefcase />,
         },
-        { id: "cv", label: text.nav.cv, href: "#cv", icon: <FiFileText /> },
+        { id: "cv", label: text.nav.cv, href: "/#cv", icon: <FiFileText /> },
         {
             id: "contact",
             label: text.nav.contact,
-            href: "#contact",
+            href: "/#contact",
             icon: <FiMail />,
         },
     ];
@@ -61,14 +75,37 @@ export default function NavigationBar() {
         (event: MouseEvent<HTMLAnchorElement>) => {
             event.preventDefault();
             setActiveId(sectionId);
-            navigateToSection(sectionId, { smooth: !shouldReduceMotion });
+            if (isOnHomeRoute) {
+                navigateToSection(sectionId, { smooth: !shouldReduceMotion });
+            } else {
+                navigate(`/#${sectionId}`);
+            }
 
             if (closeMenu) {
                 setIsOpen(false);
             }
         };
 
+    const handleBackNavigation = () => {
+        if (onBack) {
+            onBack();
+            return;
+        }
+
+        if (window.history.length > 1) {
+            navigate(-1);
+            return;
+        }
+
+        navigate("/#projects");
+    };
+
     useEffect(() => {
+        if (!isOnHomeRoute) {
+            setActiveId("");
+            return;
+        }
+
         const sections = Array.from(
             document.querySelectorAll<HTMLElement>("[data-section]"),
         );
@@ -115,7 +152,7 @@ export default function NavigationBar() {
                 window.cancelAnimationFrame(frame);
             }
         };
-    }, []);
+    }, [isOnHomeRoute]);
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "";
@@ -152,7 +189,7 @@ export default function NavigationBar() {
         >
             <div className="mx-auto flex w-[90%] max-w-none items-center justify-between gap-3 py-3 sm:w-[88%] sm:px-6">
                 <a
-                    href="#home"
+                    href="/#home"
                     className="group inline-flex items-center gap-3"
                     onClick={handleSectionNavigation("home")}
                 >
@@ -182,31 +219,33 @@ export default function NavigationBar() {
                     </span>
                 </a>
 
-                <nav className="hidden items-center gap-6 lg:flex">
-                    {navItems.map((item) => {
-                        const isActive = activeId === item.id;
-                        return (
-                            <a
-                                key={item.id}
-                                href={item.href}
-                                onClick={handleSectionNavigation(item.id)}
-                                aria-current={isActive ? "page" : undefined}
-                                className={cn(
-                                    "relative pb-2 font-semibold-alt text-muted-foreground transition-colors",
-                                    isRtl
-                                        ? "text-sm"
-                                        : "text-[11px] uppercase tracking-[0.3em] sm:text-xs",
-                                    isActive
-                                        ? "text-foreground after:scale-x-100"
-                                        : "hover:text-foreground after:scale-x-0 hover:after:scale-x-100",
-                                    "after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-full after:-translate-x-1/2 after:origin-center after:bg-primary after:transition-transform after:duration-300",
-                                )}
-                            >
-                                {item.label}
-                            </a>
-                        );
-                    })}
-                </nav>
+                {!isDetailsMode && (
+                    <nav className="hidden items-center gap-6 lg:flex">
+                        {navItems.map((item) => {
+                            const isActive = isOnHomeRoute && activeId === item.id;
+                            return (
+                                <a
+                                    key={item.id}
+                                    href={item.href}
+                                    onClick={handleSectionNavigation(item.id)}
+                                    aria-current={isActive ? "page" : undefined}
+                                    className={cn(
+                                        "relative pb-2 font-semibold-alt text-muted-foreground transition-colors",
+                                        isRtl
+                                            ? "text-sm"
+                                            : "text-[11px] uppercase tracking-[0.3em] sm:text-xs",
+                                        isActive
+                                            ? "text-foreground after:scale-x-100"
+                                            : "hover:text-foreground after:scale-x-0 hover:after:scale-x-100",
+                                        "after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-full after:-translate-x-1/2 after:origin-center after:bg-primary after:transition-transform after:duration-300",
+                                    )}
+                                >
+                                    {item.label}
+                                </a>
+                            );
+                        })}
+                    </nav>
+                )}
 
                 <div className="hidden items-center gap-3 lg:flex">
                     <button
@@ -225,6 +264,12 @@ export default function NavigationBar() {
                     >
                         {theme === "dark" ? <FiSun /> : <FiMoon />}
                     </button>
+                    {isDetailsMode && (
+                        <Button variant="outline" onClick={handleBackNavigation}>
+                            <FiArrowLeft className="text-base" />
+                            {text.projects.details.back}
+                        </Button>
+                    )}
                 </div>
 
                 <div className="flex items-center gap-2 lg:hidden">
@@ -244,21 +289,28 @@ export default function NavigationBar() {
                     >
                         {theme === "dark" ? <FiSun /> : <FiMoon />}
                     </button>
-                    <button
-                        type="button"
-                        aria-label={text.nav.openMenu}
-                        aria-expanded={isOpen}
-                        aria-controls="mobile-menu"
-                        onClick={() => setIsOpen(true)}
-                        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 bg-transparent text-foreground transition hover:border-primary/60"
-                    >
-                        <FiMenu className="text-lg" />
-                    </button>
+                    {isDetailsMode ? (
+                        <Button variant="outline" onClick={handleBackNavigation}>
+                            <FiArrowLeft className="text-base" />
+                            {text.projects.details.back}
+                        </Button>
+                    ) : (
+                        <button
+                            type="button"
+                            aria-label={text.nav.openMenu}
+                            aria-expanded={isOpen}
+                            aria-controls="mobile-menu"
+                            onClick={() => setIsOpen(true)}
+                            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-foreground/20 bg-transparent text-foreground transition hover:border-primary/60"
+                        >
+                            <FiMenu className="text-lg" />
+                        </button>
+                    )}
                 </div>
             </div>
 
             <AnimatePresence>
-                {isOpen && (
+                {!isDetailsMode && isOpen && (
                     <>
                         <m.div
                             initial={
@@ -427,7 +479,8 @@ export default function NavigationBar() {
                                     }}
                                 >
                                     {navItems.map((item, index) => {
-                                        const isActive = activeId === item.id;
+                                        const isActive =
+                                            isOnHomeRoute && activeId === item.id;
                                         return (
                                             <m.a
                                                 key={item.id}
@@ -484,7 +537,7 @@ export default function NavigationBar() {
                                     }}
                                 >
                                     <a
-                                        href="#contact"
+                                        href="/#contact"
                                         onClick={handleSectionNavigation(
                                             "contact",
                                             true,
@@ -495,7 +548,7 @@ export default function NavigationBar() {
                                         </Button>
                                     </a>
                                     <a
-                                        href="#cv"
+                                        href="/#cv"
                                         onClick={handleSectionNavigation(
                                             "cv",
                                             true,
