@@ -350,7 +350,7 @@ export default function ProjectDetailsPage() {
             project.name,
             project.category,
             ...project.stack,
-            "Frontend Engineer",
+            "Frontend Developer",
             "Portfolio Project",
         ];
         const projectSchema: Record<string, unknown> = {

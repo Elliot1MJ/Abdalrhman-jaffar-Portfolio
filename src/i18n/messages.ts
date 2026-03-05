@@ -187,47 +187,40 @@ export interface MessageCatalog {
 }
 
 const arabicProjectCopy: ProjectTranslationMap = {
-    "UPAFA – University Digital Platform": {
-        name: "UPAFA - المنصة الرقمية الجامعية",
+    "UPAFA University Platform": {
+        name: "منصة UPAFA الجامعية",
         description:
-            "تطوير المنصة الرقمية الرسمية لجامعة UPAFA مع تركيز على القابلية للتوسع، وتنظيم بنية المعلومات، والأداء الجاهز للإنتاج.",
+            "منصة جامعية رسمية بواجهة منظمة لصفحات القبول والبرامج والمحتوى الأكاديمي.",
         codeSummary:
-            "تم بناء وحدات Frontend قابلة للصيانة للمحتوى الأكاديمي وتدفقات القبول وصفحات البرامج، مع تحسين التحميل والأداء في بيئة الإنتاج.",
+            "النقاط الأبرز: • بناء وحدات قابلة لإعادة الاستخدام لصفحات القبول والبرامج. • تحسين الأداء عبر ضبط التحميل وسلوك العرض. • توحيد بنية المحتوى في الصفحات الأساسية.",
     },
-    "Yogo Kids – Child Care Booking Platform": {
-        name: "Yogo Kids - منصة حجز رعاية الأطفال",
+    "Childcare Booking Platform": {
+        name: "منصة حجز رعاية الأطفال",
         description:
-            "منصة قيد التطوير لحجز رعاية الأطفال وتسجيلهم ضمن صفوف منظمة مع تجربة واضحة للأهل والإدارة.",
+            "منصة حجز للأهل لتسجيل الأطفال وإدارة الجداول ومتابعة توفر الصفوف.",
         codeSummary:
-            "تطوير لوحة تحكم إدارية متكاملة لإدارة التسجيلات والجداول والعمليات اليومية عبر مكونات Frontend منظمة وقابلة لإعادة الاستخدام.",
+            "النقاط الأبرز: • تصميم رحلة حجز واضحة من التسجيل حتى التأكيد. • بناء لوحات إدارة للحضور والجداول والسعات. • تنظيم مكونات قابلة لإعادة الاستخدام لتسريع التطوير.",
     },
-    "Ibtisama Clinic – Dental Appointment Booking System": {
-        name: "Ibtisama Clinic - نظام حجز مواعيد الأسنان",
+    "Cargo Logistics System": {
+        name: "نظام اللوجستيات والشحن",
         description:
-            "نظام حجز مواعيد إلكتروني لعيادة أسنان مع إدارة سلسة للمواعيد وتنظيم واضح لسير العمل داخل العيادة.",
+            "لوحة عمليات لإدارة تسجيل الشحنات وتتبعها ومعالجة تدفقات العمل الجمركية.",
         codeSummary:
-            "تنفيذ تقويم جدولة لمدة شهرين مع لوحة صلاحيات منفصلة للأطباء والاستقبال لضمان إدارة مواعيد مستقرة ومرنة.",
+            "النقاط الأبرز: • تنفيذ تتبع الشحنات عبر QR داخل لوحة التحكم. • بناء نماذج إدخال مع تحقق لقواعد التسعير والشحن. • إضافة واجهات تصدير جاهزة لعمليات التشغيل اليومية.",
     },
-    "LUJJH – Boat Booking Platform (Saudi Arabia)": {
-        name: "LUJJH - منصة حجز القوارب",
+    "Dental Clinic Booking System": {
+        name: "نظام حجز عيادة الأسنان",
         description:
-            "تصميم وبناء منصة حجز قوارب موجهة للسوق السعودي مع بنية قابلة للتوسع نحو أسواق إقليمية.",
+            "نظام حجز مواعيد للعيادات مع صلاحيات منفصلة للأطباء وموظفي الاستقبال.",
         codeSummary:
-            "تطوير صفحة هبوط عالية التحويل ولوحة إدارة مخصصة للحجوزات والعمليات مع امتلاك كامل لبنية Frontend وتسليمها.",
+            "النقاط الأبرز: • بناء جدولة مواعيد مع منع التعارضات. • تنفيذ واجهات منفصلة حسب الدور الوظيفي. • ربط تدفقات الواجهة مع Express.js وMySQL.",
     },
-    "Tariq Al-Shahba – Logistics & Cargo Management System": {
-        name: "Tariq Al-Shahba - نظام إدارة الشحن واللوجستيات",
+    "Boat Booking Platform": {
+        name: "منصة حجز القوارب",
         description:
-            "نظام لوجستي متكامل لرقمنة تسجيل الشحنات بين الإمارات وسوريا مع وضوح تشغيلي أعلى لفريق الإدارة.",
+            "منصة حجز قوارب للسوق السعودي مع صفحات هبوط موجّهة للتحويل ولوحة إدارة.",
         codeSummary:
-            "تنفيذ تتبع شحنات عبر QR من لوحة التحكم مع نماذج إدخال مبنية على قواعد التسعير الجمركي ودعم التصدير إلى PDF وExcel.",
-    },
-    "Tatabu – Location Tracking Platform": {
-        name: "Tatabu - منصة تتبع المواقع",
-        description:
-            "تحسين وتوسيع منصة تتبع مواقع مبنية على روابط URL ومتكاملة مع Google Tag Manager.",
-        codeSummary:
-            "تحسين وضوح البيانات وسهولة الاستخدام في لوحة الإدارة مع التركيز على الأداء وقابلية صيانة الواجهة على المدى الطويل.",
+            "النقاط الأبرز: • تطوير صفحة هبوط عالية التحويل لرفع نية الحجز. • بناء لوحة إدارة للرحلات والتسعير والحجوزات. • تحسين تجربة الموبايل للاستخدام اليومي.",
     },
 };
 
@@ -257,98 +250,101 @@ export const messages: Record<Language, MessageCatalog> = {
             contact: "Contact",
         },
         profile: {
-            fullName: "Abdalrhman Mohammed Jaffar",
+            fullName: "Abdalrhman Jaffar",
             shortName: "Abdalrhman",
-            title: "Frontend Systems Engineer",
+            title: "Frontend Developer",
             location: "Open to remote roles",
         },
         hero: {
-            badge: "Frontend Systems Engineer",
-            headingLine1: "Frontend Systems",
-            headingLine2: "Engineer",
+            badge: "Frontend Developer",
+            headingLine1: "Abdalrhman Jaffar",
+            headingLine2: "Frontend Developer",
             headingLine3: "",
             summary:
-                "Specialized in building structured, scalable frontend systems for real-world business operations.\n\nI design and deliver production-ready React & Next.js platforms with clean architecture, performance awareness, and security-focused implementation.",
+                "I build modern web applications, scalable dashboards, and high-conversion landing pages using React and modern frontend technologies.\n\nFocused on performance, clean architecture, and real production systems.",
             seeProjects: "View Projects",
             downloadCV: "Download Resume",
-            stack: "React • Next.js • TypeScript • TailwindCSS • Dashboards • Operational Systems",
-            imageAlt: "Abdalrhman Mohammed Jaffar portrait",
+            stack: "React.js • Next.js • TypeScript • Tailwind CSS • Dashboards • Booking Platforms",
+            imageAlt: "Abdalrhman Jaffar portrait",
         },
         about: {
             eyebrow: "About",
-            title: "Frontend Engineer Focused on Business Systems",
+            title: "Frontend Developer",
             description:
-                "I design and build structured frontend systems for booking workflows, operational dashboards, and role-based platforms.",
+                "Frontend Developer building scalable dashboards, booking platforms, and data-driven web applications.",
             paragraphOne:
-                "I am Abdalrhman Mohammed Jaffar, a frontend engineer with 3 years of experience delivering business-facing web applications across freelance work and team collaboration.",
+                "I'm a Frontend Developer specializing in building real production systems, not just UI demos.",
             paragraphTwo:
-                "My work emphasizes maintainable architecture, clear component boundaries, and reliable API integration for booking flows, logistics operations, and appointment management.",
+                "My work focuses on scalable dashboards, booking platforms, and data-driven web applications using React, Next.js, and TypeScript.",
             paragraphThree:
-                "I use AI-assisted workflows to accelerate implementation while preserving code quality, security boundaries, and long-term maintainability. I am currently seeking a remote frontend role.",
-            educationTitle: "Education",
-            principlesTitle: "Engineering Focus",
-            durationLabel: "Timeline",
-            statusLabel: "Current status",
+                "I care about performance, maintainability, and user experience. I enjoy structuring complex interfaces and building clean frontend architecture.",
+            educationTitle: "Frontend Stack",
+            principlesTitle: "Skills",
+            durationLabel: "Focus",
+            statusLabel: "Availability",
         },
         stats: [
             {
-                label: "Experience",
-                value: "3 Years",
-                detail: "Frontend delivery across freelance and team environments.",
+                label: "Role",
+                value: "Frontend Developer",
+                detail: "Focused on production web applications.",
             },
             {
-                label: "Production Systems",
-                value: "Booking, Logistics, Healthcare",
-                detail: "Built for real operations and day-to-day workflows.",
+                label: "Core Focus",
+                value: "Dashboards & Booking Systems",
+                detail: "Complex interfaces for real operational workflows.",
             },
             {
-                label: "Specialization",
-                value: "Dashboards & Booking",
-                detail: "Structured admin interfaces and booking workflows.",
+                label: "Main Stack",
+                value: "React, Next.js, TypeScript",
+                detail: "Modern frontend technologies with clean architecture.",
             },
             {
-                label: "Core Stack",
-                value: "React + Next.js",
-                detail: "With TypeScript, TailwindCSS, and Express.js integration.",
+                label: "Integration",
+                value: "REST APIs, Auth, Express",
+                detail: "Frontend connected to real backend services.",
             },
         ],
         education: {
-            degree: "Bachelor's Degree in Computer & Control Engineering",
-            university: "Lattakia University (formerly Tishreen University)",
-            duration: "Expected Graduation: 2028",
-            status: "Undergraduate student",
+            degree: "Frontend Development",
+            university: "React.js, Next.js, TypeScript, Tailwind CSS",
+            duration: "Scalable dashboards and booking platforms",
+            status: "Open to frontend opportunities",
             coursework: [
-                "Computer Engineering Fundamentals",
-                "Control Systems",
-                "Algorithms",
-                "Database Systems",
-                "Software Engineering",
+                "React.js",
+                "Next.js",
+                "TypeScript",
+                "JavaScript (ES6+)",
+                "Tailwind CSS",
+                "shadcn/ui",
+                "Responsive Design",
+                "UI Animations",
             ],
         },
         values: [
             {
-                title: "Clean & Maintainable Code",
+                title: "Frontend",
                 description:
-                    "Readable code, reusable patterns, and clear ownership across components and modules.",
+                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, Responsive Design, UI Animations.",
             },
             {
-                title: "Structured Architecture",
+                title: "System Design",
                 description:
-                    "Feature structure, state boundaries, and API contracts are planned before implementation.",
+                    "Admin Dashboards, Booking Systems, Complex Forms, UX Flow Structuring.",
             },
             {
-                title: "Performance, Security & AI Workflow",
+                title: "Backend Integration",
                 description:
-                    "I optimize rendering behavior, respect authentication and permission boundaries, and use AI-assisted workflows to speed up reliable delivery.",
+                    "REST APIs, Authentication flows, Basic Node.js, Express.js, MySQL.",
             },
         ],
         projects: {
             eyebrow: "Projects",
-            title: "Business Platforms I Built",
+            title: "Selected Frontend Projects",
             description:
-                "Production-oriented systems focused on booking workflows, dashboards, and operational management.",
+                "Real production platforms focused on booking workflows, dashboards, and data-driven interfaces.",
             filters: {
-                featured: "Featured Systems",
+                featured: "Featured",
                 all: "All Projects",
             },
             filtersAria: "Project filter tabs",
@@ -380,9 +376,9 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         cv: {
             eyebrow: "Resume",
-            title: "Frontend Engineer Resume",
+            title: "Frontend Developer Resume",
             description:
-                "3 years of experience building production systems with specialization in booking workflows and dashboards.",
+                "Frontend Developer with 3+ years building modern production web applications.",
             openCV: "Open resume",
             downloadPDF: "Download PDF",
             iframeTitle: "Abdalrhman resume",
@@ -393,7 +389,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "Contact",
             title: "Available for Remote Frontend Roles",
             description:
-                "If you are hiring a frontend engineer to build scalable booking systems and structured dashboards, I am available for remote opportunities and focused project collaborations.",
+                "If you are hiring a Frontend Developer for modern web applications, dashboards, or booking platforms, I am available for remote opportunities.",
             fields: {
                 name: "Name",
                 email: "Email",
@@ -430,23 +426,23 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         footer: {
             headline:
-                "Building structured frontend systems for real business operations.",
+                "Building modern frontend products for real business operations.",
             description:
-                "React and Next.js engineering for booking platforms, dashboards, and role-based workflows.",
+                "React, Next.js, and TypeScript development for scalable web products.",
             contactLabel: "Contact",
             availability: "Available for remote frontend opportunities.",
             rightsReserved: "All rights reserved.",
         },
         seo: {
-            title: "Abdalrhman mohammed jaffar | Portfolio",
+            title: "Abdalrhman Jaffar | Portfolio",
             description:
-                "Frontend portfolio of Abdalrhman Mohammed Jaffar, focused on scalable booking systems, structured dashboards, and production business platforms built with React and Next.js.",
+                "Frontend portfolio of Abdalrhman Jaffar, focused on modern web applications, scalable dashboards, and booking platforms built with React and Next.js.",
             keywords:
-                "Abdalrhman Mohammed Jaffar, Frontend Engineer, React.js, Next.js, TypeScript, Dashboard Systems, Booking Platform, Business Systems, Portfolio",
+                "Abdalrhman Jaffar, Frontend Developer, React.js, Next.js, TypeScript, Dashboards, Booking Platforms, Web Applications, Portfolio",
             ogTitle:
-                "Abdalrhman Mohammed Jaffar - Frontend Engineer for Booking & Dashboard Systems",
+                "Abdalrhman Jaffar - Frontend Developer Portfolio",
             ogDescription:
-                "Explore production-focused frontend work in booking platforms, logistics systems, and role-based operational dashboards.",
+                "Explore production-focused frontend projects in booking platforms, logistics systems, and dashboards.",
             locale: "en_US",
             localeAlternate: "ar_SY",
         },
@@ -487,98 +483,101 @@ export const messages: Record<Language, MessageCatalog> = {
             contact: "التواصل",
         },
         profile: {
-            fullName: "عبد الرحمن محمد جعفر",
+            fullName: "عبد الرحمن جعفر",
             shortName: "عبد الرحمن",
-            title: "مهندس أنظمة واجهات أمامية",
+            title: "مطور واجهات أمامية",
             location: "متاح لفرص عمل عن بُعد",
         },
         hero: {
-            badge: "مهندس أنظمة واجهات أمامية",
-            headingLine1: "مهندس أنظمة",
-            headingLine2: "واجهات أمامية",
+            badge: "مطور واجهات أمامية",
+            headingLine1: "عبد الرحمن جعفر",
+            headingLine2: "مطور واجهات أمامية",
             headingLine3: "",
             summary:
-                "متخصص في بناء أنظمة واجهات أمامية منظمة وقابلة للتوسع لعمليات الأعمال الواقعية.\n\nأصمم وأنفّذ منصات React وNext.js جاهزة للإنتاج ببنية نظيفة، ووعي بالأداء، وتنفيذ يركز على الأمان.",
+                "أبني تطبيقات ويب حديثة، ولوحات تحكم قابلة للتوسع، وصفحات هبوط عالية التحويل باستخدام React وتقنيات Frontend الحديثة.\n\nأركز على الأداء، وبنية كود نظيفة، وأنظمة إنتاجية حقيقية.",
             seeProjects: "عرض المشاريع",
             downloadCV: "تحميل السيرة الذاتية",
-            stack: "React • Next.js • TypeScript • TailwindCSS • لوحات تحكم • أنظمة تشغيلية",
-            imageAlt: "صورة عبد الرحمن محمد جعفر",
+            stack: "React.js • Next.js • TypeScript • Tailwind CSS • لوحات تحكم • منصات حجز",
+            imageAlt: "صورة عبد الرحمن جعفر",
         },
         about: {
             eyebrow: "نبذة",
-            title: "مهندس واجهات أمامية يركز على أنظمة الأعمال",
+            title: "مطور واجهات أمامية",
             description:
-                "أصمم وأبني واجهات منظمة لأنظمة الحجز ولوحات التشغيل والمنصات المعتمدة على الصلاحيات.",
+                "مطور واجهات أمامية يبني لوحات تحكم قابلة للتوسع ومنصات حجز وتطبيقات ويب معتمدة على البيانات.",
             paragraphOne:
-                "أنا عبد الرحمن محمد جعفر، مهندس واجهات أمامية بخبرة 3 سنوات في إنشاء تطبيقات ويب عملية ضمن العمل الحر والتعاون مع فرق تطوير.",
+                "أنا مطور واجهات أمامية متخصص في بناء أنظمة إنتاجية حقيقية، وليس مجرد واجهات تجريبية.",
             paragraphTwo:
-                "يرتكز عملي على بنية قابلة للصيانة، وحدود واضحة للمكونات، وتكامل API موثوق لأنظمة الحجز وإدارة الشحن ومواعيد العيادات.",
+                "يركز عملي على لوحات التحكم القابلة للتوسع، ومنصات الحجز، وتطبيقات الويب المعتمدة على البيانات باستخدام React وNext.js وTypeScript.",
             paragraphThree:
-                "أستخدم سير عمل مدعومًا بالذكاء الاصطناعي لتسريع التنفيذ مع الحفاظ على جودة الكود، وحدود الأمان، وقابلية التوسع على المدى الطويل.",
-            educationTitle: "التعليم",
-            principlesTitle: "تركيز العمل الهندسي",
-            durationLabel: "المدة",
-            statusLabel: "الحالة الحالية",
+                "أهتم بالأداء، وسهولة الصيانة، وتجربة المستخدم. أستمتع ببناء واجهات معقدة بطريقة منظمة وبنية Frontend نظيفة.",
+            educationTitle: "تقنيات Frontend",
+            principlesTitle: "المهارات",
+            durationLabel: "التركيز",
+            statusLabel: "التوفر",
         },
         stats: [
             {
-                label: "الخبرة",
-                value: "3 سنوات",
-                detail: "تنفيذ Frontend عملي ضمن مشاريع حرة وبيئات عمل جماعية.",
+                label: "الدور",
+                value: "مطور واجهات أمامية",
+                detail: "تركيز على تطبيقات ويب إنتاجية.",
             },
             {
-                label: "أنظمة إنتاجية",
-                value: "حجز، لوجستيات، عيادات",
-                detail: "حلول مبنية لعمليات تشغيل يومية فعلية.",
+                label: "التركيز الأساسي",
+                value: "لوحات تحكم وأنظمة حجز",
+                detail: "واجهات معقدة لعمليات تشغيل حقيقية.",
             },
             {
-                label: "التخصص",
-                value: "الحجز ولوحات التحكم",
-                detail: "واجهات إدارية منظمة وتدفقات حجز عملية.",
+                label: "التقنيات الأساسية",
+                value: "React وNext.js وTypeScript",
+                detail: "تقنيات Frontend حديثة ببنية نظيفة.",
             },
             {
-                label: "التركيز التقني",
-                value: "React + Next.js",
-                detail: "مع TypeScript وTailwindCSS وتكامل Express.js.",
+                label: "التكامل",
+                value: "REST APIs وAuth وExpress",
+                detail: "ربط الواجهة مع خدمات Backend فعلية.",
             },
         ],
         education: {
-            degree: "بكالوريوس هندسة الحاسوب والتحكم",
-            university: "جامعة اللاذقية (تشرين سابقًا)",
-            duration: "موعد التخرج المتوقع: 2028",
-            status: "طالب بكالوريوس",
+            degree: "تطوير Frontend",
+            university: "React.js وNext.js وTypeScript وTailwind CSS",
+            duration: "لوحات تحكم قابلة للتوسع ومنصات حجز",
+            status: "متاح لفرص Frontend عن بُعد",
             coursework: [
-                "مبادئ هندسة الحاسوب",
-                "أنظمة التحكم",
-                "الخوارزميات",
-                "أنظمة قواعد البيانات",
-                "هندسة البرمجيات",
+                "React.js",
+                "Next.js",
+                "TypeScript",
+                "JavaScript (ES6+)",
+                "Tailwind CSS",
+                "shadcn/ui",
+                "Responsive Design",
+                "UI Animations",
             ],
         },
         values: [
             {
-                title: "كود نظيف وقابل للصيانة",
+                title: "Frontend",
                 description:
-                    "أعتمد كودًا واضحًا وأنماطًا قابلة لإعادة الاستخدام مع مسؤوليات دقيقة بين المكونات.",
+                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, Responsive Design, UI Animations.",
             },
             {
-                title: "بنية واجهات منظمة",
+                title: "System Design",
                 description:
-                    "أخطط لبنية المزايا وحدود الحالة وتعاقدات API قبل التنفيذ لضمان استمرارية المشروع.",
+                    "Admin Dashboards, Booking Systems, Complex Forms, UX Flow Structuring.",
             },
             {
-                title: "أداء وأمان وسير عمل ذكي",
+                title: "Backend Integration",
                 description:
-                    "أحسّن سلوك الواجهة، وألتزم بحدود المصادقة والصلاحيات، وأستخدم أدوات الذكاء الاصطناعي لتسريع التسليم بجودة موثوقة.",
+                    "REST APIs, Authentication flows, Basic Node.js, Express.js, MySQL.",
             },
         ],
         projects: {
             eyebrow: "المشاريع",
-            title: "منصات أعمال قمت بتنفيذها",
+            title: "مشاريع Frontend مختارة",
             description:
-                "أنظمة إنتاجية تركّز على تدفقات الحجز ولوحات التحكم والإدارة التشغيلية.",
+                "منصات إنتاجية تركز على الحجز ولوحات التحكم والواجهات المعتمدة على البيانات.",
             filters: {
-                featured: "أنظمة مميزة",
+                featured: "مميزة",
                 all: "كل المشاريع",
             },
             filtersAria: "تبويبات تصفية المشاريع",
@@ -610,9 +609,9 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         cv: {
             eyebrow: "السيرة",
-            title: "السيرة المهنية لمهندس Frontend",
+            title: "السيرة المهنية لمطور Frontend",
             description:
-                "خبرة 3 سنوات في بناء أنظمة إنتاجية مع تخصص في منصات الحجز ولوحات التحكم.",
+                "مطور Frontend بخبرة 3+ سنوات في بناء تطبيقات ويب إنتاجية حديثة.",
             openCV: "فتح السيرة",
             downloadPDF: "تحميل PDF",
             iframeTitle: "سيرة عبد الرحمن",
@@ -623,7 +622,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "تواصل",
             title: "متاح لوظائف Frontend",
             description:
-                "إذا كنتم تبحثون عن مهندس واجهات أمامية لبناء أنظمة حجز قابلة للتوسع ولوحات تشغيل منظمة، فأنا متاح لفرص العمل والتعاون على مشاريع ذات أثر.",
+                "إذا كنتم تبحثون عن مطور Frontend لبناء تطبيقات ويب حديثة أو لوحات تحكم أو منصات حجز، فأنا متاح لفرص عمل عن بُعد.",
             fields: {
                 name: "الاسم",
                 email: "البريد الإلكتروني",
@@ -659,23 +658,23 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         footer: {
-            headline: "أبني أنظمة واجهات أمامية منظمة لعمليات الأعمال الفعلية.",
+            headline: "أبني منتجات Frontend حديثة لعمليات أعمال حقيقية.",
             description:
-                "هندسة React وNext.js لمنصات الحجز ولوحات التحكم والأنظمة المعتمدة على الصلاحيات.",
+                "تطوير React وNext.js وTypeScript لمنتجات ويب قابلة للتوسع.",
             contactLabel: "تواصل",
             availability: "متاح لفرص Frontend.",
             rightsReserved: "جميع الحقوق محفوظة.",
         },
         seo: {
-            title: "عبد الرحمن محمد جعفر | معرض أعمال",
+            title: "عبد الرحمن جعفر | معرض أعمال",
             description:
-                "موقع عبد الرحمن محمد جعفر، مهندس واجهات أمامية متخصص في بناء أنظمة حجز قابلة للتوسع ولوحات تحكم منظمة ومنصات أعمال إنتاجية باستخدام React وNext.js.",
+                "موقع عبد الرحمن جعفر، مطور واجهات أمامية متخصص في تطبيقات ويب حديثة ولوحات تحكم قابلة للتوسع ومنصات حجز باستخدام React وNext.js.",
             keywords:
-                "عبد الرحمن محمد جعفر, مهندس واجهات أمامية, React.js, Next.js, TypeScript, لوحات تحكم, أنظمة حجز, أنظمة أعمال, بورتفوليو",
+                "عبد الرحمن جعفر, مطور واجهات أمامية, React.js, Next.js, TypeScript, لوحات تحكم, منصات حجز, تطبيقات ويب, بورتفوليو",
             ogTitle:
-                "عبد الرحمن محمد جعفر - مهندس Frontend لأنظمة الحجز ولوحات التحكم",
+                "عبد الرحمن جعفر - معرض أعمال مطور Frontend",
             ogDescription:
-                "استعرض مشاريع إنتاجية في أنظمة الحجز واللوجستيات ولوحات التحكم التشغيلية المبنية باستخدام React وNext.js.",
+                "استعرض مشاريع Frontend إنتاجية في أنظمة الحجز واللوجستيات ولوحات التحكم.",
             locale: "ar_SY",
             localeAlternate: "en_US",
         },

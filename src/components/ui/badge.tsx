@@ -13,13 +13,17 @@ const variantStyles: Record<BadgeVariant, string> = {
     outline: "bg-transparent text-muted-foreground border-foreground/15",
 };
 
-export function Badge({ className, variant = "default", ...props }: BadgeProps) {
+export function Badge({
+    className,
+    variant = "default",
+    ...props
+}: BadgeProps) {
     return (
         <span
             className={cn(
-                "inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold-alt uppercase tracking-[0.22em]",
+                "inline-flex items-center rounded-full border px-3 py-1 text-[12px] font-semibold-alt uppercase tracking-[0.22em]",
                 variantStyles[variant],
-                className
+                className,
             )}
             {...props}
         />

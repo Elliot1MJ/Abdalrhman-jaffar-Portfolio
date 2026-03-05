@@ -104,7 +104,6 @@ const yogoKidsMedia = collectProjectMedia("yogoKids");
 const tareekAlshahbaMedia = collectProjectMedia("Tareek-alshahba");
 const ibtisamaMedia = collectProjectMedia("Ibtisama");
 const lujjhMedia = collectProjectMedia("lujjh");
-const tatabuMedia = collectProjectMedia("tatabu");
 
 export interface PortfolioProject {
     slug: string;
@@ -124,11 +123,11 @@ export interface PortfolioProject {
 }
 
 export const profile = {
-    name: "Abdalrhman Mohammed Jaffar",
+    name: "Abdalrhman Jaffar",
     shortName: "Abdalrhman",
-    title: "Frontend Engineer (React & Next.js Specialist)",
+    title: "Frontend Developer",
     roleSummary:
-        "Frontend engineer focused on scalable booking systems, structured dashboards, and production-ready business platforms.",
+        "I build modern web applications, scalable dashboards, and high-conversion landing pages using React and modern frontend technologies. Focused on performance, clean architecture, and real production systems.",
     location: "Open to remote roles",
     email: "dev.elliot.j@gmail.com",
     instagram: "https://www.instagram.com/abdalrhman_jaffar/",
@@ -141,51 +140,57 @@ export const profile = {
 export const quickStats = [
     {
         label: "Experience",
-        value: "3 Years",
-        detail: "Frontend delivery across freelance and team environments.",
+        value: "3+ Years",
+        detail: "Building production-ready frontend applications.",
     },
     {
-        label: "Production Systems",
-        value: "Booking, Logistics, Healthcare",
-        detail: "Built for real operations and day-to-day workflows.",
-    },
-    {
-        label: "Specialization",
-        value: "Dashboards & Booking",
-        detail: "Structured admin interfaces and booking workflows.",
+        label: "Primary Focus",
+        value: "Dashboards & Booking Platforms",
+        detail: "Interface architecture for real operational workflows.",
     },
     {
         label: "Core Stack",
-        value: "React + Next.js",
-        detail: "TypeScript, TailwindCSS, Express.js, and REST APIs.",
+        value: "React, Next.js, TypeScript",
+        detail: "Modern frontend tooling for scalable products.",
+    },
+    {
+        label: "Backend Integration",
+        value: "REST APIs & Auth",
+        detail: "Practical integration with Express.js and MySQL.",
     },
 ] as const;
 
 export const skillGroups = [
     {
-        title: "Primary Stack",
-        skills: ["React.js", "Next.js", "TypeScript", "TailwindCSS"],
-    },
-    {
-        title: "Systems Focus",
+        title: "Frontend",
         skills: [
-            "Booking Workflows",
-            "Structured Dashboards",
-            "Role-Based Access",
-            "Authentication Flows",
-            "REST API Integration",
-            "MySQL Data Flows",
+            "React.js",
+            "Next.js",
+            "TypeScript",
+            "JavaScript (ES6+)",
+            "Tailwind CSS",
+            "shadcn/ui",
+            "Responsive Design",
+            "UI Animations",
         ],
     },
     {
-        title: "Engineering Quality",
+        title: "System Design",
         skills: [
-            "Maintainable Code",
-            "Frontend Architecture",
-            "Performance Awareness",
-            "Security-Conscious UI",
-            "AI-Assisted Workflows",
-            "Production Readiness",
+            "Admin Dashboards",
+            "Booking Systems",
+            "Complex Forms",
+            "UX Flow Structuring",
+        ],
+    },
+    {
+        title: "Backend Integration",
+        skills: [
+            "REST APIs",
+            "Authentication flows",
+            "Basic Node.js",
+            "Express.js",
+            "MySQL",
         ],
     },
 ] as const;
@@ -193,13 +198,13 @@ export const skillGroups = [
 export const projects: PortfolioProject[] = [
     {
         slug: "upafa-university-digital-platform",
-        name: "UPAFA – University Digital Platform",
+        name: "UPAFA University Platform",
         category: "react",
         timeline: "Jan 1, 2026 - Feb 22, 2026",
         description:
-            "Developed UPAFA University's official digital platform with a strong focus on scalability, structured information architecture, and production-ready performance.",
+            "Official university web platform with structured frontend architecture for admissions, programs, and academic content.",
         codeSummary:
-            "Built maintainable frontend modules for academic content, admissions workflows, and program pages while optimizing loading behavior and deployment performance.",
+            "Highlights: • Built reusable modules for admissions and program pages. • Improved performance with rendering and asset optimization. • Delivered a consistent content system across key university pages.",
         stack: ["React.js", "TypeScript", "TailwindCSS"],
         image: upafaMedia.image,
         gallery: upafaMedia.gallery,
@@ -211,14 +216,14 @@ export const projects: PortfolioProject[] = [
     },
     {
         slug: "yogo-kids-child-care-booking-platform",
-        name: "Yogo Kids – Child Care Booking Platform",
+        name: "Childcare Booking Platform",
         category: "next.js",
         timeline: "Dec 25, 2025 - Feb 1, 2026",
         description:
-            "Building a childcare booking system for registering children into organized classes with clear UX flows for parents and admins.",
+            "Booking platform for parents to register children, manage schedules, and follow class availability.",
         codeSummary:
-            "Developing a full admin dashboard to manage registrations, schedules, and day-to-day operations using structured, reusable frontend patterns.",
-        stack: ["React.js", "TypeScript"],
+            "Highlights: • Designed a clear booking flow from registration to confirmation. • Built admin views for schedules, attendance, and capacity. • Structured reusable components for faster feature delivery.",
+        stack: ["Next.js", "React.js", "TypeScript"],
         image: yogoKidsMedia.image,
         gallery: yogoKidsMedia.gallery,
         codeGallery: yogoKidsMedia.codeGallery,
@@ -229,13 +234,13 @@ export const projects: PortfolioProject[] = [
     },
     {
         slug: "tariq-al-shahba-logistics-cargo-management-system",
-        name: "Tariq Al-Shahba – Logistics & Cargo Management System",
+        name: "Cargo Logistics System",
         category: "react",
         timeline: "Aug 2, 2025 - Oct 22, 2025",
         description:
-            "Built a full logistics system to digitize cargo registration for UAE-to-Syria shipments with operational clarity for admins and staff.",
+            "Operations dashboard for cargo registration, shipment tracking, and customs-related workflow handling.",
         codeSummary:
-            "Implemented QR-code shipment tracking from the dashboard, customs-rule-based cargo forms, and structured export flows to PDF and Excel formats.",
+            "Highlights: • Implemented QR-based shipment tracking in the dashboard. • Built complex cargo forms with pricing and rules validation. • Added export-ready views for daily logistics operations.",
         stack: ["React.js", "TypeScript", "TailwindCSS"],
         image: tareekAlshahbaMedia.image,
         gallery: tareekAlshahbaMedia.gallery,
@@ -247,13 +252,13 @@ export const projects: PortfolioProject[] = [
     },
     {
         slug: "ibtisama-clinic-dental-appointment-booking-system",
-        name: "Ibtisama Clinic – Dental Appointment Booking System",
+        name: "Dental Clinic Booking System",
         category: "fullstack",
         timeline: "Nov 15, 2025 - Dec 22, 2025",
         description:
-            "Developed an online dental appointment booking system with smooth scheduling and organized clinic workflow management.",
+            "Appointment booking system for clinics with role-based access for reception staff and doctors.",
         codeSummary:
-            "Implemented a two-month calendar scheduling flow and role-based dashboard access for doctors and reception staff with reliable booking handling.",
+            "Highlights: • Built conflict-aware appointment scheduling with calendar views. • Implemented role-based interfaces for doctors and reception staff. • Connected frontend workflows to Express.js APIs and MySQL.",
         stack: ["React.js", "TypeScript", "TailwindCSS", "Express.js", "MySQL"],
         image: ibtisamaMedia.image,
         gallery: ibtisamaMedia.gallery,
@@ -264,37 +269,20 @@ export const projects: PortfolioProject[] = [
     },
     {
         slug: "lujjh-boat-booking-platform-saudi-arabia",
-        name: "LUJJH – Boat Booking Platform (Saudi Arabia)",
+        name: "Boat Booking Platform",
         category: "next.js",
         timeline: "Jun 6, 2025 - Aug 8, 2025",
         description:
-            "Designed and built a scalable boat booking platform targeting the Saudi market with a structure ready for regional expansion.",
+            "Boat reservation platform for the Saudi market with booking-focused landing pages and admin operations.",
         codeSummary:
-            "Delivered a conversion-focused landing page and a custom admin dashboard for bookings and operations while owning frontend architecture and delivery.",
-        stack: ["React.js", "TypeScript", "TailwindCSS"],
+            "Highlights: • Built a high-conversion landing page for booking intent. • Developed an admin dashboard for trips, pricing, and reservations. • Optimized responsive behavior for mobile-first usage.",
+        stack: ["Next.js", "React.js", "TypeScript", "TailwindCSS"],
         image: lujjhMedia.image,
         gallery: lujjhMedia.gallery,
         codeGallery: lujjhMedia.codeGallery,
         productionSections: lujjhMedia.productionSections,
         githubUrl: "",
         liveUrl: "",
-    },
-    {
-        slug: "tatabu-location-tracking-platform",
-        name: "Tatabu – Location Tracking Platform",
-        category: "react",
-        timeline: "Jul 4, 2025 - Sep 22, 2025",
-        description:
-            "Improved and extended an existing URL-based location tracking platform integrated with Google Tag Manager.",
-        codeSummary:
-            "Enhanced admin dashboard visibility and usability with a focus on frontend performance, interface clarity, and long-term maintainability.",
-        stack: ["React.js"],
-        image: tatabuMedia.image,
-        gallery: tatabuMedia.gallery,
-        codeGallery: tatabuMedia.codeGallery,
-        productionSections: tatabuMedia.productionSections,
-        githubUrl: "",
-        liveUrl: "https://dashboard.tatabu.io/#/login",
     },
 ];
 
@@ -314,28 +302,28 @@ export const education = {
     duration: "Expected Graduation: 2028",
     status: "Undergraduate student",
     coursework: [
-        "Computer Engineering Fundamentals",
-        "Control Systems",
-        "Algorithms",
-        "Database Systems",
-        "Software Engineering",
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Frontend Architecture",
+        "API Integration",
     ],
 };
 
 export const values = [
     {
-        title: "Clean & Maintainable Code",
+        title: "Frontend",
         description:
-            "Readable code, reusable patterns, and clear ownership across components and modules.",
+            "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, Responsive Design, UI Animations.",
     },
     {
-        title: "Structured Architecture",
+        title: "System Design",
         description:
-            "Feature structure, state boundaries, and API contracts are planned before implementation.",
+            "Admin Dashboards, Booking Systems, Complex Forms, UX Flow Structuring.",
     },
     {
-        title: "Performance, Security & AI Workflow",
+        title: "Backend Integration",
         description:
-            "Rendering optimization, permission-aware implementation, and AI-assisted workflows for reliable delivery.",
+            "REST APIs, Authentication flows, Basic Node.js, Express.js, MySQL.",
     },
 ] as const;
