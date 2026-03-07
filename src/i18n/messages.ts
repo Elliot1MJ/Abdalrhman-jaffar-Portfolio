@@ -18,6 +18,7 @@ export interface MessageCatalog {
         portfolio: string;
         home: string;
         about: string;
+        services: string;
         projects: string;
         cv: string;
         contact: string;
@@ -33,6 +34,7 @@ export interface MessageCatalog {
     sectionAria: {
         home: string;
         about: string;
+        services: string;
         projects: string;
         cv: string;
         contact: string;
@@ -65,6 +67,28 @@ export interface MessageCatalog {
         principlesTitle: string;
         durationLabel: string;
         statusLabel: string;
+    };
+    services: {
+        eyebrow: string;
+        title: string;
+        description: string;
+        orderCta: string;
+        openImage: string;
+        closePreview: string;
+        whatsappTemplate: {
+            intro: string;
+            serviceLabel: string;
+            descriptionLabel: string;
+            deliverableLabel: string;
+            closing: string;
+        };
+        cards: Array<{
+            title: string;
+            description: string;
+            deliverable: string;
+            image: string;
+            imageAlt: string;
+        }>;
     };
     stats: Array<{
         label: string;
@@ -237,6 +261,7 @@ export const messages: Record<Language, MessageCatalog> = {
             portfolio: "Portfolio",
             home: "Home",
             about: "About",
+            services: "Services",
             projects: "Projects",
             cv: "Resume",
             contact: "Contact",
@@ -252,6 +277,7 @@ export const messages: Record<Language, MessageCatalog> = {
         sectionAria: {
             home: "Home",
             about: "About",
+            services: "Services",
             projects: "Projects",
             cv: "Resume",
             contact: "Contact",
@@ -290,6 +316,70 @@ export const messages: Record<Language, MessageCatalog> = {
             durationLabel: "Focus",
             statusLabel: "Availability",
         },
+        services: {
+            eyebrow: "Services",
+            title: "My Services",
+            description:
+                "I offer frontend services for teams and founders who need fast, production-ready delivery.",
+            orderCta: "Order now",
+            openImage: "Open service image preview",
+            closePreview: "Close service image preview",
+            whatsappTemplate: {
+                intro: "Hi, I would like to request this service:",
+                serviceLabel: "Service",
+                descriptionLabel: "Description",
+                deliverableLabel: "Deliverable",
+                closing:
+                    "Please share pricing, timeline, and the next steps to start.",
+            },
+            cards: [
+                {
+                    title: "Website Development",
+                    description:
+                        "Building complete websites using React.js for frontend and Node.js for backend.",
+                    deliverable:
+                        "Deliverable: Full web application with clean UI, API integration, and deployment-ready code.",
+                    image: "",
+                    imageAlt: "Website development service preview",
+                },
+                {
+                    title: "Bot Development",
+                    description:
+                        "Creating Node.js bots including general automation bots and Telegram bots.",
+                    deliverable:
+                        "Deliverable: Production-ready bot with command flow, integrations, and deployment guidance.",
+                    image: "",
+                    imageAlt: "Bot development service preview",
+                },
+                {
+                    title: "Landing Page Development",
+                    description:
+                        "Designing and developing high-conversion landing pages using Next.js.",
+                    deliverable:
+                        "Deliverable: Fast, SEO-friendly, responsive landing page optimized for conversions.",
+                    image: "",
+                    imageAlt: "Next.js landing page service preview",
+                },
+                {
+                    title: "E-commerce Store Development",
+                    description:
+                        "Building modern e-commerce stores using Next.js with smooth shopping experience.",
+                    deliverable:
+                        "Deliverable: Complete online store pages with product flow, cart, and checkout integration.",
+                    image: "",
+                    imageAlt: "Next.js e-commerce service preview",
+                },
+                {
+                    title: "WordPress & Shopify Development",
+                    description:
+                        "Creating websites and online stores using WordPress and Shopify platforms.",
+                    deliverable:
+                        "Deliverable: Managed website/store setup, customization, and ready-to-launch storefront.",
+                    image: "",
+                    imageAlt: "WordPress and Shopify service preview",
+                },
+            ],
+        },
         stats: [
             {
                 label: "Role",
@@ -326,13 +416,23 @@ export const messages: Record<Language, MessageCatalog> = {
                 "shadcn/ui",
                 "Responsive Design",
                 "UI Animations",
+                "MUI",
+                "Electron Desktop App",
+                "Capacitor",
+                "Zustand",
+                "useMemo",
+                "Lazy Loading",
+                "Git",
+                "GitHub & GitLab",
+                "Server Deployment",
+                "Websites Deployment",
             ],
         },
         values: [
             {
                 title: "Frontend",
                 description:
-                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, Responsive Design, UI Animations.",
+                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, MUI, Zustand, useMemo, Lazy Loading, Responsive Design, UI Animations, Electron Desktop App, Capacitor, Git, GitHub & GitLab, Server Deployment, Websites Deployment.",
             },
             {
                 title: "System Design",
@@ -470,6 +570,7 @@ export const messages: Record<Language, MessageCatalog> = {
             portfolio: "معرض الأعمال",
             home: "الرئيسية",
             about: "نبذة",
+            services: "خدماتي",
             projects: "المشاريع",
             cv: "السيرة",
             contact: "تواصل",
@@ -485,6 +586,7 @@ export const messages: Record<Language, MessageCatalog> = {
         sectionAria: {
             home: "الرئيسية",
             about: "نبذة",
+            services: "خدماتي",
             projects: "المشاريع",
             cv: "السيرة الذاتية",
             contact: "التواصل",
@@ -523,6 +625,69 @@ export const messages: Record<Language, MessageCatalog> = {
             durationLabel: "التركيز",
             statusLabel: "التوفر",
         },
+        services: {
+            eyebrow: "خدماتي",
+            title: "الخدمات التي أقدّمها",
+            description:
+                "أقدّم خدمات Frontend جاهزة للإنتاج للشركات وأصحاب المشاريع مع تنفيذ سريع ومنظّم.",
+            orderCta: "اطلبها",
+            openImage: "فتح معاينة صورة الخدمة",
+            closePreview: "إغلاق معاينة صورة الخدمة",
+            whatsappTemplate: {
+                intro: "مرحبًا، أرغب بطلب هذه الخدمة:",
+                serviceLabel: "الخدمة",
+                descriptionLabel: "الوصف",
+                deliverableLabel: "المخرج",
+                closing: "ممكن تفاصيل السعر والمدة وخطوات البدء؟",
+            },
+            cards: [
+                {
+                    title: "إنشاء مواقع إلكترونية",
+                    description:
+                        "تطوير مواقع إلكترونية كاملة باستخدام React.js للواجهة وNode.js للخلفية.",
+                    deliverable:
+                        "المخرج: موقع متكامل بواجهة نظيفة وربط API وكود جاهز للنشر.",
+                    image: "",
+                    imageAlt: "معاينة خدمة إنشاء المواقع",
+                },
+                {
+                    title: "إنشاء بوتات",
+                    description:
+                        "إنشاء بوتات باستخدام Node.js تشمل بوتات عامة وبوتات تلغرام.",
+                    deliverable:
+                        "المخرج: بوت جاهز للإنتاج مع منطق أوامر واضح وإعداد قابل للتشغيل.",
+                    image: "",
+                    imageAlt: "معاينة خدمة إنشاء البوتات",
+                },
+                {
+                    title: "إنشاء صفحات هبوط",
+                    description:
+                        "تصميم وتطوير صفحات هبوط عالية التحويل باستخدام Next.js.",
+                    deliverable:
+                        "المخرج: صفحة هبوط سريعة ومتجاوبة ومهيأة لمحركات البحث والتحويل.",
+                    image: "",
+                    imageAlt: "معاينة خدمة صفحات الهبوط",
+                },
+                {
+                    title: "إنشاء متجر إلكتروني",
+                    description:
+                        "تطوير متجر إلكتروني حديث باستخدام Next.js مع تجربة شراء سلسة.",
+                    deliverable:
+                        "المخرج: متجر متكامل بصفحات المنتجات والسلة وخطوات شراء واضحة.",
+                    image: "",
+                    imageAlt: "معاينة خدمة المتجر الإلكتروني",
+                },
+                {
+                    title: "إنشاء مواقع ومتاجر عبر WordPress وShopify",
+                    description:
+                        "إنشاء مواقع ومتاجر احترافية باستخدام WordPress وShopify حسب احتياج النشاط.",
+                    deliverable:
+                        "المخرج: متجر/موقع جاهز للإطلاق مع التخصيص الكامل وإعدادات التشغيل.",
+                    image: "",
+                    imageAlt: "معاينة خدمة WordPress وShopify",
+                },
+            ],
+        },
         stats: [
             {
                 label: "الدور",
@@ -559,13 +724,23 @@ export const messages: Record<Language, MessageCatalog> = {
                 "shadcn/ui",
                 "Responsive Design",
                 "UI Animations",
+                "MUI",
+                "Electron Desktop App",
+                "Capacitor",
+                "Zustand",
+                "useMemo",
+                "Lazy Loading",
+                "Git",
+                "GitHub & GitLab",
+                "Server Deployment",
+                "Websites Deployment",
             ],
         },
         values: [
             {
                 title: "Frontend",
                 description:
-                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, Responsive Design, UI Animations.",
+                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, MUI, Zustand, useMemo, Lazy Loading, Responsive Design, UI Animations, Electron Desktop App, Capacitor, Git, GitHub & GitLab, Server Deployment, Websites Deployment.",
             },
             {
                 title: "System Design",

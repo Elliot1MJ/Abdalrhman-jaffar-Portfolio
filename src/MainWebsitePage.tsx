@@ -15,12 +15,13 @@ import { applySeoTags } from "./i18n/seo";
 import { useI18n } from "./i18n/useI18n";
 
 const AboutPage = lazy(() => import("./routes/AboutPage"));
+const ServicesPage = lazy(() => import("./routes/ServicesPage"));
 const ProjectsPage = lazy(() => import("./routes/ProjectsPage"));
 const CVPage = lazy(() => import("./routes/CVPage"));
 const ContactPage = lazy(() => import("./routes/ContactPage"));
 
 interface DeferredSectionProps {
-    id: "home" | "about" | "projects" | "cv" | "contact";
+    id: "home" | "about" | "services" | "projects" | "cv" | "contact";
     ariaLabel: string;
     eager?: boolean;
     children: ReactNode;
@@ -129,6 +130,15 @@ export default function MainWebsitePage() {
                         >
                             <Suspense fallback={<SectionSkeleton />}>
                                 <AboutPage />
+                            </Suspense>
+                        </DeferredSection>
+
+                        <DeferredSection
+                            id="services"
+                            ariaLabel={text.sectionAria.services}
+                        >
+                            <Suspense fallback={<SectionSkeleton />}>
+                                <ServicesPage />
                             </Suspense>
                         </DeferredSection>
 

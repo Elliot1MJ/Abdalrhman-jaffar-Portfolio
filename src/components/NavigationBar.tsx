@@ -3,6 +3,7 @@ import {
     FiArrowLeft,
     FiBriefcase,
     FiFileText,
+    FiGrid,
     FiHome,
     FiMail,
     FiMenu,
@@ -133,6 +134,12 @@ export default function NavigationBar({
             label: text.nav.about,
             href: "/#about",
             icon: <FiUser />,
+        },
+        {
+            id: "services",
+            label: text.nav.services,
+            href: "/#services",
+            icon: <FiGrid />,
         },
         {
             id: "projects",
