@@ -166,6 +166,8 @@ export interface MessageCatalog {
             whatsappValue: string;
             instagramLabel: string;
             instagramValue: string;
+            gitlabLabel: string;
+            gitlabValue: string;
             emailLabel: string;
         };
         emailTemplate: {
@@ -186,7 +188,6 @@ export interface MessageCatalog {
         headline: string;
         description: string;
         contactLabel: string;
-        availability: string;
         rightsReserved: string;
     };
     seo: {
@@ -271,7 +272,7 @@ export const messages: Record<Language, MessageCatalog> = {
             closeMenu: "Close menu",
             toggleTheme: "Toggle color theme",
             toggleLanguage: "Switch language",
-            startProject: "Discuss a role",
+            startProject: "Start a project",
             downloadCV: "View resume",
         },
         sectionAria: {
@@ -286,7 +287,7 @@ export const messages: Record<Language, MessageCatalog> = {
             fullName: "Abdalrhman Jaffar",
             shortName: "Abdalrhman",
             title: "Frontend Developer",
-            location: "Open to remote roles",
+            location: "Damascus, Syria",
         },
         hero: {
             badge: "Frontend Developer",
@@ -302,7 +303,7 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         about: {
             eyebrow: "About",
-            title: "Frontend Developer",
+            title: "Professional Summary",
             description:
                 "Frontend Developer building scalable dashboards, booking platforms, and data-driven web applications.",
             paragraphOne:
@@ -314,7 +315,7 @@ export const messages: Record<Language, MessageCatalog> = {
             educationTitle: "Frontend Stack",
             principlesTitle: "Skills",
             durationLabel: "Focus",
-            statusLabel: "Availability",
+            statusLabel: "Specialization",
         },
         services: {
             eyebrow: "Services",
@@ -339,17 +340,8 @@ export const messages: Record<Language, MessageCatalog> = {
                         "Building complete websites using React.js for frontend and Node.js for backend.",
                     deliverable:
                         "Deliverable: Full web application with clean UI, API integration, and deployment-ready code.",
-                    image: "",
+                    image: "/images/services/Website%20Development.png",
                     imageAlt: "Website development service preview",
-                },
-                {
-                    title: "Bot Development",
-                    description:
-                        "Creating Node.js bots including general automation bots and Telegram bots.",
-                    deliverable:
-                        "Deliverable: Production-ready bot with command flow, integrations, and deployment guidance.",
-                    image: "",
-                    imageAlt: "Bot development service preview",
                 },
                 {
                     title: "Landing Page Development",
@@ -357,7 +349,7 @@ export const messages: Record<Language, MessageCatalog> = {
                         "Designing and developing high-conversion landing pages using Next.js.",
                     deliverable:
                         "Deliverable: Fast, SEO-friendly, responsive landing page optimized for conversions.",
-                    image: "",
+                    image: "/images/services/Landing%20Page%20Development.png",
                     imageAlt: "Next.js landing page service preview",
                 },
                 {
@@ -366,8 +358,17 @@ export const messages: Record<Language, MessageCatalog> = {
                         "Building modern e-commerce stores using Next.js with smooth shopping experience.",
                     deliverable:
                         "Deliverable: Complete online store pages with product flow, cart, and checkout integration.",
-                    image: "",
+                    image: "/images/services/E-commerce%20Store%20Development.png",
                     imageAlt: "Next.js e-commerce service preview",
+                },
+                {
+                    title: "Bot Development",
+                    description:
+                        "Creating Node.js bots including general automation bots and Telegram bots.",
+                    deliverable:
+                        "Deliverable: Production-ready bot with command flow, integrations, and deployment guidance.",
+                    image: "/images/services/Bots%20Development.png",
+                    imageAlt: "Bot development service preview",
                 },
                 {
                     title: "WordPress & Shopify Development",
@@ -375,7 +376,7 @@ export const messages: Record<Language, MessageCatalog> = {
                         "Creating websites and online stores using WordPress and Shopify platforms.",
                     deliverable:
                         "Deliverable: Managed website/store setup, customization, and ready-to-launch storefront.",
-                    image: "",
+                    image: "/images/services/wordpress-shopify-development.png",
                     imageAlt: "WordPress and Shopify service preview",
                 },
             ],
@@ -406,7 +407,7 @@ export const messages: Record<Language, MessageCatalog> = {
             degree: "Frontend Development",
             university: "React.js, Next.js, TypeScript, Tailwind CSS",
             duration: "Scalable dashboards and booking platforms",
-            status: "Open to frontend opportunities",
+            status: "Frontend web applications",
             coursework: [
                 "React.js",
                 "Next.js",
@@ -447,7 +448,7 @@ export const messages: Record<Language, MessageCatalog> = {
         ],
         projects: {
             eyebrow: "Projects",
-            title: "Selected Frontend Projects",
+            title: "Featured Projects",
             description:
                 "Real production platforms focused on booking workflows, dashboards, and data-driven interfaces.",
             filters: {
@@ -483,7 +484,7 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         cv: {
             eyebrow: "Resume",
-            title: "Frontend Developer Resume",
+            title: "Professional Resume & Technical Profile",
             description:
                 "Frontend Developer with 3+ years building modern production web applications.",
             openCV: "Open resume",
@@ -494,9 +495,9 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         contact: {
             eyebrow: "Contact",
-            title: "Available for Remote Frontend Roles",
+            title: "Let's Talk",
             description:
-                "If you are hiring a Frontend Developer for modern web applications, dashboards, or booking platforms, I am available for remote opportunities.",
+                "For project inquiries, collaboration, or product discussions, feel free to reach out through the channels below.",
             fields: {
                 name: "Name",
                 email: "Email",
@@ -506,7 +507,7 @@ export const messages: Record<Language, MessageCatalog> = {
                 name: "Your name",
                 email: "you@example.com",
                 message:
-                    "Share role details, project scope, timeline, and expected outcomes.",
+                    "Share project scope, timeline, and expected outcomes.",
             },
             submit: "Prepare message",
             submitting: "Preparing email...",
@@ -515,10 +516,12 @@ export const messages: Record<Language, MessageCatalog> = {
                 whatsappValue: "Direct message",
                 instagramLabel: "Instagram",
                 instagramValue: "@abdalrhman_jaffar",
+                gitlabLabel: "GitLab",
+                gitlabValue: "gitlab.com/dev.elliot.j",
                 emailLabel: "Email",
             },
             emailTemplate: {
-                subjectPrefix: "Opportunity from",
+                subjectPrefix: "Message from",
                 greeting: "Hi",
                 myName: "My name",
                 myEmail: "My email",
@@ -537,7 +540,6 @@ export const messages: Record<Language, MessageCatalog> = {
             description:
                 "React, Next.js, and TypeScript development for scalable web products.",
             contactLabel: "Contact",
-            availability: "Available for remote frontend opportunities.",
             rightsReserved: "All rights reserved.",
         },
         seo: {
@@ -546,8 +548,7 @@ export const messages: Record<Language, MessageCatalog> = {
                 "Frontend portfolio of Abdalrhman Jaffar, focused on modern web applications, scalable dashboards, and booking platforms built with React and Next.js.",
             keywords:
                 "Abdalrhman Jaffar, Frontend Developer, React.js, Next.js, TypeScript, Dashboards, Booking Platforms, Web Applications, Portfolio",
-            ogTitle:
-                "Abdalrhman Jaffar - Frontend Developer Portfolio",
+            ogTitle: "Abdalrhman Jaffar - Frontend Developer Portfolio",
             ogDescription:
                 "Explore production-focused frontend projects in booking platforms, logistics systems, and dashboards.",
             locale: "en_US",
@@ -580,7 +581,7 @@ export const messages: Record<Language, MessageCatalog> = {
             closeMenu: "إغلاق القائمة",
             toggleTheme: "تبديل المظهر",
             toggleLanguage: "تبديل اللغة",
-            startProject: "ناقش فرصة عمل",
+            startProject: "ابدأ مشروعك",
             downloadCV: "عرض السيرة",
         },
         sectionAria: {
@@ -595,7 +596,7 @@ export const messages: Record<Language, MessageCatalog> = {
             fullName: "عبد الرحمن جعفر",
             shortName: "عبد الرحمن",
             title: "مطور واجهات أمامية",
-            location: "متاح لفرص عمل عن بُعد",
+            location: "دمشق، سوريا",
         },
         hero: {
             badge: "مطور واجهات أمامية",
@@ -611,7 +612,7 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         about: {
             eyebrow: "نبذة",
-            title: "مطور واجهات أمامية",
+            title: "نبذة مهنية",
             description:
                 "مطور واجهات أمامية يبني لوحات تحكم قابلة للتوسع ومنصات حجز وتطبيقات ويب معتمدة على البيانات.",
             paragraphOne:
@@ -623,7 +624,7 @@ export const messages: Record<Language, MessageCatalog> = {
             educationTitle: "تقنيات Frontend",
             principlesTitle: "المهارات",
             durationLabel: "التركيز",
-            statusLabel: "التوفر",
+            statusLabel: "التخصص",
         },
         services: {
             eyebrow: "خدماتي",
@@ -647,17 +648,8 @@ export const messages: Record<Language, MessageCatalog> = {
                         "تطوير مواقع إلكترونية كاملة باستخدام React.js للواجهة وNode.js للخلفية.",
                     deliverable:
                         "المخرج: موقع متكامل بواجهة نظيفة وربط API وكود جاهز للنشر.",
-                    image: "",
+                    image: "/images/services/Website%20Development.png",
                     imageAlt: "معاينة خدمة إنشاء المواقع",
-                },
-                {
-                    title: "إنشاء بوتات",
-                    description:
-                        "إنشاء بوتات باستخدام Node.js تشمل بوتات عامة وبوتات تلغرام.",
-                    deliverable:
-                        "المخرج: بوت جاهز للإنتاج مع منطق أوامر واضح وإعداد قابل للتشغيل.",
-                    image: "",
-                    imageAlt: "معاينة خدمة إنشاء البوتات",
                 },
                 {
                     title: "إنشاء صفحات هبوط",
@@ -665,7 +657,7 @@ export const messages: Record<Language, MessageCatalog> = {
                         "تصميم وتطوير صفحات هبوط عالية التحويل باستخدام Next.js.",
                     deliverable:
                         "المخرج: صفحة هبوط سريعة ومتجاوبة ومهيأة لمحركات البحث والتحويل.",
-                    image: "",
+                    image: "/images/services/Landing%20Page%20Development.png",
                     imageAlt: "معاينة خدمة صفحات الهبوط",
                 },
                 {
@@ -674,8 +666,17 @@ export const messages: Record<Language, MessageCatalog> = {
                         "تطوير متجر إلكتروني حديث باستخدام Next.js مع تجربة شراء سلسة.",
                     deliverable:
                         "المخرج: متجر متكامل بصفحات المنتجات والسلة وخطوات شراء واضحة.",
-                    image: "",
+                    image: "/images/services/E-commerce%20Store%20Development.png",
                     imageAlt: "معاينة خدمة المتجر الإلكتروني",
+                },
+                {
+                    title: "إنشاء بوتات",
+                    description:
+                        "إنشاء بوتات باستخدام Node.js تشمل بوتات عامة وبوتات تلغرام.",
+                    deliverable:
+                        "المخرج: بوت جاهز للإنتاج مع منطق أوامر واضح وإعداد قابل للتشغيل.",
+                    image: "/images/services/Bots%20Development.png",
+                    imageAlt: "معاينة خدمة إنشاء البوتات",
                 },
                 {
                     title: "إنشاء مواقع ومتاجر عبر WordPress وShopify",
@@ -683,7 +684,7 @@ export const messages: Record<Language, MessageCatalog> = {
                         "إنشاء مواقع ومتاجر احترافية باستخدام WordPress وShopify حسب احتياج النشاط.",
                     deliverable:
                         "المخرج: متجر/موقع جاهز للإطلاق مع التخصيص الكامل وإعدادات التشغيل.",
-                    image: "",
+                    image: "/images/services/wordpress-shopify-development.png",
                     imageAlt: "معاينة خدمة WordPress وShopify",
                 },
             ],
@@ -714,7 +715,7 @@ export const messages: Record<Language, MessageCatalog> = {
             degree: "تطوير Frontend",
             university: "React.js وNext.js وTypeScript وTailwind CSS",
             duration: "لوحات تحكم قابلة للتوسع ومنصات حجز",
-            status: "متاح لفرص Frontend عن بُعد",
+            status: "تطبيقات ويب أمامية",
             coursework: [
                 "React.js",
                 "Next.js",
@@ -755,7 +756,7 @@ export const messages: Record<Language, MessageCatalog> = {
         ],
         projects: {
             eyebrow: "المشاريع",
-            title: "مشاريع Frontend مختارة",
+            title: "أبرز المشاريع",
             description:
                 "منصات إنتاجية تركز على الحجز ولوحات التحكم والواجهات المعتمدة على البيانات.",
             filters: {
@@ -791,7 +792,7 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         cv: {
             eyebrow: "السيرة",
-            title: "السيرة المهنية لمطور Frontend",
+            title: "السيرة الذاتية والملف المهني التقني",
             description:
                 "مطور Frontend بخبرة 3+ سنوات في بناء تطبيقات ويب إنتاجية حديثة.",
             openCV: "فتح السيرة",
@@ -802,9 +803,9 @@ export const messages: Record<Language, MessageCatalog> = {
         },
         contact: {
             eyebrow: "تواصل",
-            title: "متاح لوظائف Frontend",
+            title: "دعنا نتحدث",
             description:
-                "إذا كنتم تبحثون عن مطور Frontend لبناء تطبيقات ويب حديثة أو لوحات تحكم أو منصات حجز، فأنا متاح لفرص عمل عن بُعد.",
+                "للاستفسارات حول المشاريع أو التعاون أو مناقشة الأفكار، يمكنكم التواصل عبر القنوات التالية.",
             fields: {
                 name: "الاسم",
                 email: "البريد الإلكتروني",
@@ -814,7 +815,7 @@ export const messages: Record<Language, MessageCatalog> = {
                 name: "اسمك",
                 email: "you@example.com",
                 message:
-                    "شارك تفاصيل الدور أو المشروع، النطاق، الجدول الزمني، والنتائج المتوقعة.",
+                    "شارك تفاصيل المشروع، النطاق، الجدول الزمني، والنتائج المتوقعة.",
             },
             submit: "تجهيز الرسالة",
             submitting: "جارٍ تجهيز الرسالة...",
@@ -823,10 +824,12 @@ export const messages: Record<Language, MessageCatalog> = {
                 whatsappValue: "تواصل مباشر",
                 instagramLabel: "إنستغرام",
                 instagramValue: "@abdalrhman_jaffar",
+                gitlabLabel: "GitLab",
+                gitlabValue: "gitlab.com/dev.elliot.j",
                 emailLabel: "البريد",
             },
             emailTemplate: {
-                subjectPrefix: "فرصة من",
+                subjectPrefix: "رسالة من",
                 greeting: "مرحبًا",
                 myName: "اسمي",
                 myEmail: "بريدي",
@@ -844,7 +847,6 @@ export const messages: Record<Language, MessageCatalog> = {
             description:
                 "تطوير React وNext.js وTypeScript لمنتجات ويب قابلة للتوسع.",
             contactLabel: "تواصل",
-            availability: "متاح لفرص Frontend.",
             rightsReserved: "جميع الحقوق محفوظة.",
         },
         seo: {
@@ -853,8 +855,7 @@ export const messages: Record<Language, MessageCatalog> = {
                 "موقع عبد الرحمن جعفر، مطور واجهات أمامية متخصص في تطبيقات ويب حديثة ولوحات تحكم قابلة للتوسع ومنصات حجز باستخدام React وNext.js.",
             keywords:
                 "عبد الرحمن جعفر, مطور واجهات أمامية, React.js, Next.js, TypeScript, لوحات تحكم, منصات حجز, تطبيقات ويب, بورتفوليو",
-            ogTitle:
-                "عبد الرحمن جعفر - معرض أعمال مطور Frontend",
+            ogTitle: "عبد الرحمن جعفر - معرض أعمال مطور Frontend",
             ogDescription:
                 "استعرض مشاريع Frontend إنتاجية في أنظمة الحجز واللوجستيات ولوحات التحكم.",
             locale: "ar_SY",

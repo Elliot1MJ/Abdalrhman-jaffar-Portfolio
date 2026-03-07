@@ -1,4 +1,4 @@
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaGitlab, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { profile } from "../data/portfolio";
 import { useI18n } from "../i18n/useI18n";
@@ -17,6 +17,11 @@ export default function FooterSection() {
             label: text.contact.ways.instagramLabel,
             href: profile.instagram,
             icon: <FaInstagram className="text-base" />,
+        },
+        {
+            label: text.contact.ways.gitlabLabel,
+            href: profile.gitlab,
+            icon: <FaGitlab className="text-base" />,
         },
         {
             label: text.contact.ways.emailLabel,
@@ -59,7 +64,6 @@ export default function FooterSection() {
                                     {profile.email}
                                 </p>
                                 <p>{text.profile.title}</p>
-                                <p>{text.footer.availability}</p>
                             </div>
                         </div>
                     </div>

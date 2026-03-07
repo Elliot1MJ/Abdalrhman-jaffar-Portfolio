@@ -155,9 +155,10 @@ export const profile = {
     title: "Frontend Developer",
     roleSummary:
         "I build modern web applications, scalable dashboards, and high-conversion landing pages using React and modern frontend technologies. Focused on performance, clean architecture, and real production systems.",
-    location: "Open to remote roles",
+    location: "Damascus, Syria",
     email: "dev.elliot.j@gmail.com",
     instagram: "https://www.instagram.com/abdalrhman_jaffar/",
+    gitlab: "https://gitlab.com/dev.elliot.j",
     whatsapp: "https://wa.me/message/6JSWUGX5ELVKB1",
     yearsOfExperience: "3",
     education:

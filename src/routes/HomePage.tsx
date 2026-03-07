@@ -1,5 +1,5 @@
 import { m, useReducedMotion } from "framer-motion";
-import { FiArrowRight, FiDownload } from "react-icons/fi";
+import { FiArrowRight, FiChevronDown, FiDownload } from "react-icons/fi";
 import MotionReveal from "../components/shared/MotionReveal";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
@@ -770,6 +770,31 @@ export default function HomePage() {
                     </div>
                 </section>
             </MotionReveal>
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-2 z-20 hidden justify-center lg:flex">
+                <m.button
+                    type="button"
+                    aria-label={`Scroll to ${text.sectionAria.about}`}
+                    onClick={() => navigateToSection("about")}
+                    className="pointer-events-auto inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/25 bg-background/70 text-foreground/85 backdrop-blur transition-colors hover:border-primary hover:text-primary"
+                    animate={
+                        shouldReduceMotion
+                            ? undefined
+                            : { y: [0, 6, 0], opacity: [0.62, 1, 0.62] }
+                    }
+                    transition={
+                        shouldReduceMotion
+                            ? undefined
+                            : {
+                                  duration: 1.7,
+                                  repeat: Number.POSITIVE_INFINITY,
+                                  ease: "easeInOut",
+                              }
+                    }
+                >
+                    <FiChevronDown className="text-base" />
+                </m.button>
+            </div>
         </div>
     );
 }

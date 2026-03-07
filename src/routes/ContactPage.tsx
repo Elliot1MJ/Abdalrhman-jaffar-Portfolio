@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaGitlab, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiMail, FiSend } from "react-icons/fi";
 import MotionReveal from "../components/shared/MotionReveal";
 import SectionHeading from "../components/shared/SectionHeading";
@@ -58,6 +58,12 @@ export default function ContactPage() {
                 icon: <FaInstagram />,
             },
             {
+                label: text.contact.ways.gitlabLabel,
+                value: text.contact.ways.gitlabValue,
+                href: profile.gitlab,
+                icon: <FaGitlab />,
+            },
+            {
                 label: text.contact.ways.emailLabel,
                 value: profile.email,
                 href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
@@ -68,6 +74,8 @@ export default function ContactPage() {
         ],
         [
             text.contact.ways.emailLabel,
+            text.contact.ways.gitlabLabel,
+            text.contact.ways.gitlabValue,
             text.contact.ways.instagramLabel,
             text.contact.ways.instagramValue,
             text.contact.ways.whatsappLabel,
