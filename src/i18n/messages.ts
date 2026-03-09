@@ -76,11 +76,10 @@ export interface MessageCatalog {
         openImage: string;
         closePreview: string;
         whatsappTemplate: {
-            intro: string;
-            serviceLabel: string;
-            descriptionLabel: string;
-            deliverableLabel: string;
-            closing: string;
+            requestedServiceLabel: string;
+            serviceDetailsLabel: string;
+            customerRequestLabel: string;
+            customerRequestPlaceholder: string;
         };
         cards: Array<{
             title: string;
@@ -322,16 +321,15 @@ export const messages: Record<Language, MessageCatalog> = {
             title: "My Services",
             description:
                 "I offer frontend services for teams and founders who need fast, production-ready delivery.",
-            orderCta: "Order now",
+            orderCta: "Order service",
             openImage: "Open service image preview",
             closePreview: "Close service image preview",
             whatsappTemplate: {
-                intro: "Hi, I would like to request this service:",
-                serviceLabel: "Service",
-                descriptionLabel: "Description",
-                deliverableLabel: "Deliverable",
-                closing:
-                    "Please share pricing, timeline, and the next steps to start.",
+                requestedServiceLabel: "Service to request",
+                serviceDetailsLabel: "Service details",
+                customerRequestLabel: "Your request details",
+                customerRequestPlaceholder:
+                    "Write your request details down here",
             },
             cards: [
                 {
@@ -631,15 +629,14 @@ export const messages: Record<Language, MessageCatalog> = {
             title: "الخدمات التي أقدّمها",
             description:
                 "أقدّم خدمات Frontend جاهزة للإنتاج للشركات وأصحاب المشاريع مع تنفيذ سريع ومنظّم.",
-            orderCta: "اطلبها",
+            orderCta: "اطلب الخدمة",
             openImage: "فتح معاينة صورة الخدمة",
             closePreview: "إغلاق معاينة صورة الخدمة",
             whatsappTemplate: {
-                intro: "مرحبًا، أرغب بطلب هذه الخدمة:",
-                serviceLabel: "الخدمة",
-                descriptionLabel: "الوصف",
-                deliverableLabel: "المخرج",
-                closing: "ممكن تفاصيل السعر والمدة وخطوات البدء؟",
+                requestedServiceLabel: "الخدمة المراد طلبها",
+                serviceDetailsLabel: "تفاصيل الخدمة",
+                customerRequestLabel: "تفاصيل طلبك",
+                customerRequestPlaceholder: "اكتب تفاصيل طلبك أدناه",
             },
             cards: [
                 {

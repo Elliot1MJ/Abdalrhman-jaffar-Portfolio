@@ -9,7 +9,8 @@ import { navigateToSection } from "../lib/sectionNavigation";
 
 export default function HomePage() {
     const shouldReduceMotion = useReducedMotion();
-    const { text } = useI18n();
+    const { text, language } = useI18n();
+    const isRTL = language === "ar";
     const glyphCube = (
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
             <path
@@ -695,7 +696,9 @@ export default function HomePage() {
                                 <div className="absolute inset-0 bg-[radial-gradient(70%_70%_at_10%_10%,rgba(147,51,234,0.45),transparent_60%)] mix-blend-soft-light opacity-80" />
 
                                 {/* Footer overlay */}
-                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-4 sm:p-5">
+                                <div
+                                    className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-4 sm:p-5`}
+                                >
                                     <p className="font-semibold-alt text-sm sm:text-base">
                                         {text.profile.fullName}
                                     </p>
@@ -713,7 +716,9 @@ export default function HomePage() {
                             {text.hero.badge}
                         </Badge>
 
-                        <h1 className="hero-title text-balance font-display text-4xl leading-[1.05] sm:text-5xl sm:leading-[1.05] md:text-6xl md:leading-[1.05] xl:text-7xl">
+                        <h1
+                            className={`hero-title flex flex-col text-balance font-display text-4xl leading-[1.05] sm:text-5xl sm:leading-[1.05] md:text-6xl md:leading-[1.05] xl:text-7xl ${isRTL && "gap-4"}`}
+                        >
                             <span className="w-full block">
                                 {text.hero.headingLine1}
                             </span>

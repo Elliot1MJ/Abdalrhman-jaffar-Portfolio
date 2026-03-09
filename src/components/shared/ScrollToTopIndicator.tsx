@@ -10,9 +10,9 @@ export default function ScrollToTopIndicator() {
     const zigzagPath = useMemo(() => {
         const cx = 24;
         const cy = 24;
-        const inner = 17.8;
-        const outer = 19;
-        const points = 25;
+        const inner = 20;
+        const outer = 20;
+        const points = 20;
         let d = "";
 
         for (let i = 0; i < points; i += 1) {

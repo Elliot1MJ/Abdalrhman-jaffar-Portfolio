@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { FaGitlab, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiMail, FiSend } from "react-icons/fi";
 import MotionReveal from "../components/shared/MotionReveal";
 import SectionHeading from "../components/shared/SectionHeading";
@@ -56,12 +56,6 @@ export default function ContactPage() {
                 value: text.contact.ways.instagramValue,
                 href: profile.instagram,
                 icon: <FaInstagram />,
-            },
-            {
-                label: text.contact.ways.gitlabLabel,
-                value: text.contact.ways.gitlabValue,
-                href: profile.gitlab,
-                icon: <FaGitlab />,
             },
             {
                 label: text.contact.ways.emailLabel,

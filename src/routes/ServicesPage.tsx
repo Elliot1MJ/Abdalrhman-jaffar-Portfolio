@@ -11,7 +11,6 @@ import {
     CardHeader,
     CardTitle,
 } from "../components/ui/card";
-import { profile } from "../data/portfolio";
 import { useI18n } from "../i18n/useI18n";
 
 const SERVICE_FALLBACK_IMAGE = "/images/project-fallback.svg";
@@ -21,24 +20,23 @@ export default function ServicesPage() {
 
     const openWhatsapp = (service: (typeof text.services.cards)[number]) => {
         const message = [
-            text.services.whatsappTemplate.intro,
-            `${text.services.whatsappTemplate.serviceLabel}: ${service.title}`,
-            `${text.services.whatsappTemplate.descriptionLabel}: ${service.description}`,
-            `${text.services.whatsappTemplate.deliverableLabel}: ${service.deliverable}`,
-            "",
-            text.services.whatsappTemplate.closing,
-        ].join("\n");
-        const separator = profile.whatsapp.includes("?") ? "&" : "?";
-        const whatsappUrl = `${profile.whatsapp}${separator}text=${encodeURIComponent(message)}`;
-        const opened = window.open(
-            whatsappUrl,
-            "_blank",
-            "noopener,noreferrer",
-        );
+            `*${text.services.whatsappTemplate.requestedServiceLabel}:* `,
+            service.title,
+            "\n\n",
+            `*${text.services.whatsappTemplate.serviceDetailsLabel}:* `,
+            service.description,
+            service.deliverable,
+            "\n\n",
+            `*${text.services.whatsappTemplate.customerRequestLabel}:* (`,
+            `${text.services.whatsappTemplate.customerRequestPlaceholder})\n`,
+        ]
+            .filter(Boolean)
+            .join("");
 
-        if (!opened) {
-            window.location.href = whatsappUrl;
-        }
+        const phone = +963939715367; // الرقم فقط بدون + أو مسافات
+        const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     };
 
     const handleImageFallback = (event: SyntheticEvent<HTMLImageElement>) => {

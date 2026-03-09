@@ -73,7 +73,12 @@ export default function NavigationBar({
                 exit={
                     shouldReduceMotion
                         ? undefined
-                        : { opacity: 0, y: -4, scale: 0.92, filter: "blur(2px)" }
+                        : {
+                              opacity: 0,
+                              y: -4,
+                              scale: 0.92,
+                              filter: "blur(2px)",
+                          }
                 }
                 transition={{
                     duration: shouldReduceMotion ? 0 : MOTION_DURATION.fast,
@@ -311,7 +316,8 @@ export default function NavigationBar({
                 {!isDetailsMode && (
                     <nav className="hidden items-center gap-6 lg:flex">
                         {navItems.map((item) => {
-                            const isActive = isOnHomeRoute && activeId === item.id;
+                            const isActive =
+                                isOnHomeRoute && activeId === item.id;
                             return (
                                 <a
                                     key={item.id}
@@ -356,7 +362,10 @@ export default function NavigationBar({
                         {renderThemeIcon("desktop-theme")}
                     </m.button>
                     {isDetailsMode && (
-                        <Button variant="outline" onClick={handleBackNavigation}>
+                        <Button
+                            variant="outline"
+                            onClick={handleBackNavigation}
+                        >
                             <FiArrowLeft className="text-base" />
                             {text.projects.details.back}
                         </Button>
@@ -383,7 +392,10 @@ export default function NavigationBar({
                         {renderThemeIcon("mobile-theme")}
                     </m.button>
                     {isDetailsMode ? (
-                        <Button variant="outline" onClick={handleBackNavigation}>
+                        <Button
+                            variant="outline"
+                            onClick={handleBackNavigation}
+                        >
                             <FiArrowLeft className="text-base" />
                             {text.projects.details.back}
                         </Button>
@@ -569,15 +581,18 @@ export default function NavigationBar({
                                         show: {
                                             opacity: 1,
                                             transition: {
-                                                staggerChildren: MOTION_STAGGER.tight,
-                                                delayChildren: MOTION_DURATION.fast,
+                                                staggerChildren:
+                                                    MOTION_STAGGER.tight,
+                                                delayChildren:
+                                                    MOTION_DURATION.fast,
                                             },
                                         },
                                     }}
                                 >
                                     {navItems.map((item, index) => {
                                         const isActive =
-                                            isOnHomeRoute && activeId === item.id;
+                                            isOnHomeRoute &&
+                                            activeId === item.id;
                                         return (
                                             <m.a
                                                 key={item.id}
@@ -639,9 +654,9 @@ export default function NavigationBar({
                                     }}
                                 >
                                     <a
-                                        href="/#contact"
+                                        href="/#services"
                                         onClick={handleSectionNavigation(
-                                            "contact",
+                                            "services",
                                             true,
                                         )}
                                     >
