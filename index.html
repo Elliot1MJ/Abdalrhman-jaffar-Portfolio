@@ -10,9 +10,22 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            rel="stylesheet"
+            rel="preload"
+            as="style"
             href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            media="print"
+            onload="this.media='all'"
+        />
+        <noscript>
+            <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            />
+        </noscript>
         <link
             rel="preload"
             as="image"
@@ -35,6 +48,14 @@
         />
         <meta property="og:type" content="website" />
         <meta
+            property="og:url"
+            content="https://abdalrhman-jaffar-portfolio.vercel.app/"
+        />
+        <meta
+            property="og:site_name"
+            content="Abdalrhman Jaffar Portfolio"
+        />
+        <meta
             property="og:title"
             content="Abdalrhman Jaffar - Frontend Developer for Dashboards and Product Systems"
         />
@@ -42,7 +63,17 @@
             property="og:description"
             content="Explore featured projects in dashboards, booking, logistics, and tracking systems built with React.js and TypeScript."
         />
-        <meta property="og:image" content="/images/hero.webp" />
+        <meta
+            property="og:image"
+            content="https://abdalrhman-jaffar-portfolio.vercel.app/images/og-image.jpg"
+        />
+        <meta
+            property="og:image:secure_url"
+            content="https://abdalrhman-jaffar-portfolio.vercel.app/images/og-image.jpg"
+        />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="1280" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:locale:alternate" content="ar_SY" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -54,7 +85,18 @@
             name="twitter:description"
             content="Frontend portfolio featuring dashboards, booking systems, and tracking platforms."
         />
-        <meta name="twitter:image" content="/images/hero.webp" />
+        <meta
+            name="twitter:image"
+            content="https://abdalrhman-jaffar-portfolio.vercel.app/images/og-image.jpg"
+        />
+        <meta
+            name="twitter:image:alt"
+            content="Abdalrhman Jaffar portfolio preview"
+        />
+        <link
+            rel="canonical"
+            href="https://abdalrhman-jaffar-portfolio.vercel.app/"
+        />
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",

@@ -585,7 +585,7 @@ export default function HomePage() {
             {/* grid bg */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-[3vh] z-[0] hidden h-[82vh] md:block"
+                className="pointer-events-none absolute inset-x-0 top-[3vh] z-[0] hidden h-[82vh] sm:block"
             >
                 {floatingOrbs.map((orb, index) => (
                     <m.span

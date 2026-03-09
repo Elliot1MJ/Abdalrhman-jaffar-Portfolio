@@ -33,7 +33,7 @@ export default function ServicesPage() {
             .filter(Boolean)
             .join("");
 
-        const phone = +963939715367; // الرقم فقط بدون + أو مسافات
+        const phone = +963939715367;
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
         window.open(whatsappUrl, "_blank", "noopener,noreferrer");

@@ -1,6 +1,6 @@
 import type { MessageCatalog } from "./messages";
 
-const DEFAULT_OG_IMAGE = "/images/hero.webp";
+const DEFAULT_OG_IMAGE = "/images/og-image.jpg";
 const DYNAMIC_SCHEMA_SCRIPT_ID = "dynamic-page-schema";
 
 interface SeoPayload {
