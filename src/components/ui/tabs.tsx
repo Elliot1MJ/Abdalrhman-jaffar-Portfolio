@@ -1,88 +1,58 @@
-import { type ReactNode } from "react";
-import { useI18n } from "../../i18n/useI18n";
-import { cn } from "../../lib/utils";
+"use client";
 
-interface TabOption<T extends string> {
-    label: string;
-    value: T;
-}
+import * as React from "react";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
 
-interface TabsProps<T extends string> {
-    value: T;
-    onChange: (value: T) => void;
-    options: TabOption<T>[];
-    ariaLabel?: string;
-    className?: string;
-    fullWidth?: boolean;
-    icon?: ReactNode;
-}
+import { cn } from "@/lib/utils";
 
-export function Tabs<T extends string>({
-    value,
-    onChange,
-    options,
-    ariaLabel = "Tabs",
-    className,
-    fullWidth = false,
-    icon,
-}: TabsProps<T>) {
-    const { isRtl } = useI18n();
+const Tabs = TabsPrimitive.Root;
 
-    return (
-        <div
-            className={cn(
-                "inline-flex gap-4 border-b border-foreground/15 pb-2",
-                className
-            )}
-            role="tablist"
-            aria-label={ariaLabel}
-        >
-            {options.map((option) => {
-                const isActive = option.value === value;
-                return (
-                    <button
-                        key={option.value}
-                        type="button"
-                        role="tab"
-                        aria-selected={isActive}
-                        className={cn(
-                            "relative px-1 py-2 font-semibold-alt transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                            isRtl
-                                ? "text-sm"
-                                : "text-xs uppercase tracking-[0.22em]",
-                            fullWidth && "min-w-[8.75rem]",
-                            isActive
-                                ? "text-foreground"
-                                : "text-muted-foreground hover:text-foreground"
-                        )}
-                        onClick={() => onChange(option.value)}
-                    >
-                        <span className="inline-flex items-center gap-2">
-                            {icon ? (
-                                <span
-                                    aria-hidden
-                                    className={cn(
-                                        "inline-flex overflow-hidden transition-all duration-300 ease-out",
-                                        isActive
-                                            ? "max-w-6 scale-100 opacity-100"
-                                            : "max-w-0 scale-75 opacity-0"
-                                    )}
-                                >
-                                    {icon}
-                                </span>
-                            ) : null}
-                            {option.label}
-                        </span>
-                        <span
-                            aria-hidden
-                            className={cn(
-                                "absolute left-0 top-full mt-1 h-[2px] w-full origin-center bg-primary transition-transform duration-300 ease-out",
-                                isActive ? "scale-x-100" : "scale-x-0"
-                            )}
-                        />
-                    </button>
-                );
-            })}
-        </div>
-    );
-}
+const TabsList = React.forwardRef<
+    React.ElementRef<typeof TabsPrimitive.List>,
+    React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+    <TabsPrimitive.List
+        ref={ref}
+        className={cn(
+            "inline-flex items-center gap-1 border-b border-border",
+            className,
+        )}
+        {...props}
+    />
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
+
+const TabsTrigger = React.forwardRef<
+    React.ElementRef<typeof TabsPrimitive.Trigger>,
+    React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+    <TabsPrimitive.Trigger
+        ref={ref}
+        className={cn(
+            "relative px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+            "data-[state=active]:text-foreground",
+            "after:absolute after:inset-x-0 after:bottom-[-1px] after:h-[2px] after:origin-center after:scale-x-0 after:bg-primary after:transition-transform data-[state=active]:after:scale-x-100",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            className,
+        )}
+        {...props}
+    />
+));
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+
+const TabsContent = React.forwardRef<
+    React.ElementRef<typeof TabsPrimitive.Content>,
+    React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
+>(({ className, ...props }, ref) => (
+    <TabsPrimitive.Content
+        ref={ref}
+        className={cn(
+            "mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            className,
+        )}
+        {...props}
+    />
+));
+TabsContent.displayName = TabsPrimitive.Content.displayName;
+
+export { Tabs, TabsList, TabsTrigger, TabsContent };

@@ -1,31 +1,34 @@
-import { type HTMLAttributes } from "react";
-import { cn } from "../../lib/utils";
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
-type BadgeVariant = "default" | "secondary" | "outline";
+import { cn } from "@/lib/utils";
 
-interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-    variant?: BadgeVariant;
-}
+const badgeVariants = cva(
+    "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+    {
+        variants: {
+            variant: {
+                default:
+                    "border-transparent bg-primary text-primary-foreground",
+                secondary:
+                    "border-transparent bg-secondary text-secondary-foreground",
+                outline: "border-foreground/20 text-foreground",
+            },
+        },
+        defaultVariants: {
+            variant: "default",
+        },
+    },
+);
 
-const variantStyles: Record<BadgeVariant, string> = {
-    default: "bg-primary/20 text-primary border-primary/40",
-    secondary: "bg-secondary text-secondary-foreground border-foreground/10",
-    outline: "bg-transparent text-muted-foreground border-foreground/15",
-};
+export interface BadgeProps
+    extends React.HTMLAttributes<HTMLDivElement>,
+        VariantProps<typeof badgeVariants> {}
 
-export function Badge({
-    className,
-    variant = "default",
-    ...props
-}: BadgeProps) {
+function Badge({ className, variant, ...props }: BadgeProps) {
     return (
-        <span
-            className={cn(
-                "inline-flex items-center rounded-full border px-3 py-1 text-[12px] font-semibold-alt uppercase tracking-[0.22em]",
-                variantStyles[variant],
-                className,
-            )}
-            {...props}
-        />
+        <div className={cn(badgeVariants({ variant }), className)} {...props} />
     );
 }
+
+export { Badge, badgeVariants };
