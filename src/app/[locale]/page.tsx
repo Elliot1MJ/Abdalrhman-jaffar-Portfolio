@@ -19,7 +19,7 @@ export default async function HomePage({
 
     return (
         <div>
-            <section className="mx-auto max-w-6xl px-5 pb-20 pt-16 sm:px-8 sm:pt-24">
+            <section className="mx-auto flex min-h-[calc(100dvh-var(--nav-height))] max-w-6xl items-center px-5 py-16 sm:px-8">
                 <HeroContent locale={locale} text={text} />
             </section>
 

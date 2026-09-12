@@ -10,6 +10,7 @@ import { isLocale, locales, isRtl, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { CodeGlyphBackdrop } from "@/components/shared/code-glyph-backdrop";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -73,9 +74,12 @@ export default async function LocaleLayout({
                 <ThemeProvider>
                     <MotionProvider>
                         <TooltipProvider delayDuration={200}>
-                            <SiteHeader locale={locale} text={text} />
-                            <main>{children}</main>
-                            <SiteFooter locale={locale} text={text} />
+                            <div className="relative">
+                                <CodeGlyphBackdrop />
+                                <SiteHeader locale={locale} text={text} />
+                                <main>{children}</main>
+                                <SiteFooter locale={locale} text={text} />
+                            </div>
                         </TooltipProvider>
                     </MotionProvider>
                 </ThemeProvider>

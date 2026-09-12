@@ -75,6 +75,7 @@
     --input: var(--iron);
     --ring: var(--spark-500);
     --radius: 0.75rem;
+    --nav-height: 4.5rem;
 
     --font-ar: "IBM Plex Sans Arabic", system-ui, sans-serif;
     --font-latin: "Space Grotesk", system-ui, -apple-system, sans-serif;

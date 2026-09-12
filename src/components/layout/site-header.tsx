@@ -82,7 +82,7 @@ export function SiteHeader({ locale, text }: SiteHeaderProps) {
             }}
             className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl"
         >
-            <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+            <div className="mx-auto flex h-(--nav-height) max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
                 <Link
                     href={`/${locale}`}
                     className="flex items-center gap-2.5"
