@@ -4,6 +4,7 @@ import { skillGroups } from "@/lib/data/portfolio";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import myPic from "@/assets/images/myPic.jpg";
+import { MotionReveal } from "@/components/shared/motion-reveal";
 
 export default async function AboutPage({
     params,
@@ -17,7 +18,7 @@ export default async function AboutPage({
 
     return (
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-            <div className="flex flex-wrap items-start justify-between gap-8">
+            <MotionReveal className="flex flex-wrap items-start justify-between gap-8">
                 <div>
                     <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
                         {text.about.eyebrow}
@@ -36,9 +37,9 @@ export default async function AboutPage({
                         priority
                     />
                 </div>
-            </div>
+            </MotionReveal>
 
-            <div className="mt-10 grid gap-12 md:grid-cols-[2fr_1fr]">
+            <MotionReveal delay={0.1} className="mt-10 grid gap-12 md:grid-cols-[2fr_1fr]">
                 <div className="space-y-6 text-base leading-relaxed text-foreground">
                     <p>{text.about.paragraphOne}</p>
                     <p>{text.about.paragraphTwo}</p>
@@ -79,9 +80,9 @@ export default async function AboutPage({
                         </ul>
                     </div>
                 </div>
-            </div>
+            </MotionReveal>
 
-            <div className="mt-16">
+            <MotionReveal delay={0.15} className="mt-16">
                 <h2 className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
                     Skills
                 </h2>
@@ -104,7 +105,7 @@ export default async function AboutPage({
                         </div>
                     ))}
                 </div>
-            </div>
+            </MotionReveal>
         </div>
     );
 }

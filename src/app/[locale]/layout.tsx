@@ -4,6 +4,8 @@ import {
     ThemeProvider,
     THEME_INIT_SCRIPT,
 } from "@/components/providers/theme-provider";
+import { MotionProvider } from "@/components/providers/motion-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { isLocale, locales, isRtl, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -69,9 +71,13 @@ export default async function LocaleLayout({
             </head>
             <body>
                 <ThemeProvider>
-                    <SiteHeader locale={locale} text={text} />
-                    <main>{children}</main>
-                    <SiteFooter locale={locale} text={text} />
+                    <MotionProvider>
+                        <TooltipProvider delayDuration={200}>
+                            <SiteHeader locale={locale} text={text} />
+                            <main>{children}</main>
+                            <SiteFooter locale={locale} text={text} />
+                        </TooltipProvider>
+                    </MotionProvider>
                 </ThemeProvider>
             </body>
         </html>

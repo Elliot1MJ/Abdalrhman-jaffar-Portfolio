@@ -154,9 +154,6 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition:
-        background-color 200ms ease,
-        color 200ms ease;
 }
 
 html[dir="rtl"] body {
@@ -198,4 +195,34 @@ button:disabled {
 .font-mono {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+}
+
+@keyframes tooltip-in {
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(2px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes tooltip-out {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.94) translateY(2px);
+    }
+}
+
+.animate-tooltip-in {
+    animation: tooltip-in 120ms ease-out;
+}
+
+.animate-tooltip-out {
+    animation: tooltip-out 100ms ease-in;
 }

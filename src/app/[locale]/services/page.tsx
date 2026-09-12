@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { ServiceOrderButton } from "@/components/services/service-order-button";
+import { MotionReveal } from "@/components/shared/motion-reveal";
 
 export default async function ServicesPage({
     params,
@@ -16,17 +17,22 @@ export default async function ServicesPage({
 
     return (
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-            <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
-                {text.services.eyebrow}
-            </p>
-            <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                {text.services.title}
-            </h1>
-            <p className="mt-4 max-w-xl text-base text-muted-foreground">
-                {text.services.description}
-            </p>
+            <MotionReveal>
+                <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
+                    {text.services.eyebrow}
+                </p>
+                <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                    {text.services.title}
+                </h1>
+                <p className="mt-4 max-w-xl text-base text-muted-foreground">
+                    {text.services.description}
+                </p>
+            </MotionReveal>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+            <MotionReveal
+                delay={0.1}
+                className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2"
+            >
                 {text.services.cards.map((service) => (
                     <div
                         key={service.title}
@@ -58,7 +64,7 @@ export default async function ServicesPage({
                         />
                     </div>
                 ))}
-            </div>
+            </MotionReveal>
         </div>
     );
 }

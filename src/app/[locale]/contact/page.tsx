@@ -5,6 +5,7 @@ import { profile } from "@/lib/data/portfolio";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { ContactForm } from "@/components/contact/contact-form";
+import { MotionReveal } from "@/components/shared/motion-reveal";
 
 export default async function ContactPage({
     params,
@@ -45,17 +46,19 @@ export default async function ContactPage({
 
     return (
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-            <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
-                {text.contact.eyebrow}
-            </p>
-            <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                {text.contact.title}
-            </h1>
-            <p className="mt-4 max-w-xl text-base text-muted-foreground">
-                {text.contact.description}
-            </p>
+            <MotionReveal>
+                <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
+                    {text.contact.eyebrow}
+                </p>
+                <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                    {text.contact.title}
+                </h1>
+                <p className="mt-4 max-w-xl text-base text-muted-foreground">
+                    {text.contact.description}
+                </p>
+            </MotionReveal>
 
-            <div className="mt-12 grid gap-12 md:grid-cols-[1fr_1fr]">
+            <MotionReveal delay={0.1} className="mt-12 grid gap-12 md:grid-cols-[1fr_1fr]">
                 <ContactForm text={text} />
 
                 <div className="space-y-4">
@@ -81,7 +84,7 @@ export default async function ContactPage({
                         </a>
                     ))}
                 </div>
-            </div>
+            </MotionReveal>
         </div>
     );
 }

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getProjectBySlug, projects } from "@/lib/data/portfolio";
 import { isLocale, locales, type Locale } from "@/lib/i18n/config";
 import { getMessages, getProjectText } from "@/lib/i18n/get-messages";
+import { MotionReveal } from "@/components/shared/motion-reveal";
 
 export function generateStaticParams() {
     return locales.flatMap((locale) =>
@@ -43,17 +44,22 @@ export default async function ProjectDetailsPage({
                 {text.projects.details.back}
             </Link>
 
-            <p className="mt-8 font-mono text-xs uppercase tracking-[0.15em] text-primary">
-                {text.projects.categories[project.category]}
-            </p>
-            <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                {localized.name}
-            </h1>
-            <p className="mt-4 font-mono text-xs text-muted-foreground">
-                {project.timeline}
-            </p>
+            <MotionReveal>
+                <p className="mt-8 font-mono text-xs uppercase tracking-[0.15em] text-primary">
+                    {text.projects.categories[project.category]}
+                </p>
+                <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                    {localized.name}
+                </h1>
+                <p className="mt-4 font-mono text-xs text-muted-foreground">
+                    {project.timeline}
+                </p>
+            </MotionReveal>
 
-            <div className="relative mt-10 aspect-video overflow-hidden rounded-2xl border border-border">
+            <MotionReveal
+                delay={0.1}
+                className="relative mt-10 aspect-video overflow-hidden rounded-2xl border border-border"
+            >
                 <Image
                     src={project.image}
                     alt={localized.name}
@@ -62,9 +68,9 @@ export default async function ProjectDetailsPage({
                     className="object-cover"
                     priority
                 />
-            </div>
+            </MotionReveal>
 
-            <div className="mt-12 grid gap-12 md:grid-cols-[2fr_1fr]">
+            <MotionReveal delay={0.15} className="mt-12 grid gap-12 md:grid-cols-[2fr_1fr]">
                 <div>
                     <h2 className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
                         {text.projects.details.aboutTitle}
@@ -122,10 +128,14 @@ export default async function ProjectDetailsPage({
                         ))}
                     </div>
                 </div>
-            </div>
+            </MotionReveal>
 
-            {project.productionSections.map((section) => (
-                <div key={section.key} className="mt-16">
+            {project.productionSections.map((section, index) => (
+                <MotionReveal
+                    key={section.key}
+                    delay={Math.min(index * 0.05, 0.2)}
+                    className="mt-16"
+                >
                     <h2 className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
                         {section.title}
                     </h2>
@@ -145,7 +155,7 @@ export default async function ProjectDetailsPage({
                             </div>
                         ))}
                     </div>
-                </div>
+                </MotionReveal>
             ))}
         </div>
     );
