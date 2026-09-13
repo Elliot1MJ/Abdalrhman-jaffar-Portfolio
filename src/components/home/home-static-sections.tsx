@@ -1,30 +1,27 @@
+"use client";
+
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { FiArrowUpRight } from "react-icons/fi";
-import { featuredProjects, quickStats } from "@/lib/data/portfolio";
-import { isLocale, type Locale } from "@/lib/i18n/config";
-import { getMessages } from "@/lib/i18n/get-messages";
-import { HeroContent } from "@/components/home/hero-content";
+import type { PortfolioProject } from "@/lib/data/portfolio";
+import type { quickStats as quickStatsData } from "@/lib/data/profile";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
-export default async function HomePage({
-    params,
-}: {
-    params: Promise<{ locale: string }>;
-}) {
-    const { locale: rawLocale } = await params;
-    if (!isLocale(rawLocale)) notFound();
-    const locale: Locale = rawLocale;
-    const text = getMessages(locale);
+interface HomeStaticSectionsProps {
+    quickStats: typeof quickStatsData;
+    featuredProjects: PortfolioProject[];
+}
+
+export function HomeStaticSections({
+    quickStats,
+    featuredProjects,
+}: HomeStaticSectionsProps) {
+    const { text } = useLanguage();
 
     return (
-        <div>
-            <section className="mx-auto flex min-h-[calc(100dvh-var(--nav-height))] max-w-6xl items-center px-5 py-16 sm:px-8">
-                <HeroContent locale={locale} text={text} />
-            </section>
-
+        <>
             <section className="border-t border-border/70">
-                <MotionReveal className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-5 py-14 sm:px-8 md:grid-cols-4">
+                <MotionReveal className="mx-auto grid max-w-[1440px] grid-cols-2 gap-8 px-5 py-14 sm:px-8 md:grid-cols-4">
                     {quickStats.map((stat) => (
                         <div key={stat.label}>
                             <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
@@ -39,13 +36,13 @@ export default async function HomePage({
             </section>
 
             <section className="border-t border-border/70">
-                <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+                <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
                     <MotionReveal className="flex items-end justify-between gap-4">
                         <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                             {text.nav.projects}
                         </h2>
                         <Link
-                            href={`/${locale}/projects`}
+                            href="/projects"
                             className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
                             {text.hero.seeProjects}
@@ -60,7 +57,7 @@ export default async function HomePage({
                         {featuredProjects.slice(0, 4).map((project) => (
                             <Link
                                 key={project.slug}
-                                href={`/${locale}/projects/${project.slug}`}
+                                href={`/projects/${project.slug}`}
                                 className="group flex flex-col justify-between gap-6 bg-background p-6 transition-colors hover:bg-card sm:p-8"
                             >
                                 <div>
@@ -84,7 +81,7 @@ export default async function HomePage({
             </section>
 
             <section className="border-t border-border/70">
-                <MotionReveal className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+                <MotionReveal className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
                     <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
                         {text.about.eyebrow}
                     </p>
@@ -92,7 +89,7 @@ export default async function HomePage({
                         {text.about.paragraphOne}
                     </p>
                     <Link
-                        href={`/${locale}/about`}
+                        href="/about"
                         className="mt-6 inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                         {text.about.title}
@@ -100,6 +97,6 @@ export default async function HomePage({
                     </Link>
                 </MotionReveal>
             </section>
-        </div>
+        </>
     );
 }

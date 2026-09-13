@@ -7,11 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { profile } from "@/lib/data/profile";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import type { MessageCatalog } from "@/lib/i18n/messages";
-
-interface ContactFormProps {
-    text: MessageCatalog;
-}
 
 function buildSchema(text: MessageCatalog) {
     return z.object({
@@ -29,7 +26,8 @@ function buildSchema(text: MessageCatalog) {
 
 type ContactFormValues = z.infer<ReturnType<typeof buildSchema>>;
 
-export function ContactForm({ text }: ContactFormProps) {
+export function ContactForm() {
+    const { text } = useLanguage();
     const schema = buildSchema(text);
     const {
         register,

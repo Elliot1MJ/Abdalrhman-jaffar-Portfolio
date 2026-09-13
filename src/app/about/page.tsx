@@ -1,23 +1,16 @@
+"use client";
+
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import { skillGroups } from "@/lib/data/portfolio";
-import { isLocale, type Locale } from "@/lib/i18n/config";
-import { getMessages } from "@/lib/i18n/get-messages";
+import { skillGroups } from "@/lib/data/profile";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import myPic from "@/assets/images/myPic.jpg";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
-export default async function AboutPage({
-    params,
-}: {
-    params: Promise<{ locale: string }>;
-}) {
-    const { locale: rawLocale } = await params;
-    if (!isLocale(rawLocale)) notFound();
-    const locale: Locale = rawLocale;
-    const text = getMessages(locale);
+export default function AboutPage() {
+    const { text } = useLanguage();
 
     return (
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
             <MotionReveal className="flex flex-wrap items-start justify-between gap-8">
                 <div>
                     <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">

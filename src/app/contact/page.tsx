@@ -1,21 +1,14 @@
-import { notFound } from "next/navigation";
+"use client";
+
 import { FaWhatsapp, FaInstagram, FaGitlab } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import { profile } from "@/lib/data/portfolio";
-import { isLocale, type Locale } from "@/lib/i18n/config";
-import { getMessages } from "@/lib/i18n/get-messages";
+import { profile } from "@/lib/data/profile";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import { ContactForm } from "@/components/contact/contact-form";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
-export default async function ContactPage({
-    params,
-}: {
-    params: Promise<{ locale: string }>;
-}) {
-    const { locale: rawLocale } = await params;
-    if (!isLocale(rawLocale)) notFound();
-    const locale: Locale = rawLocale;
-    const text = getMessages(locale);
+export default function ContactPage() {
+    const { text } = useLanguage();
 
     const ways = [
         {
@@ -45,7 +38,7 @@ export default async function ContactPage({
     ];
 
     return (
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
             <MotionReveal>
                 <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
                     {text.contact.eyebrow}
@@ -59,7 +52,7 @@ export default async function ContactPage({
             </MotionReveal>
 
             <MotionReveal delay={0.1} className="mt-12 grid gap-12 md:grid-cols-[1fr_1fr]">
-                <ContactForm text={text} />
+                <ContactForm />
 
                 <div className="space-y-4">
                     {ways.map((way) => (

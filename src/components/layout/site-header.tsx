@@ -1,25 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { FiGlobe, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 import { useTheme } from "@/components/providers/theme-provider";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import {
     Tooltip,
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { MOTION_DURATION, MOTION_EASE_STANDARD } from "@/lib/motion";
-import type { Locale } from "@/lib/i18n/config";
-import type { MessageCatalog } from "@/lib/i18n/messages";
 import { cn } from "@/lib/utils";
-
-interface SiteHeaderProps {
-    locale: Locale;
-    text: MessageCatalog;
-}
 
 function IconButton({
     label,
@@ -47,24 +41,20 @@ function IconButton({
     );
 }
 
-export function SiteHeader({ locale, text }: SiteHeaderProps) {
+export function SiteHeader() {
     const pathname = usePathname();
-    const router = useRouter();
     const { theme, toggleTheme } = useTheme();
+    const { text, toggleLocale } = useLanguage();
     const shouldReduceMotion = useReducedMotion();
     const [isOpen, setIsOpen] = useState(false);
 
-    const otherLocale: Locale = locale === "ar" ? "en" : "ar";
-    const pathWithoutLocale = pathname.replace(/^\/(ar|en)/, "") || "/";
-    const switchLocaleHref = `/${otherLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
-
     const navItems = [
-        { href: `/${locale}`, label: text.nav.home },
-        { href: `/${locale}/about`, label: text.nav.about },
-        { href: `/${locale}/services`, label: text.nav.services },
-        { href: `/${locale}/projects`, label: text.nav.projects },
-        { href: `/${locale}/cv`, label: text.nav.cv },
-        { href: `/${locale}/contact`, label: text.nav.contact },
+        { href: "/", label: text.nav.home },
+        { href: "/about", label: text.nav.about },
+        { href: "/services", label: text.nav.services },
+        { href: "/projects", label: text.nav.projects },
+        { href: "/cv", label: text.nav.cv },
+        { href: "/contact", label: text.nav.contact },
     ];
 
     const logoSrc =
@@ -82,11 +72,8 @@ export function SiteHeader({ locale, text }: SiteHeaderProps) {
             }}
             className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl"
         >
-            <div className="mx-auto flex h-(--nav-height) max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-                <Link
-                    href={`/${locale}`}
-                    className="flex items-center gap-2.5"
-                >
+            <div className="mx-auto flex h-(--nav-height) max-w-[1440px] items-center justify-between gap-4 px-5 sm:px-8">
+                <Link href="/" className="flex items-center gap-2.5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={logoSrc}
@@ -131,7 +118,7 @@ export function SiteHeader({ locale, text }: SiteHeaderProps) {
                 <div className="hidden items-center gap-2 lg:flex">
                     <IconButton
                         label={text.nav.toggleLanguage}
-                        onClick={() => router.push(switchLocaleHref)}
+                        onClick={toggleLocale}
                     >
                         <FiGlobe />
                     </IconButton>
@@ -182,7 +169,7 @@ export function SiteHeader({ locale, text }: SiteHeaderProps) {
                                 <button
                                     type="button"
                                     aria-label={text.nav.toggleLanguage}
-                                    onClick={() => router.push(switchLocaleHref)}
+                                    onClick={toggleLocale}
                                     className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
                                 >
                                     <FiGlobe />

@@ -1,22 +1,15 @@
+"use client";
+
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import { isLocale, type Locale } from "@/lib/i18n/config";
-import { getMessages } from "@/lib/i18n/get-messages";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import { ServiceOrderButton } from "@/components/services/service-order-button";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
-export default async function ServicesPage({
-    params,
-}: {
-    params: Promise<{ locale: string }>;
-}) {
-    const { locale: rawLocale } = await params;
-    if (!isLocale(rawLocale)) notFound();
-    const locale: Locale = rawLocale;
-    const text = getMessages(locale);
+export default function ServicesPage() {
+    const { text } = useLanguage();
 
     return (
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
             <MotionReveal>
                 <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
                     {text.services.eyebrow}
@@ -58,10 +51,7 @@ export default async function ServicesPage({
                                 {service.deliverable}
                             </p>
                         </div>
-                        <ServiceOrderButton
-                            serviceName={service.title}
-                            text={text}
-                        />
+                        <ServiceOrderButton serviceName={service.title} />
                     </div>
                 ))}
             </MotionReveal>

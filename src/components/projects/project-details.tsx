@@ -1,31 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { FiArrowLeft, FiExternalLink, FiGithub } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import { getProjectBySlug, projects } from "@/lib/data/portfolio";
-import { isLocale, locales, type Locale } from "@/lib/i18n/config";
-import { getMessages, getProjectText } from "@/lib/i18n/get-messages";
+import { useLanguage } from "@/lib/i18n/language-provider";
+import { getProjectText } from "@/lib/i18n/get-messages";
+import type { PortfolioProject } from "@/lib/data/portfolio";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
-export function generateStaticParams() {
-    return locales.flatMap((locale) =>
-        projects.map((project) => ({ locale, slug: project.slug })),
-    );
+interface ProjectDetailsProps {
+    project: PortfolioProject;
 }
 
-export default async function ProjectDetailsPage({
-    params,
-}: {
-    params: Promise<{ locale: string; slug: string }>;
-}) {
-    const { locale: rawLocale, slug } = await params;
-    if (!isLocale(rawLocale)) notFound();
-    const locale: Locale = rawLocale;
-    const text = getMessages(locale);
-
-    const project = getProjectBySlug(slug);
-    if (!project) notFound();
+export function ProjectDetails({ project }: ProjectDetailsProps) {
+    const { locale, text } = useLanguage();
 
     const localized = getProjectText(
         locale,
@@ -35,9 +24,9 @@ export default async function ProjectDetailsPage({
     );
 
     return (
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
             <Link
-                href={`/${locale}/projects`}
+                href="/projects"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
                 <FiArrowLeft />

@@ -4,17 +4,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { profile } from "@/lib/data/profile";
-import type { MessageCatalog } from "@/lib/i18n/messages";
+import { useLanguage } from "@/lib/i18n/language-provider";
 
 interface ServiceOrderButtonProps {
     serviceName: string;
-    text: MessageCatalog;
 }
 
-export function ServiceOrderButton({
-    serviceName,
-    text,
-}: ServiceOrderButtonProps) {
+export function ServiceOrderButton({ serviceName }: ServiceOrderButtonProps) {
+    const { text } = useLanguage();
     const [details, setDetails] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 

@@ -1,15 +1,13 @@
+"use client";
+
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import { profile } from "@/lib/data/portfolio";
-import type { Locale } from "@/lib/i18n/config";
-import type { MessageCatalog } from "@/lib/i18n/messages";
+import { profile } from "@/lib/data/profile";
+import { useLanguage } from "@/lib/i18n/language-provider";
 
-interface SiteFooterProps {
-    locale: Locale;
-    text: MessageCatalog;
-}
+export function SiteFooter() {
+    const { text } = useLanguage();
 
-export function SiteFooter({ text }: SiteFooterProps) {
     const contactLinks = [
         {
             label: "WhatsApp",
@@ -30,7 +28,7 @@ export function SiteFooter({ text }: SiteFooterProps) {
 
     return (
         <footer className="border-t border-border/70">
-            <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-14 sm:px-8">
+            <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-5 py-14 sm:px-8">
                 <p className="max-w-xl text-2xl font-medium leading-snug tracking-tight text-foreground">
                     {text.footer.headline}
                 </p>
