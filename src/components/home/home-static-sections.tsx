@@ -3,17 +3,14 @@
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { PortfolioProject } from "@/lib/data/portfolio";
-import type { quickStats as quickStatsData } from "@/lib/data/profile";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
 interface HomeStaticSectionsProps {
-    quickStats: typeof quickStatsData;
     featuredProjects: PortfolioProject[];
 }
 
 export function HomeStaticSections({
-    quickStats,
     featuredProjects,
 }: HomeStaticSectionsProps) {
     const { text } = useLanguage();
@@ -22,7 +19,7 @@ export function HomeStaticSections({
         <>
             <section className="border-t border-border/70">
                 <MotionReveal className="mx-auto grid max-w-[1440px] grid-cols-2 gap-8 px-5 py-14 sm:px-8 md:grid-cols-4">
-                    {quickStats.map((stat) => (
+                    {text.stats.map((stat) => (
                         <div key={stat.label}>
                             <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
                                 {stat.label}

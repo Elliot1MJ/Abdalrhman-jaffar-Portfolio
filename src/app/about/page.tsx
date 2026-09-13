@@ -3,11 +3,18 @@
 import Image from "next/image";
 import { skillGroups } from "@/lib/data/profile";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import { useTheme } from "@/components/providers/theme-provider";
 import myPic from "@/assets/images/myPic.jpg";
 import { MotionReveal } from "@/components/shared/motion-reveal";
 
 export default function AboutPage() {
     const { text } = useLanguage();
+    const { theme } = useTheme();
+
+    const logoSrc =
+        theme === "light"
+            ? "/brand/octopus-mark-light.svg"
+            : "/brand/octopus-mark-dark.svg";
 
     return (
         <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
@@ -95,6 +102,43 @@ export default function AboutPage() {
                                     </span>
                                 ))}
                             </div>
+                        </div>
+                    ))}
+                </div>
+            </MotionReveal>
+
+            <MotionReveal
+                delay={0.2}
+                className="mt-16 rounded-2xl border border-border bg-card/40 p-8 sm:p-10"
+            >
+                <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={logoSrc}
+                        alt={text.profile.shortName}
+                        className="h-14 w-14 shrink-0"
+                    />
+                    <div>
+                        <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
+                            {text.about.brand.eyebrow}
+                        </p>
+                        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
+                            {text.about.brand.title}
+                        </h2>
+                    </div>
+                </div>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                    {text.about.brand.description}
+                </p>
+                <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                    {text.about.brand.pillars.map((pillar) => (
+                        <div key={pillar.title}>
+                            <p className="text-sm font-medium text-foreground">
+                                {pillar.title}
+                            </p>
+                            <p className="mt-2 text-sm text-muted-foreground">
+                                {pillar.description}
+                            </p>
                         </div>
                     ))}
                 </div>

@@ -1,4 +1,4 @@
-import { featuredProjects, quickStats } from "@/lib/data/portfolio";
+import { featuredProjects } from "@/lib/data/portfolio";
 import { HeroContent } from "@/components/home/hero-content";
 import { HomeStaticSections } from "@/components/home/home-static-sections";
 
@@ -9,10 +9,7 @@ export default function HomePage() {
                 <HeroContent />
             </section>
 
-            <HomeStaticSections
-                quickStats={quickStats}
-                featuredProjects={featuredProjects}
-            />
+            <HomeStaticSections featuredProjects={featuredProjects} />
         </div>
     );
 }

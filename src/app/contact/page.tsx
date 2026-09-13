@@ -1,7 +1,7 @@
 "use client";
 
 import { FaWhatsapp, FaInstagram, FaGitlab } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
+import { FiBriefcase, FiMail } from "react-icons/fi";
 import { profile } from "@/lib/data/profile";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { ContactForm } from "@/components/contact/contact-form";
@@ -28,6 +28,18 @@ export default function ContactPage() {
             value: text.contact.ways.gitlabValue,
             href: profile.gitlab,
             icon: <FaGitlab />,
+        },
+        {
+            label: text.contact.ways.khamsatLabel,
+            value: text.contact.ways.khamsatValue,
+            href: profile.khamsat,
+            icon: <FiBriefcase />,
+        },
+        {
+            label: text.contact.ways.mostaqlLabel,
+            value: text.contact.ways.mostaqlValue,
+            href: profile.mostaql,
+            icon: <FiBriefcase />,
         },
         {
             label: text.contact.ways.emailLabel,

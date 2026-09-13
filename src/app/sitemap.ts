@@ -4,7 +4,15 @@ import { projects } from "@/lib/data/portfolio";
 const SITE_URL = "https://abdalrhman-jaffar-portfolio.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const staticPaths = ["", "/about", "/services", "/projects", "/cv", "/contact"];
+    const staticPaths = [
+        "",
+        "/about",
+        "/services",
+        "/projects",
+        "/tools",
+        "/cv",
+        "/contact",
+    ];
 
     const staticEntries = staticPaths.map((path) => ({
         url: `${SITE_URL}${path}`,

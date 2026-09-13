@@ -34,9 +34,9 @@ export const projects: PortfolioProject[] = [
         category: "react",
         timeline: "Jan 1, 2026 - Feb 22, 2026",
         description:
-            "Official university web platform with structured frontend architecture for admissions, programs, and academic content.",
+            "Official university platform covering admissions, programs, and academic content in one structured frontend.",
         codeSummary:
-            "Highlights: • Built reusable modules for admissions and program pages. • Improved performance with rendering and asset optimization. • Delivered a consistent content system across key university pages.",
+            "Highlights: • Reusable modules for admissions and program pages. • Rendering and asset optimization for real performance gains. • One consistent content system across every core page.",
         stack: ["React.js", "TypeScript", "TailwindCSS"],
         image: upafaMedia.image,
         gallery: upafaMedia.gallery,
@@ -52,9 +52,9 @@ export const projects: PortfolioProject[] = [
         category: "next.js",
         timeline: "Dec 25, 2025 - Feb 1, 2026",
         description:
-            "Booking platform for parents to register children, manage schedules, and follow class availability.",
+            "Booking platform parents use to register children, manage schedules, and track class availability.",
         codeSummary:
-            "Highlights: • Designed a clear booking flow from registration to confirmation. • Built admin views for schedules, attendance, and capacity. • Structured reusable components for faster feature delivery.",
+            "Highlights: • Clear booking flow from registration to confirmation. • Admin views for schedules, attendance, and capacity. • Reusable components that sped up every feature after the first.",
         stack: ["Next.js", "React.js", "TypeScript"],
         image: yogoKidsMedia.image,
         gallery: yogoKidsMedia.gallery,
@@ -70,9 +70,9 @@ export const projects: PortfolioProject[] = [
         category: "react",
         timeline: "Aug 2, 2025 - Oct 22, 2025",
         description:
-            "Operations dashboard for cargo registration, shipment tracking, and customs-related workflow handling.",
+            "Operations dashboard for cargo registration, shipment tracking, and the customs workflow behind it.",
         codeSummary:
-            "Highlights: • Implemented QR-based shipment tracking in the dashboard. • Built complex cargo forms with pricing and rules validation. • Added export-ready views for daily logistics operations.",
+            "Highlights: • QR-based shipment tracking built into the dashboard. • Cargo forms with full pricing and rules validation. • Export-ready views used daily in real logistics operations.",
         stack: ["React.js", "TypeScript", "TailwindCSS"],
         image: tareekAlshahbaMedia.image,
         gallery: tareekAlshahbaMedia.gallery,
@@ -88,9 +88,9 @@ export const projects: PortfolioProject[] = [
         category: "fullstack",
         timeline: "Nov 15, 2025 - Dec 22, 2025",
         description:
-            "Appointment booking system for clinics with role-based access for reception staff and doctors.",
+            "Appointment booking for clinics, with fully separate role-based access for doctors and reception staff.",
         codeSummary:
-            "Highlights: • Built conflict-aware appointment scheduling with calendar views. • Implemented role-based interfaces for doctors and reception staff. • Connected frontend workflows to Express.js APIs and MySQL.",
+            "Highlights: • Conflict-aware scheduling with calendar views. • Separate interfaces per role, driven by real access control. • Frontend wired directly into Express.js APIs and MySQL.",
         stack: ["React.js", "TypeScript", "TailwindCSS", "Express.js", "MySQL"],
         image: ibtisamaMedia.image,
         gallery: ibtisamaMedia.gallery,
@@ -105,9 +105,9 @@ export const projects: PortfolioProject[] = [
         category: "next.js",
         timeline: "Jun 6, 2025 - Aug 8, 2025",
         description:
-            "Boat reservation platform for the Saudi market with booking-focused landing pages and admin operations.",
+            "Boat reservation platform for the Saudi market — a conversion-focused landing page plus a full admin side.",
         codeSummary:
-            "Highlights: • Built a high-conversion landing page for booking intent. • Developed an admin dashboard for trips, pricing, and reservations. • Optimized responsive behavior for mobile-first usage.",
+            "Highlights: • High-conversion landing page built to drive booking intent. • Admin dashboard for trips, pricing, and reservations. • Mobile-first responsive behavior, tuned for daily use.",
         stack: ["Next.js", "React.js", "TypeScript", "TailwindCSS"],
         image: lujjhMedia.image,
         gallery: lujjhMedia.gallery,
@@ -122,9 +122,9 @@ export const projects: PortfolioProject[] = [
         category: "react",
         timeline: "Apr 8, 2025 - Jun 2, 2025",
         description:
-            "Shipment tracking platform focused on live status flow, route visibility, and operational monitoring.",
+            "Shipment tracking platform built around live status, route visibility, and day-to-day operational monitoring.",
         codeSummary:
-            "Highlights: • Built tracking-first dashboard screens for shipment lifecycle updates. • Structured reusable UI blocks for status timelines and operations panels. • Implemented responsive views for desktop and tablet logistics workflows.",
+            "Highlights: • Tracking-first dashboard screens for the full shipment lifecycle. • Reusable UI blocks for status timelines and operations panels. • Responsive views built for desktop and tablet logistics work.",
         stack: ["React.js", "TypeScript", "TailwindCSS"],
         image: tatabuMedia.image,
         gallery: tatabuMedia.gallery,

@@ -20,6 +20,7 @@ export interface MessageCatalog {
         about: string;
         services: string;
         projects: string;
+        tools: string;
         cv: string;
         contact: string;
         menu: string;
@@ -36,6 +37,7 @@ export interface MessageCatalog {
         about: string;
         services: string;
         projects: string;
+        tools: string;
         cv: string;
         contact: string;
     };
@@ -48,8 +50,6 @@ export interface MessageCatalog {
     hero: {
         badge: string;
         headingLine1: string;
-        headingLine2: string;
-        headingLine3: string;
         summary: string;
         seeProjects: string;
         downloadCV: string;
@@ -67,6 +67,15 @@ export interface MessageCatalog {
         principlesTitle: string;
         durationLabel: string;
         statusLabel: string;
+        brand: {
+            eyebrow: string;
+            title: string;
+            description: string;
+            pillars: Array<{
+                title: string;
+                description: string;
+            }>;
+        };
     };
     services: {
         eyebrow: string;
@@ -135,6 +144,13 @@ export interface MessageCatalog {
         };
         projectCopy: ProjectTranslationMap;
     };
+    tools: {
+        eyebrow: string;
+        title: string;
+        description: string;
+        viewOnNpm: string;
+        viewRepo: string;
+    };
     cv: {
         eyebrow: string;
         title: string;
@@ -167,6 +183,10 @@ export interface MessageCatalog {
             instagramValue: string;
             gitlabLabel: string;
             gitlabValue: string;
+            khamsatLabel: string;
+            khamsatValue: string;
+            mostaqlLabel: string;
+            mostaqlValue: string;
             emailLabel: string;
         };
         emailTemplate: {
@@ -214,44 +234,44 @@ const arabicProjectCopy: ProjectTranslationMap = {
     "UPAFA University Platform": {
         name: "منصة UPAFA الجامعية",
         description:
-            "منصة جامعية رسمية بواجهة منظمة لصفحات القبول والبرامج والمحتوى الأكاديمي.",
+            "منصة جامعية رسمية، تحتوي صفحات القبول والبرامج والمحتوى الأكاديمي في بنية موحدة ومنظمة.",
         codeSummary:
-            "النقاط الأبرز: • بناء وحدات قابلة لإعادة الاستخدام لصفحات القبول والبرامج. • تحسين الأداء عبر ضبط التحميل وسلوك العرض. • توحيد بنية المحتوى في الصفحات الأساسية.",
+            "النقاط الأبرز: • وحدات قابلة لإعادة الاستخدام لصفحات القبول والبرامج. • تحسين الأداء عبر ضبط التحميل وسلوك العرض. • بنية محتوى موحّدة عبر كل الصفحات الأساسية.",
     },
     "Childcare Booking Platform": {
         name: "منصة حجز رعاية الأطفال",
         description:
-            "منصة حجز للأهل لتسجيل الأطفال وإدارة الجداول ومتابعة توفر الصفوف.",
+            "منصة حجز يستخدمها الأهل لتسجيل الأطفال، وتدير من خلالها الإدارة الجداول وتوفر الصفوف.",
         codeSummary:
-            "النقاط الأبرز: • تصميم رحلة حجز واضحة من التسجيل حتى التأكيد. • بناء لوحات إدارة للحضور والجداول والسعات. • تنظيم مكونات قابلة لإعادة الاستخدام لتسريع التطوير.",
+            "النقاط الأبرز: • رحلة حجز واضحة من التسجيل حتى التأكيد. • لوحات إدارة للحضور والجداول والسعات. • مكونات قابلة لإعادة الاستخدام سرّعت إضافة الميزات الجديدة.",
     },
     "Cargo Logistics System": {
         name: "نظام اللوجستيات والشحن",
         description:
-            "لوحة عمليات لإدارة تسجيل الشحنات وتتبعها ومعالجة تدفقات العمل الجمركية.",
+            "لوحة عمليات لتسجيل الشحنات وتتبعها، ومعالجة تدفقات العمل الجمركية المرتبطة بها.",
         codeSummary:
-            "النقاط الأبرز: • تنفيذ تتبع الشحنات عبر QR داخل لوحة التحكم. • بناء نماذج إدخال مع تحقق لقواعد التسعير والشحن. • إضافة واجهات تصدير جاهزة لعمليات التشغيل اليومية.",
+            "النقاط الأبرز: • تتبع شحنات عبر QR داخل لوحة التحكم. • نماذج إدخال مع تحقق كامل من قواعد التسعير والشحن. • واجهات تصدير جاهزة للاستخدام اليومي في العمليات.",
     },
     "Dental Clinic Booking System": {
         name: "نظام حجز عيادة الأسنان",
         description:
-            "نظام حجز مواعيد للعيادات مع صلاحيات منفصلة للأطباء وموظفي الاستقبال.",
+            "نظام حجز مواعيد للعيادات، بصلاحيات منفصلة تمامًا بين الأطباء وموظفي الاستقبال.",
         codeSummary:
-            "النقاط الأبرز: • بناء جدولة مواعيد مع منع التعارضات. • تنفيذ واجهات منفصلة حسب الدور الوظيفي. • ربط تدفقات الواجهة مع Express.js وMySQL.",
+            "النقاط الأبرز: • جدولة مواعيد تمنع التعارض بين الحجوزات. • واجهات مختلفة لكل دور وظيفي حسب الصلاحيات. • ربط الواجهة مباشرة بـExpress.js وMySQL.",
     },
     "Boat Booking Platform": {
         name: "منصة حجز القوارب",
         description:
-            "منصة حجز قوارب للسوق السعودي مع صفحات هبوط موجّهة للتحويل ولوحة إدارة.",
+            "منصة حجز قوارب للسوق السعودي، بصفحة هبوط مصممة للتحويل ولوحة إدارة كاملة.",
         codeSummary:
-            "النقاط الأبرز: • تطوير صفحة هبوط عالية التحويل لرفع نية الحجز. • بناء لوحة إدارة للرحلات والتسعير والحجوزات. • تحسين تجربة الموبايل للاستخدام اليومي.",
+            "النقاط الأبرز: • صفحة هبوط عالية التحويل لرفع نية الحجز. • لوحة إدارة للرحلات والتسعير والحجوزات. • تجربة موبايل مضبوطة للاستخدام اليومي.",
     },
     "Tatabu Shipment Tracking Platform": {
         name: "منصة تتبع الشحنات Tatabu",
         description:
-            "منصة لتتبع الشحنات مع عرض حي لحالة الشحنة ومسارها ومؤشرات المتابعة التشغيلية.",
+            "منصة تتبع شحنات تعرض حالة كل شحنة ومسارها بشكل حي، مع مؤشرات متابعة تشغيلية.",
         codeSummary:
-            "النقاط الأبرز: • بناء واجهات متابعة دورة الشحنة من الإنشاء حتى التسليم. • تنظيم مكونات قابلة لإعادة الاستخدام لخطوط الحالة ولوحات العمليات. • تحسين التجربة للاستعمال اليومي على شاشات المكتب والتابلت.",
+            "النقاط الأبرز: • واجهات متابعة لدورة الشحنة كاملة، من الإنشاء حتى التسليم. • مكونات قابلة لإعادة الاستخدام لخطوط الحالة ولوحات العمليات. • تجربة مضبوطة لشاشات المكتب والتابلت في الاستخدام اليومي.",
     },
 };
 
@@ -263,6 +283,7 @@ export const messages: Record<Language, MessageCatalog> = {
             about: "About",
             services: "Services",
             projects: "Projects",
+            tools: "Tools",
             cv: "Resume",
             contact: "Contact",
             menu: "Menu",
@@ -279,48 +300,70 @@ export const messages: Record<Language, MessageCatalog> = {
             about: "About",
             services: "Services",
             projects: "Projects",
+            tools: "Tools",
             cv: "Resume",
             contact: "Contact",
         },
         profile: {
             fullName: "Abdalrhman Jaffar",
-            shortName: "Abdalrhman",
-            title: "Frontend Developer",
+            shortName: "The Octopus",
+            title: "Web Developer",
             location: "Damascus, Syria",
         },
         hero: {
-            badge: "Frontend Developer",
+            badge: "Web Developer",
             headingLine1: "Abdalrhman Jaffar",
-            headingLine2: "Frontend Developer",
-            headingLine3: "",
             summary:
-                "I build modern web applications, scalable dashboards, and high-conversion landing pages using React and modern frontend technologies.\n\nFocused on performance, clean architecture, and real production systems.",
+                "I build web products across all kinds of use cases — booking systems, dashboards, e-commerce, landing pages, and more — using React, Next.js, and modern web technologies.\n\nShipped to production, not left as demos.",
             seeProjects: "View Projects",
             downloadCV: "Download Resume",
-            stack: "React.js • Next.js • TypeScript • Tailwind CSS • Dashboards • Booking Platforms",
+            stack: "React.js • Next.js • TypeScript • Tailwind CSS",
             imageAlt: "Abdalrhman Jaffar portrait",
         },
         about: {
             eyebrow: "About",
             title: "Professional Summary",
             description:
-                "Frontend Developer building scalable dashboards, booking platforms, and data-driven web applications.",
+                "Web Developer building production-ready products across a wide range of use cases.",
             paragraphOne:
-                "I'm a Frontend Developer specializing in building real production systems, not just UI demos.",
+                "I build systems that ship to production and stay in daily use — not prototypes that stop at the demo.",
             paragraphTwo:
-                "My work focuses on scalable dashboards, booking platforms, and data-driven web applications using React, Next.js, and TypeScript.",
+                "I don't stick to one kind of project. Booking flows, admin dashboards, e-commerce stores, landing pages, logistics tools — whatever the product needs, I take on. React, Next.js, and TypeScript are the tools; understanding what each project actually needs is the job.",
             paragraphThree:
-                "I care about performance, maintainability, and user experience. I enjoy structuring complex interfaces and building clean frontend architecture.",
-            educationTitle: "Frontend Stack",
+                "I'd rather spend an extra hour on the data flow and component structure now than debug it in production later. Clean architecture isn't a nice-to-have — it's what keeps a real product from breaking when it matters.",
+            educationTitle: "Tech Stack",
             principlesTitle: "Skills",
             durationLabel: "Focus",
             statusLabel: "Specialization",
+            brand: {
+                eyebrow: "The Octopus",
+                title: "Why an Octopus?",
+                description:
+                    "The Octopus isn't just a logo — it's the seal that goes on my work. A promise that whatever it's attached to was built on solid architecture from the first line of code.",
+                pillars: [
+                    {
+                        title: "Adaptation",
+                        description:
+                            "An octopus doesn't fight its environment — it adapts to reach its goal. Same approach here: bend the tools to the problem, not the other way around.",
+                    },
+                    {
+                        title: "Precision",
+                        description:
+                            "Attention to the details a user never sees, but that guarantee a system stays stable under real use.",
+                    },
+                    {
+                        title: "Handling multiple systems at once",
+                        description:
+                            "An octopus runs eight arms independently and in sync. That's the same skill a real product needs — many moving parts, working as one.",
+                    },
+                ],
+            },
         },
         services: {
             eyebrow: "Services",
             title: "My Services",
             description:
-                "I offer frontend services for teams and founders who need fast, production-ready delivery.",
+                "Web development for teams and founders who need production-ready work, not a prototype.",
             orderCta: "Order service",
             openImage: "Open service image preview",
             closePreview: "Close service image preview",
@@ -335,45 +378,45 @@ export const messages: Record<Language, MessageCatalog> = {
                 {
                     title: "Website Development",
                     description:
-                        "Building complete websites using React.js for frontend and Node.js for backend.",
+                        "Full websites built with React.js on the frontend and Node.js on the backend.",
                     deliverable:
-                        "Deliverable: Full web application with clean UI, API integration, and deployment-ready code.",
+                        "Deliverable: complete web app, clean UI, API wired up, ready to deploy.",
                     image: "/images/services/Website%20Development.webp",
                     imageAlt: "Website development service preview",
                 },
                 {
                     title: "Landing Page Development",
                     description:
-                        "Designing and developing high-conversion landing pages using Next.js.",
+                        "Landing pages built in Next.js and designed to convert, not just look good.",
                     deliverable:
-                        "Deliverable: Fast, SEO-friendly, responsive landing page optimized for conversions.",
+                        "Deliverable: fast, SEO-ready, responsive landing page tuned for conversions.",
                     image: "/images/services/Landing%20Page%20Development.webp",
                     imageAlt: "Next.js landing page service preview",
                 },
                 {
                     title: "E-commerce Store Development",
                     description:
-                        "Building modern e-commerce stores using Next.js with smooth shopping experience.",
+                        "Online stores built in Next.js, from product listing to checkout.",
                     deliverable:
-                        "Deliverable: Complete online store pages with product flow, cart, and checkout integration.",
+                        "Deliverable: full store — product flow, cart, and checkout wired end to end.",
                     image: "/images/services/E-commerce%20Store%20Development.webp",
                     imageAlt: "Next.js e-commerce service preview",
                 },
                 {
                     title: "Bot Development",
                     description:
-                        "Creating Node.js bots including general automation bots and Telegram bots.",
+                        "Node.js bots — automation bots and Telegram bots built to run unattended.",
                     deliverable:
-                        "Deliverable: Production-ready bot with command flow, integrations, and deployment guidance.",
+                        "Deliverable: production-ready bot with clear commands and deployment handled.",
                     image: "/images/services/Bots%20Development.webp",
                     imageAlt: "Bot development service preview",
                 },
                 {
                     title: "WordPress & Shopify Development",
                     description:
-                        "Creating websites and online stores using WordPress and Shopify platforms.",
+                        "Sites and stores on WordPress and Shopify, set up and customized properly.",
                     deliverable:
-                        "Deliverable: Managed website/store setup, customization, and ready-to-launch storefront.",
+                        "Deliverable: fully configured store or site, ready to launch.",
                     image: "/images/services/wordpress-shopify-development.webp",
                     imageAlt: "WordPress and Shopify service preview",
                 },
@@ -382,30 +425,30 @@ export const messages: Record<Language, MessageCatalog> = {
         stats: [
             {
                 label: "Role",
-                value: "Frontend Developer",
-                detail: "Focused on production web applications.",
+                value: "Web Developer",
+                detail: "Building production web applications, not demos.",
             },
             {
                 label: "Core Focus",
-                value: "Dashboards & Booking Systems",
-                detail: "Complex interfaces for real operational workflows.",
+                value: "Full Web Delivery",
+                detail: "Whatever the product needs — no fixed niche.",
             },
             {
                 label: "Main Stack",
                 value: "React, Next.js, TypeScript",
-                detail: "Modern frontend technologies with clean architecture.",
+                detail: "Typed, componentized, built to stay maintainable.",
             },
             {
                 label: "Integration",
                 value: "REST APIs, Auth, Express",
-                detail: "Frontend connected to real backend services.",
+                detail: "Wired directly into real backend services.",
             },
         ],
         education: {
-            degree: "Frontend Development",
+            degree: "Web Development",
             university: "React.js, Next.js, TypeScript, Tailwind CSS",
-            duration: "Scalable dashboards and booking platforms",
-            status: "Frontend web applications",
+            duration: "Production-ready web applications",
+            status: "Web applications",
             coursework: [
                 "React.js",
                 "Next.js",
@@ -436,7 +479,7 @@ export const messages: Record<Language, MessageCatalog> = {
             {
                 title: "System Design",
                 description:
-                    "Admin Dashboards, Booking Systems, Complex Forms, UX Flow Structuring.",
+                    "Admin Dashboards, Booking Systems, E-commerce, Landing Pages, Complex Forms, UX Flow Structuring.",
             },
             {
                 title: "Backend Integration",
@@ -448,7 +491,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "Projects",
             title: "Featured Projects",
             description:
-                "Real production platforms focused on booking workflows, dashboards, and data-driven interfaces.",
+                "A range of production platforms — booking systems, dashboards, and logistics tools among them.",
             filters: {
                 featured: "Featured",
                 all: "All Projects",
@@ -480,11 +523,19 @@ export const messages: Record<Language, MessageCatalog> = {
             },
             projectCopy: {},
         },
+        tools: {
+            eyebrow: "Tools",
+            title: "Tools I've Built",
+            description:
+                "Small utilities I've built and published for myself and other developers to use.",
+            viewOnNpm: "View on npm",
+            viewRepo: "View repository",
+        },
         cv: {
             eyebrow: "Resume",
             title: "Professional Resume & Technical Profile",
             description:
-                "Frontend Developer with 3+ years building modern production web applications.",
+                "3+ years building web products that stay in daily use, not just demos.",
             openCV: "Open resume",
             downloadPDF: "Download PDF",
             iframeTitle: "Abdalrhman resume",
@@ -495,7 +546,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "Contact",
             title: "Let's Talk",
             description:
-                "For project inquiries, collaboration, or product discussions, feel free to reach out through the channels below.",
+                "Have a project, a role, or just a technical question? Reach out through any of the channels below.",
             fields: {
                 name: "Name",
                 email: "Email",
@@ -516,6 +567,10 @@ export const messages: Record<Language, MessageCatalog> = {
                 instagramValue: "@abdalrhman_jaffar",
                 gitlabLabel: "GitLab",
                 gitlabValue: "gitlab.com/dev.elliot.j",
+                khamsatLabel: "Khamsat",
+                khamsatValue: "Freelance profile",
+                mostaqlLabel: "Mostaql",
+                mostaqlValue: "Freelance profile",
                 emailLabel: "Email",
             },
             emailTemplate: {
@@ -533,22 +588,20 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         footer: {
-            headline:
-                "Building modern frontend products for real business operations.",
-            description:
-                "React, Next.js, and TypeScript development for scalable web products.",
+            headline: "Products that work in the real world, not just in a demo.",
+            description: "React, Next.js, and TypeScript, built to last.",
             contactLabel: "Contact",
             rightsReserved: "All rights reserved.",
         },
         seo: {
             title: "Abdalrhman Jaffar | Portfolio",
             description:
-                "Frontend portfolio of Abdalrhman Jaffar, focused on modern web applications, scalable dashboards, and booking platforms built with React and Next.js.",
+                "Abdalrhman Jaffar builds booking systems, dashboards, e-commerce, and more with React and Next.js — shipped to production.",
             keywords:
-                "Abdalrhman Jaffar, Frontend Developer, React.js, Next.js, TypeScript, Dashboards, Booking Platforms, Web Applications, Portfolio",
-            ogTitle: "Abdalrhman Jaffar - Frontend Developer Portfolio",
+                "Abdalrhman Jaffar, Web Developer, React.js, Next.js, TypeScript, Dashboards, Booking Platforms, Web Applications, Portfolio",
+            ogTitle: "Abdalrhman Jaffar - Web Developer Portfolio",
             ogDescription:
-                "Explore production-focused frontend projects in booking platforms, logistics systems, and dashboards.",
+                "Booking systems, dashboards, e-commerce, and more — real products, built for production.",
             locale: "en_US",
             localeAlternate: "ar_SY",
         },
@@ -571,6 +624,7 @@ export const messages: Record<Language, MessageCatalog> = {
             about: "نبذة",
             services: "خدماتي",
             projects: "المشاريع",
+            tools: "الأدوات",
             cv: "السيرة",
             contact: "تواصل",
             menu: "القائمة",
@@ -587,48 +641,69 @@ export const messages: Record<Language, MessageCatalog> = {
             about: "نبذة",
             services: "خدماتي",
             projects: "المشاريع",
+            tools: "الأدوات",
             cv: "السيرة الذاتية",
             contact: "التواصل",
         },
         profile: {
             fullName: "عبد الرحمن جعفر",
-            shortName: "عبد الرحمن",
-            title: "مطور واجهات أمامية",
+            shortName: "The Octopus",
+            title: "مطور ويب",
             location: "دمشق، سوريا",
         },
         hero: {
-            badge: "مطور واجهات أمامية",
+            badge: "مطور ويب",
             headingLine1: "عبد الرحمن جعفر",
-            headingLine2: "مطور واجهات أمامية",
-            headingLine3: "",
             summary:
-                "أبني تطبيقات ويب حديثة، ولوحات تحكم قابلة للتوسع، وصفحات هبوط عالية التحويل باستخدام React وتقنيات Frontend الحديثة.\n\nأركز على الأداء، وبنية كود نظيفة، وأنظمة إنتاجية حقيقية.",
+                "أنظمة حجز، لوحات تحكم، متاجر إلكترونية، صفحات هبوط — منتجات ويب حقيقية تصل لمستخدميها، لا نماذج تبقى على الورق.",
             seeProjects: "عرض المشاريع",
             downloadCV: "تحميل السيرة الذاتية",
-            stack: "React.js • Next.js • TypeScript • Tailwind CSS • لوحات تحكم • منصات حجز",
+            stack: "React.js • Next.js • TypeScript • Tailwind CSS",
             imageAlt: "صورة عبد الرحمن جعفر",
         },
         about: {
             eyebrow: "نبذة",
             title: "نبذة مهنية",
-            description:
-                "مطور واجهات أمامية يبني لوحات تحكم قابلة للتوسع ومنصات حجز وتطبيقات ويب معتمدة على البيانات.",
+            description: "أبني منتجات ويب تشتغل فعليًا، لا مجرد واجهات جميلة.",
             paragraphOne:
-                "أنا مطور واجهات أمامية متخصص في بناء أنظمة إنتاجية حقيقية، وليس مجرد واجهات تجريبية.",
+                "ما بلتزم بنوع واحد من المشاريع. حجز، لوحة تحكم، متجر، صفحة هبوط — أي شي يحتاجه المشروع، بشتغل عليه لحد ما يوصل لمرحلة الاستخدام الفعلي.",
             paragraphTwo:
-                "يركز عملي على لوحات التحكم القابلة للتوسع، ومنصات الحجز، وتطبيقات الويب المعتمدة على البيانات باستخدام React وNext.js وTypeScript.",
+                "React وNext.js وTypeScript هي الأدوات. الشغلة الحقيقية هي فهم احتياج كل مشروع بالضبط، وبناء الحل المناسب له بدون حشو أو تعقيد زايد.",
             paragraphThree:
-                "أهتم بالأداء، وسهولة الصيانة، وتجربة المستخدم. أستمتع ببناء واجهات معقدة بطريقة منظمة وبنية Frontend نظيفة.",
-            educationTitle: "تقنيات Frontend",
+                "بنية نظيفة من أول يوم توفر وقت ومشاكل لاحقًا. هاد مو رفاهية — هاد اللي بخلي المنتج يصمد لما يشتد الاستخدام عليه.",
+            educationTitle: "التقنيات",
             principlesTitle: "المهارات",
             durationLabel: "التركيز",
             statusLabel: "التخصص",
+            brand: {
+                eyebrow: "The Octopus",
+                title: "ليش الأخطبوط؟",
+                description:
+                    "الأخطبوط مش مجرد شعار — هو الختم اللي بحطه على شغلي. وعد إنه أي شي حامل هالاسم مبني على بنية متينة من أول سطر كود.",
+                pillars: [
+                    {
+                        title: "التكيّف",
+                        description:
+                            "الأخطبوط ما بيقاوم بيئته، بيتكيّف معها لحد ما يوصل لهدفه. نفس المنطق هون: أطوّع الأدوات لخدمة المشروع، مو العكس.",
+                    },
+                    {
+                        title: "الدقة",
+                        description:
+                            "انتباه للتفاصيل اللي المستخدم ما بيشوفها أبدًا، بس هي اللي بتضمن ثبات النظام تحت الاستخدام الفعلي.",
+                    },
+                    {
+                        title: "إدارة أنظمة متعددة بمرونة",
+                        description:
+                            "الأخطبوط بيحرّك ثمن أذرع بشكل مستقل ومتزامن بنفس الوقت. هاي بالضبط المهارة اللي بيحتاجها أي منتج حقيقي — أجزاء كتير، شغالة كوحدة واحدة.",
+                    },
+                ],
+            },
         },
         services: {
             eyebrow: "خدماتي",
             title: "الخدمات التي أقدّمها",
             description:
-                "أقدّم خدمات Frontend جاهزة للإنتاج للشركات وأصحاب المشاريع مع تنفيذ سريع ومنظّم.",
+                "تنفيذ جاهز للإنتاج — للشركات وأصحاب المشاريع اللي بدهم شغل حقيقي، مو تجربة.",
             orderCta: "اطلب الخدمة",
             openImage: "فتح معاينة صورة الخدمة",
             closePreview: "إغلاق معاينة صورة الخدمة",
@@ -642,45 +717,45 @@ export const messages: Record<Language, MessageCatalog> = {
                 {
                     title: "إنشاء مواقع إلكترونية",
                     description:
-                        "تطوير مواقع إلكترونية كاملة باستخدام React.js للواجهة وNode.js للخلفية.",
+                        "مواقع متكاملة: React.js للواجهة، Node.js للخلفية.",
                     deliverable:
-                        "المخرج: موقع متكامل بواجهة نظيفة وربط API وكود جاهز للنشر.",
+                        "المخرج: موقع كامل، واجهة نظيفة، API مربوط، جاهز للنشر.",
                     image: "/images/services/Website%20Development.webp",
                     imageAlt: "معاينة خدمة إنشاء المواقع",
                 },
                 {
                     title: "إنشاء صفحات هبوط",
                     description:
-                        "تصميم وتطوير صفحات هبوط عالية التحويل باستخدام Next.js.",
+                        "صفحات هبوط بـNext.js مصممة للتحويل، لا فقط للمظهر.",
                     deliverable:
-                        "المخرج: صفحة هبوط سريعة ومتجاوبة ومهيأة لمحركات البحث والتحويل.",
+                        "المخرج: صفحة سريعة، مهيأة لمحركات البحث، ومضبوطة لرفع التحويل.",
                     image: "/images/services/Landing%20Page%20Development.webp",
                     imageAlt: "معاينة خدمة صفحات الهبوط",
                 },
                 {
                     title: "إنشاء متجر إلكتروني",
                     description:
-                        "تطوير متجر إلكتروني حديث باستخدام Next.js مع تجربة شراء سلسة.",
+                        "متاجر إلكترونية بـNext.js، من صفحة المنتج حتى الدفع.",
                     deliverable:
-                        "المخرج: متجر متكامل بصفحات المنتجات والسلة وخطوات شراء واضحة.",
+                        "المخرج: متجر كامل — منتجات، سلة، وخطوات دفع مربوطة من طرف لطرف.",
                     image: "/images/services/E-commerce%20Store%20Development.webp",
                     imageAlt: "معاينة خدمة المتجر الإلكتروني",
                 },
                 {
                     title: "إنشاء بوتات",
                     description:
-                        "إنشاء بوتات باستخدام Node.js تشمل بوتات عامة وبوتات تلغرام.",
+                        "بوتات Node.js — أتمتة عامة أو بوتات تلغرام، مصممة للعمل دون تدخل.",
                     deliverable:
-                        "المخرج: بوت جاهز للإنتاج مع منطق أوامر واضح وإعداد قابل للتشغيل.",
+                        "المخرج: بوت جاهز للإنتاج، أوامر واضحة، ونشر مُنجز بالكامل.",
                     image: "/images/services/Bots%20Development.webp",
                     imageAlt: "معاينة خدمة إنشاء البوتات",
                 },
                 {
                     title: "إنشاء مواقع ومتاجر عبر WordPress وShopify",
                     description:
-                        "إنشاء مواقع ومتاجر احترافية باستخدام WordPress وShopify حسب احتياج النشاط.",
+                        "مواقع ومتاجر عبر WordPress وShopify، مُعدّة ومخصصة بشكل صحيح.",
                     deliverable:
-                        "المخرج: متجر/موقع جاهز للإطلاق مع التخصيص الكامل وإعدادات التشغيل.",
+                        "المخرج: متجر أو موقع مُهيأ بالكامل وجاهز للإطلاق.",
                     image: "/images/services/wordpress-shopify-development.webp",
                     imageAlt: "معاينة خدمة WordPress وShopify",
                 },
@@ -689,30 +764,30 @@ export const messages: Record<Language, MessageCatalog> = {
         stats: [
             {
                 label: "الدور",
-                value: "مطور واجهات أمامية",
-                detail: "تركيز على تطبيقات ويب إنتاجية.",
+                value: "مطور ويب",
+                detail: "بناء تطبيقات إنتاجية، لا نماذج تجريبية.",
             },
             {
                 label: "التركيز الأساسي",
-                value: "لوحات تحكم وأنظمة حجز",
-                detail: "واجهات معقدة لعمليات تشغيل حقيقية.",
+                value: "أي نوع مشروع",
+                detail: "بدون تخصص ثابت — الحل يحدده احتياج المشروع.",
             },
             {
                 label: "التقنيات الأساسية",
                 value: "React وNext.js وTypeScript",
-                detail: "تقنيات Frontend حديثة ببنية نظيفة.",
+                detail: "كود مُصنّف بأنواع، مقسّم لمكوّنات، قابل للصيانة.",
             },
             {
                 label: "التكامل",
                 value: "REST APIs وAuth وExpress",
-                detail: "ربط الواجهة مع خدمات Backend فعلية.",
+                detail: "مربوط مباشرة بخدمات Backend فعلية.",
             },
         ],
         education: {
-            degree: "تطوير Frontend",
+            degree: "تطوير ويب",
             university: "React.js وNext.js وTypeScript وTailwind CSS",
-            duration: "لوحات تحكم قابلة للتوسع ومنصات حجز",
-            status: "تطبيقات ويب أمامية",
+            duration: "تطبيقات ويب جاهزة للإنتاج",
+            status: "تطبيقات ويب",
             coursework: [
                 "React.js",
                 "Next.js",
@@ -738,24 +813,24 @@ export const messages: Record<Language, MessageCatalog> = {
             {
                 title: "Frontend",
                 description:
-                    "React.js, Next.js, TypeScript, JavaScript (ES6+), Tailwind CSS, shadcn/ui, MUI, Zustand, useMemo, Lazy Loading, Responsive Design, UI Animations, Electron Desktop App, Capacitor, Git, GitHub & GitLab, Server Deployment, Websites Deployment.",
+                    "React.js وNext.js وTypeScript وJavaScript (ES6+) وTailwind CSS وshadcn/ui وMUI وZustand، بالإضافة إلى useMemo وLazy Loading والتصميم المتجاوب وحركات الواجهة، وتطبيقات Electron وCapacitor، وGit وGitHub وGitLab، ونشر الخوادم والمواقع.",
             },
             {
-                title: "System Design",
+                title: "تصميم الأنظمة",
                 description:
-                    "Admin Dashboards, Booking Systems, Complex Forms, UX Flow Structuring.",
+                    "لوحات تحكم إدارية، أنظمة حجز، متاجر إلكترونية، صفحات هبوط، نماذج معقدة، وبناء تدفقات تجربة المستخدم.",
             },
             {
-                title: "Backend Integration",
+                title: "التكامل مع الخلفية",
                 description:
-                    "REST APIs, Authentication flows, Basic Node.js, Express.js, MySQL.",
+                    "REST APIs، تدفقات المصادقة (Authentication)، أساسيات Node.js وExpress.js وMySQL.",
             },
         ],
         projects: {
             eyebrow: "المشاريع",
             title: "أبرز المشاريع",
             description:
-                "منصات إنتاجية تركز على الحجز ولوحات التحكم والواجهات المعتمدة على البيانات.",
+                "مجموعة متنوعة من المنصات الإنتاجية — من ضمنها أنظمة حجز، لوحات تحكم، وأدوات لوجستية.",
             filters: {
                 featured: "مميزة",
                 all: "كل المشاريع",
@@ -787,11 +862,19 @@ export const messages: Record<Language, MessageCatalog> = {
             },
             projectCopy: arabicProjectCopy,
         },
+        tools: {
+            eyebrow: "الأدوات",
+            title: "أدوات بنيتها",
+            description:
+                "أدوات صغيرة بنيتها ونشرتها لاستخدامي الشخصي وليستخدمها مطورون آخرون.",
+            viewOnNpm: "عرض على npm",
+            viewRepo: "عرض المستودع",
+        },
         cv: {
             eyebrow: "السيرة",
             title: "السيرة الذاتية والملف المهني التقني",
             description:
-                "مطور Frontend بخبرة 3+ سنوات في بناء تطبيقات ويب إنتاجية حديثة.",
+                "خبرة تزيد عن 3 سنوات في بناء منتجات ويب تبقى قيد الاستخدام اليومي، لا مجرد عروض تجريبية.",
             openCV: "فتح السيرة",
             downloadPDF: "تحميل PDF",
             iframeTitle: "سيرة عبد الرحمن",
@@ -802,7 +885,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "تواصل",
             title: "دعنا نتحدث",
             description:
-                "للاستفسارات حول المشاريع أو التعاون أو مناقشة الأفكار، يمكنكم التواصل عبر القنوات التالية.",
+                "لديك مشروع، فرصة عمل، أو سؤال تقني؟ تواصل معي عبر أي من القنوات أدناه.",
             fields: {
                 name: "الاسم",
                 email: "البريد الإلكتروني",
@@ -823,6 +906,10 @@ export const messages: Record<Language, MessageCatalog> = {
                 instagramValue: "@abdalrhman_jaffar",
                 gitlabLabel: "GitLab",
                 gitlabValue: "gitlab.com/dev.elliot.j",
+                khamsatLabel: "خمسات",
+                khamsatValue: "ملف العمل الحر",
+                mostaqlLabel: "مستقل",
+                mostaqlValue: "ملف العمل الحر",
                 emailLabel: "البريد",
             },
             emailTemplate: {
@@ -840,21 +927,20 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         footer: {
-            headline: "أبني منتجات Frontend حديثة لعمليات أعمال حقيقية.",
-            description:
-                "تطوير React وNext.js وTypeScript لمنتجات ويب قابلة للتوسع.",
+            headline: "منتجات تشتغل بالعالم الحقيقي، مو بس بعرض تجريبي.",
+            description: "React وNext.js وTypeScript، مبنية لتدوم.",
             contactLabel: "تواصل",
             rightsReserved: "جميع الحقوق محفوظة.",
         },
         seo: {
             title: "عبد الرحمن جعفر | معرض أعمال",
             description:
-                "موقع عبد الرحمن جعفر، مطور واجهات أمامية متخصص في تطبيقات ويب حديثة ولوحات تحكم قابلة للتوسع ومنصات حجز باستخدام React وNext.js.",
+                "عبد الرحمن جعفر يبني أنظمة حجز، لوحات تحكم، متاجر إلكترونية، وغيرها باستخدام React وNext.js — منشورة على الإنتاج فعليًا.",
             keywords:
-                "عبد الرحمن جعفر, مطور واجهات أمامية, React.js, Next.js, TypeScript, لوحات تحكم, منصات حجز, تطبيقات ويب, بورتفوليو",
-            ogTitle: "عبد الرحمن جعفر - معرض أعمال مطور Frontend",
+                "عبد الرحمن جعفر, مطور ويب, React.js, Next.js, TypeScript, لوحات تحكم, منصات حجز, تطبيقات ويب, بورتفوليو",
+            ogTitle: "عبد الرحمن جعفر - معرض أعمال مطور ويب",
             ogDescription:
-                "استعرض مشاريع Frontend إنتاجية في أنظمة الحجز واللوجستيات ولوحات التحكم.",
+                "أنظمة حجز، لوحات تحكم، متاجر إلكترونية، وغيرها — منتجات حقيقية مبنية للإنتاج.",
             locale: "ar_SY",
             localeAlternate: "en_US",
         },

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { FiGlobe, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 import { useTheme } from "@/components/providers/theme-provider";
@@ -12,7 +13,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { MOTION_DURATION, MOTION_EASE_STANDARD } from "@/lib/motion";
+import { MOTION_DURATION, MOTION_EASE_STANDARD, MOTION_STAGGER } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 function IconButton({
@@ -41,10 +42,24 @@ function IconButton({
     );
 }
 
+const sidebarStagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: MOTION_STAGGER.tight } },
+};
+
+const sidebarItem = {
+    hidden: { opacity: 0, x: 16 },
+    show: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: MOTION_DURATION.fast, ease: MOTION_EASE_STANDARD },
+    },
+};
+
 export function SiteHeader() {
     const pathname = usePathname();
     const { theme, toggleTheme } = useTheme();
-    const { text, toggleLocale } = useLanguage();
+    const { text, dir, toggleLocale } = useLanguage();
     const shouldReduceMotion = useReducedMotion();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -53,6 +68,7 @@ export function SiteHeader() {
         { href: "/about", label: text.nav.about },
         { href: "/services", label: text.nav.services },
         { href: "/projects", label: text.nav.projects },
+        { href: "/tools", label: text.nav.tools },
         { href: "/cv", label: text.nav.cv },
         { href: "/contact", label: text.nav.contact },
     ];
@@ -61,6 +77,8 @@ export function SiteHeader() {
         theme === "light"
             ? "/brand/octopus-mark-light.svg"
             : "/brand/octopus-mark-dark.svg";
+
+    const sidebarSlideX = dir === "rtl" ? ["100%", "0%"] : ["-100%", "0%"];
 
     return (
         <m.header
@@ -132,61 +150,106 @@ export function SiteHeader() {
 
                 <button
                     type="button"
-                    aria-label={isOpen ? text.nav.closeMenu : text.nav.openMenu}
-                    onClick={() => setIsOpen((v) => !v)}
+                    aria-label={text.nav.openMenu}
+                    onClick={() => setIsOpen(true)}
                     className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground lg:hidden"
                 >
-                    {isOpen ? <FiX /> : <FiMenu />}
+                    <FiMenu />
                 </button>
             </div>
 
-            <AnimatePresence initial={false}>
-                {isOpen && (
-                    <m.div
-                        initial={shouldReduceMotion ? false : { height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{
-                            duration: MOTION_DURATION.base,
-                            ease: MOTION_EASE_STANDARD,
-                        }}
-                        className="overflow-hidden border-t border-border/70 lg:hidden"
-                    >
-                        <div className="px-5 py-4">
-                            <nav className="flex flex-col gap-4">
-                                {navItems.map((item) => (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-base text-foreground"
+            <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
+                <AnimatePresence>
+                    {isOpen && (
+                        <DialogPrimitive.Portal forceMount>
+                            <DialogPrimitive.Overlay asChild forceMount>
+                                <m.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: MOTION_DURATION.fast }}
+                                    className="fixed inset-0 z-50 bg-background/70 backdrop-blur-sm lg:hidden"
+                                />
+                            </DialogPrimitive.Overlay>
+                            <DialogPrimitive.Content asChild forceMount>
+                                <m.div
+                                    initial={{ x: sidebarSlideX[0] }}
+                                    animate={{ x: sidebarSlideX[1] }}
+                                    exit={{ x: sidebarSlideX[0] }}
+                                    transition={{
+                                        duration: MOTION_DURATION.base,
+                                        ease: MOTION_EASE_STANDARD,
+                                    }}
+                                    className="fixed inset-y-0 inset-s-0 z-50 flex w-full max-w-xs flex-col gap-8 border-e border-border bg-background p-6 shadow-lg outline-none lg:hidden"
+                                >
+                                    <DialogPrimitive.Title className="sr-only">
+                                        {text.nav.navigate}
+                                    </DialogPrimitive.Title>
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-medium tracking-tight text-foreground">
+                                            {text.profile.shortName}
+                                        </span>
+                                        <DialogPrimitive.Close asChild>
+                                            <button
+                                                type="button"
+                                                aria-label={text.nav.closeMenu}
+                                                className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
+                                            >
+                                                <FiX />
+                                            </button>
+                                        </DialogPrimitive.Close>
+                                    </div>
+
+                                    <m.nav
+                                        initial="hidden"
+                                        animate="show"
+                                        variants={sidebarStagger}
+                                        className="flex flex-col gap-1"
                                     >
-                                        {item.label}
-                                    </Link>
-                                ))}
-                            </nav>
-                            <div className="mt-5 flex items-center gap-3">
-                                <button
-                                    type="button"
-                                    aria-label={text.nav.toggleLanguage}
-                                    onClick={toggleLocale}
-                                    className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
-                                >
-                                    <FiGlobe />
-                                </button>
-                                <button
-                                    type="button"
-                                    aria-label={text.nav.toggleTheme}
-                                    onClick={toggleTheme}
-                                    className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
-                                >
-                                    {theme === "dark" ? <FiSun /> : <FiMoon />}
-                                </button>
-                            </div>
-                        </div>
-                    </m.div>
-                )}
-            </AnimatePresence>
+                                        {navItems.map((item) => {
+                                            const isActive = pathname === item.href;
+                                            return (
+                                                <m.div key={item.href} variants={sidebarItem}>
+                                                    <Link
+                                                        href={item.href}
+                                                        onClick={() => setIsOpen(false)}
+                                                        className={cn(
+                                                            "block rounded-lg px-3 py-2.5 text-base text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
+                                                            isActive &&
+                                                                "bg-secondary text-foreground",
+                                                        )}
+                                                    >
+                                                        {item.label}
+                                                    </Link>
+                                                </m.div>
+                                            );
+                                        })}
+                                    </m.nav>
+
+                                    <div className="mt-auto flex items-center gap-3">
+                                        <button
+                                            type="button"
+                                            aria-label={text.nav.toggleLanguage}
+                                            onClick={toggleLocale}
+                                            className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
+                                        >
+                                            <FiGlobe />
+                                        </button>
+                                        <button
+                                            type="button"
+                                            aria-label={text.nav.toggleTheme}
+                                            onClick={toggleTheme}
+                                            className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
+                                        >
+                                            {theme === "dark" ? <FiSun /> : <FiMoon />}
+                                        </button>
+                                    </div>
+                                </m.div>
+                            </DialogPrimitive.Content>
+                        </DialogPrimitive.Portal>
+                    )}
+                </AnimatePresence>
+            </DialogPrimitive.Root>
         </m.header>
     );
 }

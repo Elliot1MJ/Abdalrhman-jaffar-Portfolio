@@ -13,6 +13,7 @@ import { getMessages } from "@/lib/i18n/get-messages";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { CodeGlyphBackdrop } from "@/components/shared/code-glyph-backdrop";
+import { OctopusBackdrop } from "@/components/shared/octopus-backdrop";
 import "./globals.css";
 
 const text = getMessages("en");
@@ -54,6 +55,7 @@ export default function RootLayout({
                             <TooltipProvider delayDuration={200}>
                                 <div className="relative">
                                     <CodeGlyphBackdrop />
+                                    <OctopusBackdrop />
                                     <SiteHeader />
                                     <main>{children}</main>
                                     <SiteFooter />

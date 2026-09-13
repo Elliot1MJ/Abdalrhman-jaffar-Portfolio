@@ -3,12 +3,14 @@ export const profile = {
     shortName: "Abdalrhman",
     title: "Frontend Developer",
     roleSummary:
-        "I build modern web applications, scalable dashboards, and high-conversion landing pages using React and modern frontend technologies. Focused on performance, clean architecture, and real production systems.",
+        "I build frontend products across all kinds of use cases — booking systems, dashboards, e-commerce, landing pages, and more — using React and modern frontend technologies. Shipped to production, not left as demos.",
     location: "Damascus, Syria",
     email: "dev.elliot.j@gmail.com",
     instagram: "https://www.instagram.com/abdalrhman_jaffar/",
     gitlab: "https://gitlab.com/dev.elliot.j",
     whatsapp: "https://wa.me/message/6JSWUGX5ELVKB1",
+    khamsat: "https://khamsat.com/user/abdalrhman_jaffar_1m",
+    mostaql: "https://mostaql.com/u/Abdalrhman1MJ",
     yearsOfExperience: "3",
     education:
         "Bachelor's Degree in Computer & Control Engineering (Expected Graduation: 2028)",
@@ -18,22 +20,22 @@ export const quickStats = [
     {
         label: "Experience",
         value: "3+ Years",
-        detail: "Building production-ready frontend applications.",
+        detail: "Building production web applications, not demos.",
     },
     {
         label: "Primary Focus",
-        value: "Dashboards & Booking Platforms",
-        detail: "Interface architecture for real operational workflows.",
+        value: "Full Frontend Delivery",
+        detail: "Whatever the product needs — no fixed niche.",
     },
     {
         label: "Core Stack",
         value: "React, Next.js, TypeScript",
-        detail: "Modern frontend tooling for scalable products.",
+        detail: "Typed, componentized, built to stay maintainable.",
     },
     {
         label: "Backend Integration",
         value: "REST APIs & Auth",
-        detail: "Practical integration with Express.js and MySQL.",
+        detail: "Real integration work with Express.js and MySQL.",
     },
 ] as const;
 
@@ -56,6 +58,8 @@ export const skillGroups = [
         skills: [
             "Admin Dashboards",
             "Booking Systems",
+            "E-commerce",
+            "Landing Pages",
             "Complex Forms",
             "UX Flow Structuring",
         ],
@@ -95,7 +99,7 @@ export const values = [
     {
         title: "System Design",
         description:
-            "Admin Dashboards, Booking Systems, Complex Forms, UX Flow Structuring.",
+            "Admin Dashboards, Booking Systems, E-commerce, Landing Pages, Complex Forms, UX Flow Structuring.",
     },
     {
         title: "Backend Integration",
