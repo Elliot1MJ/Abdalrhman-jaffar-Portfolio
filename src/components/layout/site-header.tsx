@@ -2,19 +2,49 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { FiGlobe, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
-import { useTheme } from "@/components/providers/theme-provider";
+import { useEffect, useState } from "react";
+import {
+    AnimatePresence,
+    m,
+    useMotionValueEvent,
+    useReducedMotion,
+    useScroll,
+} from "framer-motion";
+import { FiGlobe, FiMenu, FiArrowUpRight } from "react-icons/fi";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import {
     Tooltip,
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { MOTION_DURATION, MOTION_EASE_STANDARD, MOTION_STAGGER } from "@/lib/motion";
+import { OctopusMark } from "@/components/shared/octopus-mark";
+import { SiteSidebar } from "@/components/layout/site-sidebar";
+import { NavIcon } from "@/components/layout/nav-icon";
+import {
+    getNavItems,
+    isNavItemActive,
+    type NavItem,
+} from "@/components/layout/nav-items";
+import {
+    MOTION_DURATION,
+    MOTION_EASE_EMPHASIS,
+    MOTION_EASE_STANDARD,
+} from "@/lib/motion";
 import { cn } from "@/lib/utils";
+
+const subnavStagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } },
+};
+
+const subnavItem = {
+    hidden: { opacity: 0, y: 10 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: MOTION_DURATION.base, ease: MOTION_EASE_EMPHASIS },
+    },
+};
 
 function IconButton({
     label,
@@ -42,214 +72,218 @@ function IconButton({
     );
 }
 
-const sidebarStagger = {
-    hidden: {},
-    show: { transition: { staggerChildren: MOTION_STAGGER.tight } },
-};
-
-const sidebarItem = {
-    hidden: { opacity: 0, x: 16 },
-    show: {
-        opacity: 1,
-        x: 0,
-        transition: { duration: MOTION_DURATION.fast, ease: MOTION_EASE_STANDARD },
-    },
-};
-
 export function SiteHeader() {
     const pathname = usePathname();
-    const { theme, toggleTheme } = useTheme();
-    const { text, dir, toggleLocale } = useLanguage();
+    const { text, toggleLocale } = useLanguage();
     const shouldReduceMotion = useReducedMotion();
-    const [isOpen, setIsOpen] = useState(false);
 
-    const navItems = [
-        { href: "/", label: text.nav.home },
-        { href: "/about", label: text.nav.about },
-        { href: "/services", label: text.nav.services },
-        { href: "/projects", label: text.nav.projects },
-        { href: "/tools", label: text.nav.tools },
-        { href: "/cv", label: text.nav.cv },
-        { href: "/contact", label: text.nav.contact },
-    ];
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isCondensed, setIsCondensed] = useState(false);
+    const [openSubnav, setOpenSubnav] = useState<string | null>(null);
 
-    const logoSrc =
-        theme === "light"
-            ? "/brand/octopus-mark-light.svg"
-            : "/brand/octopus-mark-dark.svg";
+    const navItems = getNavItems(text);
+    const activeSubnav = navItems.find(
+        (navItem) => navItem.href === openSubnav && navItem.children?.length,
+    );
 
-    const sidebarSlideX = dir === "rtl" ? ["100%", "0%"] : ["-100%", "0%"];
+    // Condense on scroll. `useMotionValueEvent` reads the scroll value outside
+    // React's render loop, so this sets state only on the two frames where the
+    // boolean actually flips — not on every scroll tick.
+    const { scrollY } = useScroll();
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const next = latest > 24;
+        setIsCondensed((current) => (current === next ? current : next));
+    });
+
+    // Publish the header's live height so the scroll-progress bar sits flush
+    // against its bottom edge in both the normal and condensed states.
+    useEffect(() => {
+        document.documentElement.style.setProperty(
+            "--nav-height-current",
+            isCondensed ? "3.5rem" : "4.5rem",
+        );
+    }, [isCondensed]);
+
+    // Any route change closes the subnav, including back/forward.
+    useEffect(() => {
+        setOpenSubnav(null);
+    }, [pathname]);
+
+    useEffect(() => {
+        if (!openSubnav) return;
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setOpenSubnav(null);
+        };
+        window.addEventListener("keydown", onKeyDown);
+        return () => window.removeEventListener("keydown", onKeyDown);
+    }, [openSubnav]);
+
+    const handleItemEnter = (navItem: NavItem) => {
+        setOpenSubnav(navItem.children?.length ? navItem.href : null);
+    };
 
     return (
-        <m.header
-            initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-                duration: MOTION_DURATION.base,
-                ease: MOTION_EASE_STANDARD,
-            }}
-            className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl"
-        >
-            <div className="mx-auto flex h-(--nav-height) max-w-[1440px] items-center justify-between gap-4 px-5 sm:px-8">
-                <Link href="/" className="flex items-center gap-2.5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src={logoSrc}
-                        alt={text.profile.shortName}
-                        width={28}
-                        height={28}
-                        className="h-7 w-7"
-                    />
-                    <span className="font-medium tracking-tight text-foreground">
-                        {text.profile.shortName}
-                    </span>
-                </Link>
+        <>
+            <m.header
+                initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                    duration: MOTION_DURATION.base,
+                    ease: MOTION_EASE_STANDARD,
+                }}
+                onMouseLeave={() => setOpenSubnav(null)}
+                className={cn(
+                    // Fixed, not sticky — `<main>` carries a matching top pad.
+                    "fixed inset-x-0 top-0 z-[60] border-b transition-[background-color,border-color,box-shadow] duration-300",
+                    isCondensed
+                        ? "border-border/70 bg-background/90 shadow-sm backdrop-blur-xl"
+                        : "border-transparent bg-background/70 backdrop-blur-lg",
+                )}
+            >
+                <div
+                    className={cn(
+                        "mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height] duration-300 sm:px-8",
+                        isCondensed ? "h-14" : "h-(--nav-height)",
+                    )}
+                >
+                    <Link href="/" className="group flex items-center gap-2.5">
+                        <OctopusMark
+                            alt={text.profile.shortName}
+                            width={28}
+                            height={28}
+                            className="h-7 w-7 transition-transform group-hover:rotate-[-8deg]"
+                        />
+                        <span className="font-medium tracking-tight text-foreground">
+                            {text.profile.shortName}
+                        </span>
+                    </Link>
 
-                <nav className="hidden items-center gap-8 lg:flex">
-                    {navItems.map((item) => {
-                        const isActive = pathname === item.href;
-                        return (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={cn(
-                                    "relative pb-1 text-sm text-muted-foreground transition-colors hover:text-foreground",
-                                    isActive && "text-foreground",
-                                )}
+                    <nav className="hidden items-center gap-8 lg:flex">
+                        {navItems.map((navItem) => {
+                            const isActive = isNavItemActive(pathname, navItem.href);
+                            return (
+                                <Link
+                                    key={navItem.href}
+                                    href={navItem.href}
+                                    onMouseEnter={() => handleItemEnter(navItem)}
+                                    onFocus={() => handleItemEnter(navItem)}
+                                    aria-expanded={
+                                        navItem.children?.length
+                                            ? openSubnav === navItem.href
+                                            : undefined
+                                    }
+                                    className={cn(
+                                        "relative pb-1 text-sm transition-colors hover:text-foreground",
+                                        isActive
+                                            ? "text-foreground"
+                                            : "text-muted-foreground",
+                                    )}
+                                >
+                                    {navItem.label}
+                                    {isActive && (
+                                        <m.span
+                                            layoutId="nav-underline"
+                                            className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-primary"
+                                            transition={{
+                                                duration: MOTION_DURATION.fast,
+                                                ease: MOTION_EASE_STANDARD,
+                                            }}
+                                        />
+                                    )}
+                                </Link>
+                            );
+                        })}
+                    </nav>
+
+                    <div className="flex items-center gap-2">
+                        <div className="hidden items-center gap-2 sm:flex">
+                            <IconButton
+                                label={text.nav.toggleLanguage}
+                                onClick={toggleLocale}
                             >
-                                {item.label}
-                                {isActive && (
-                                    <m.span
-                                        layoutId="nav-underline"
-                                        className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-primary"
-                                        transition={{
-                                            duration: MOTION_DURATION.fast,
-                                            ease: MOTION_EASE_STANDARD,
-                                        }}
-                                    />
-                                )}
-                            </Link>
-                        );
-                    })}
-                </nav>
+                                <FiGlobe />
+                            </IconButton>
+                        </div>
 
-                <div className="hidden items-center gap-2 lg:flex">
-                    <IconButton
-                        label={text.nav.toggleLanguage}
-                        onClick={toggleLocale}
-                    >
-                        <FiGlobe />
-                    </IconButton>
-                    <IconButton
-                        label={text.nav.toggleTheme}
-                        onClick={toggleTheme}
-                    >
-                        {theme === "dark" ? <FiSun /> : <FiMoon />}
-                    </IconButton>
+                        <button
+                            type="button"
+                            aria-label={text.nav.openSidebar}
+                            onClick={() => setIsSidebarOpen(true)}
+                            className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground transition-colors hover:border-primary"
+                        >
+                            <FiMenu />
+                        </button>
+                    </div>
                 </div>
 
-                <button
-                    type="button"
-                    aria-label={text.nav.openMenu}
-                    onClick={() => setIsOpen(true)}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground lg:hidden"
-                >
-                    <FiMenu />
-                </button>
-            </div>
-
-            <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-                <AnimatePresence>
-                    {isOpen && (
-                        <DialogPrimitive.Portal forceMount>
-                            <DialogPrimitive.Overlay asChild forceMount>
-                                <m.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: MOTION_DURATION.fast }}
-                                    className="fixed inset-0 z-50 bg-background/70 backdrop-blur-sm lg:hidden"
-                                />
-                            </DialogPrimitive.Overlay>
-                            <DialogPrimitive.Content asChild forceMount>
-                                <m.div
-                                    initial={{ x: sidebarSlideX[0] }}
-                                    animate={{ x: sidebarSlideX[1] }}
-                                    exit={{ x: sidebarSlideX[0] }}
-                                    transition={{
-                                        duration: MOTION_DURATION.base,
-                                        ease: MOTION_EASE_STANDARD,
-                                    }}
-                                    className="fixed inset-y-0 inset-s-0 z-50 flex w-full max-w-xs flex-col gap-8 border-e border-border bg-background p-6 shadow-lg outline-none lg:hidden"
+                {/*
+                 * Full-bleed subnav. It lives inside <header> so moving the
+                 * pointer from a nav link down into the panel never crosses a
+                 * gap that would trigger onMouseLeave.
+                 */}
+                <AnimatePresence initial={false}>
+                    {activeSubnav && !shouldReduceMotion && (
+                        <m.div
+                            key={activeSubnav.href}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{
+                                duration: MOTION_DURATION.base,
+                                ease: MOTION_EASE_EMPHASIS,
+                            }}
+                            className="hidden overflow-hidden border-y border-border/60 bg-background/95 backdrop-blur-xl lg:block"
+                        >
+                            <m.div
+                                initial="hidden"
+                                animate="show"
+                                variants={subnavStagger}
+                                className="mx-auto max-w-[1440px] px-5 py-7 sm:px-8"
+                            >
+                                <m.p
+                                    variants={subnavItem}
+                                    className="type-label font-mono uppercase tracking-[0.15em] text-muted-foreground"
                                 >
-                                    <DialogPrimitive.Title className="sr-only">
-                                        {text.nav.navigate}
-                                    </DialogPrimitive.Title>
-                                    <div className="flex items-center justify-between">
-                                        <span className="font-medium tracking-tight text-foreground">
-                                            {text.profile.shortName}
-                                        </span>
-                                        <DialogPrimitive.Close asChild>
-                                            <button
-                                                type="button"
-                                                aria-label={text.nav.closeMenu}
-                                                className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
+                                    {activeSubnav.label}
+                                </m.p>
+
+                                <div className="mt-4 grid gap-2 md:grid-cols-4">
+                                    {activeSubnav.children?.map((child) => (
+                                        <m.div
+                                            key={`${child.href}-${child.label}`}
+                                            variants={subnavItem}
+                                        >
+                                            <Link
+                                                href={child.href}
+                                                onClick={() => setOpenSubnav(null)}
+                                                className="group/card flex items-start gap-3 rounded-xl border border-transparent p-3.5 transition-all hover:border-border hover:bg-card/60"
                                             >
-                                                <FiX />
-                                            </button>
-                                        </DialogPrimitive.Close>
-                                    </div>
-
-                                    <m.nav
-                                        initial="hidden"
-                                        animate="show"
-                                        variants={sidebarStagger}
-                                        className="flex flex-col gap-1"
-                                    >
-                                        {navItems.map((item) => {
-                                            const isActive = pathname === item.href;
-                                            return (
-                                                <m.div key={item.href} variants={sidebarItem}>
-                                                    <Link
-                                                        href={item.href}
-                                                        onClick={() => setIsOpen(false)}
-                                                        className={cn(
-                                                            "block rounded-lg px-3 py-2.5 text-base text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
-                                                            isActive &&
-                                                                "bg-secondary text-foreground",
-                                                        )}
-                                                    >
-                                                        {item.label}
-                                                    </Link>
-                                                </m.div>
-                                            );
-                                        })}
-                                    </m.nav>
-
-                                    <div className="mt-auto flex items-center gap-3">
-                                        <button
-                                            type="button"
-                                            aria-label={text.nav.toggleLanguage}
-                                            onClick={toggleLocale}
-                                            className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
-                                        >
-                                            <FiGlobe />
-                                        </button>
-                                        <button
-                                            type="button"
-                                            aria-label={text.nav.toggleTheme}
-                                            onClick={toggleTheme}
-                                            className="grid h-9 w-9 place-items-center rounded-full border border-border text-foreground"
-                                        >
-                                            {theme === "dark" ? <FiSun /> : <FiMoon />}
-                                        </button>
-                                    </div>
-                                </m.div>
-                            </DialogPrimitive.Content>
-                        </DialogPrimitive.Portal>
+                                                <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-border/70 bg-card/60 text-accent-text transition-colors group-hover/card:border-primary/50 group-hover/card:bg-primary group-hover/card:text-primary-foreground">
+                                                    <NavIcon name={child.icon} />
+                                                </span>
+                                                <span className="min-w-0">
+                                                    <span className="block text-sm font-medium text-foreground">
+                                                        {child.label}
+                                                    </span>
+                                                    <span className="mt-0.5 block text-xs text-muted-foreground">
+                                                        {child.description}
+                                                    </span>
+                                                </span>
+                                                <FiArrowUpRight
+                                                    aria-hidden
+                                                    className="ms-auto shrink-0 text-muted-foreground opacity-0 transition-all group-hover/card:opacity-100 rtl:-scale-x-100"
+                                                />
+                                            </Link>
+                                        </m.div>
+                                    ))}
+                                </div>
+                            </m.div>
+                        </m.div>
                     )}
                 </AnimatePresence>
-            </DialogPrimitive.Root>
-        </m.header>
+            </m.header>
+
+            <SiteSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
+        </>
     );
 }

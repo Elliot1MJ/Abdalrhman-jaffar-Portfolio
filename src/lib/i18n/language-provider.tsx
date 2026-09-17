@@ -44,8 +44,39 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
     }, [locale]);
 
+    /*
+     * The swap is immediate.
+     *
+     * This used to wait on a 160ms `setTimeout` before flipping state, so every
+     * toggle felt like a lag between the click and the text changing — the
+     * fade-out ran first and the new language only appeared after it finished.
+     *
+     * Now the state flips synchronously and the crossfade happens *around* the
+     * new text: the attribute is set and cleared on the next frame, so the
+     * content fades back in from an already-updated DOM. Perceived latency is
+     * zero, and the transition still reads as deliberate rather than as a snap.
+     *
+     * The *button* itself stays completely static — an explicit brand
+     * constraint (see HANDOFF "Header / controls"); only the page content
+     * fades. Everything here is opacity-only and behind a reduced-motion guard,
+     * so it costs nothing on the layout path.
+     */
     const toggleLocale = useCallback(() => {
+        const root = document.documentElement;
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
+
         setLocale((current) => (current === "ar" ? "en" : "ar"));
+
+        if (prefersReducedMotion) return;
+
+        root.setAttribute("data-locale-swapping", "");
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+                root.removeAttribute("data-locale-swapping");
+            });
+        });
     }, []);
 
     const text = useMemo(() => getMessages(locale), [locale]);

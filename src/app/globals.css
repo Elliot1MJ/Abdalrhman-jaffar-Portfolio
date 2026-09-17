@@ -55,6 +55,20 @@
     --spark-600: 251.2 47.6% 51.4%;
     --spark-700: 251.1 47.5% 42.5%;
 
+    /* Status — meaning only, never brand. Dark-mode values. */
+    --success: 152.4 59.6% 53.1%;
+    --warning: 37.3 74.4% 56.5%;
+    --error: 358.1 75.1% 59%;
+    --info: 208.2 60.6% 60%;
+
+    /*
+     * Brand spec §1: spark-500 on char is 3.50:1 — it FAILS AA for body text.
+     * `--accent` is for fills/borders/rings; `--accent-text` is the only token
+     * allowed to color text in the brand violet. Dark -> spark-400 (5.95:1),
+     * light -> spark-600 (6.51:1). Both verified against the spec's table.
+     */
+    --accent-text: var(--spark-400);
+
     --background: var(--char);
     --foreground: var(--white);
     --card: var(--iron);
@@ -77,32 +91,32 @@
     --radius: 0.75rem;
     --nav-height: 4.5rem;
 
+    /*
+     * One motion system for the whole site. These mirror MOTION_DURATION and
+     * MOTION_EASE_* in `src/lib/motion.ts` — CSS transitions and framer
+     * animations must agree, or hover and reveal on the same card run at
+     * visibly different speeds.
+     *
+     * `--ease-standard` is the default curve; `--ease-emphasis` is for things
+     * that travel a distance (panels, drawers, height changes).
+     */
+    --duration-fast: 180ms;
+    --duration-base: 320ms;
+    --duration-slow: 500ms;
+    --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+    /*
+     * The header condenses on scroll. This mirrors its *current* height so
+     * anything pinned beneath it (the scroll-progress hairline) can follow,
+     * instead of floating detached at the uncondensed offset.
+     */
+    --nav-height-current: 4.5rem;
+
     --font-ar: "IBM Plex Sans Arabic", system-ui, sans-serif;
     --font-latin: "Space Grotesk", system-ui, -apple-system, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-[data-theme="light"] {
-    --background: var(--white);
-    --foreground: var(--char);
-    --card: var(--white);
-    --card-foreground: var(--char);
-    --popover: var(--white);
-    --popover-foreground: var(--char);
-    --primary: var(--spark-500);
-    --primary-foreground: var(--white);
-    --secondary: var(--fog);
-    --secondary-foreground: var(--char);
-    --muted: var(--fog);
-    --muted-foreground: 240 4.8% 37.1%;
-    --accent: var(--spark-600);
-    --accent-foreground: var(--white);
-    --destructive: 0 72.2% 50.6%;
-    --destructive-foreground: var(--white);
-    --border: var(--fog);
-    --input: var(--fog);
-    --ring: var(--spark-500);
-}
 
 @theme inline {
     --color-background: hsl(var(--background));
@@ -124,6 +138,17 @@
     --color-border: hsl(var(--border));
     --color-input: hsl(var(--input));
     --color-ring: hsl(var(--ring));
+    /* AA-safe brand violet for text. Use instead of text-primary. */
+    --color-accent-text: hsl(var(--accent-text));
+    --color-success: hsl(var(--success));
+    --color-warning: hsl(var(--warning));
+    --color-error: hsl(var(--error));
+    --color-info: hsl(var(--info));
+    --color-char: hsl(var(--char));
+    --color-iron: hsl(var(--iron));
+    --color-spark: hsl(var(--spark-500));
+    --color-ash: hsl(var(--ash));
+    --color-fog: hsl(var(--fog));
     --radius-sm: calc(var(--radius) - 0.25rem);
     --radius-md: calc(var(--radius) - 0.125rem);
     --radius-lg: var(--radius);
@@ -132,9 +157,22 @@
     --font-mono: var(--font-mono);
 }
 
-* {
-    box-sizing: border-box;
-    border-color: hsl(var(--border));
+/*
+ * Must stay in `@layer base`.
+ *
+ * Unlayered CSS outranks every cascade layer no matter the specificity, so
+ * while this sat outside the layers it silently beat every Tailwind border
+ * utility — `hover:border-primary/50` on the contact inputs was generated
+ * correctly, carried by the element, and still never applied, because this
+ * `*` rule won the cascade against it. Verified in the live DOM: the border
+ * stayed `rgb(231,231,234)` (the `--border` value this rule forces) on a real
+ * pointer hover, and no hover rule appeared in the matched-styles list.
+ */
+@layer base {
+    * {
+        box-sizing: border-box;
+        border-color: hsl(var(--border));
+    }
 }
 
 html {
@@ -144,6 +182,13 @@ html {
 html,
 body {
     min-height: 100%;
+    /*
+     * Decorative layers (the WebGL field, the seeded backdrops) deliberately
+     * bleed past their containers. Clipping here guarantees that never becomes
+     * a horizontal scrollbar — which is especially easy to miss in RTL, where
+     * the overflow runs off the opposite edge.
+     */
+    overflow-x: hidden;
 }
 
 body {
@@ -157,8 +202,130 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * Brand spec §2 — script handling.
+ *
+ * In Arabic, the Arabic face leads but numerals must still render in Space
+ * Grotesk (spec: "Numerals always render in Space Grotesk, never in the Arabic
+ * face — in both Arabic and Latin contexts"). Listing Space Grotesk FIRST and
+ * IBM Plex Sans Arabic second achieves this via font fallback: Space Grotesk
+ * has no Arabic glyphs, so Arabic characters fall through to IBM Plex, while
+ * digits and Latin runs are claimed by Space Grotesk.
+ */
 html[dir="rtl"] body {
-    font-family: var(--font-ar);
+    font-family: "Space Grotesk", var(--font-ar);
+}
+
+/* The Arabic face has no italic; emphasis uses weight or color instead. */
+html[dir="rtl"] em,
+html[dir="rtl"] i {
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Isolate Latin runs inside RTL text so bidi reordering stays correct. */
+[data-latin] {
+    unicode-bidi: isolate;
+    direction: ltr;
+    font-family: var(--font-latin);
+}
+
+/* Brand typographic scale (spec §2) */
+.type-display {
+    font-size: clamp(1.75rem, 1.1rem + 2.2vw, 3rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.type-title {
+    font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+.type-heading {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+
+.type-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+
+/*
+ * The Arabic face sits optically smaller than Space Grotesk at the same px and
+ * needs more leading. Nudge headings up in RTL so both scripts read at parity.
+ */
+html[dir="rtl"] .type-display {
+    line-height: 1.25;
+    letter-spacing: 0;
+}
+
+html[dir="rtl"] .type-title,
+html[dir="rtl"] .type-heading {
+    letter-spacing: 0;
+    line-height: 1.5;
+}
+
+html[dir="rtl"] .type-label {
+    letter-spacing: 0;
+}
+
+/*
+ * A global brake for anyone who asks for less motion. Until now every guard was
+ * JS-side (`useReducedMotion`), which misses CSS transitions and any animation
+ * added later.
+ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/*
+ * Language swap: fade the text, never the layout.
+ *
+ * The attribute is applied for a single frame *after* the new text is already
+ * in the DOM, so this is the start point of a fade-in, not a fade-out the user
+ * has to wait through. Dropping to 0.6 and easing back is enough to read as a
+ * transition without delaying the content.
+ */
+[data-locale-swapping] main,
+[data-locale-swapping] header,
+[data-locale-swapping] footer {
+    opacity: 0.6;
+    transition: none;
+}
+
+main,
+header,
+footer {
+    transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+/*
+ * Tailwind's `transition-*` utilities default to 150ms with its own curve,
+ * which left ~29 call sites running faster and on a different easing than the
+ * ones that named a duration explicitly. Defaulting the properties here puts
+ * every transition on the shared system; any utility that sets its own
+ * `duration-*`/`ease-*` still overrides this, so deliberate exceptions (the
+ * 500ms image zoom, for instance) are unaffected.
+ */
+[class*="transition"] {
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
 }
 
 button {
@@ -198,32 +365,22 @@ button:disabled {
     font-variant-numeric: tabular-nums;
 }
 
-@keyframes tooltip-in {
-    from {
-        opacity: 0;
-        transform: scale(0.94) translateY(2px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+/*
+ * Arabic has no uppercase, and letter-spacing breaks the cursive joining of
+ * Arabic glyphs. The eyebrow labels across the site use `uppercase` +
+ * `tracking-[0.15em]`, which is correct for Latin and wrong for Arabic — so
+ * neutralize both in RTL rather than hand-editing every call site.
+ */
+html[dir="rtl"] .uppercase {
+    text-transform: none;
 }
 
-@keyframes tooltip-out {
-    from {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: scale(0.94) translateY(2px);
-    }
+html[dir="rtl"] [class*="tracking-"] {
+    letter-spacing: 0;
 }
 
-.animate-tooltip-in {
-    animation: tooltip-in 120ms ease-out;
+/* Arabic reads better in the sans face than in mono for prose-like labels. */
+html[dir="rtl"] .font-mono:not([data-latin]) {
+    font-family: "Space Grotesk", var(--font-ar);
 }
 
-.animate-tooltip-out {
-    animation: tooltip-out 100ms ease-in;
-}

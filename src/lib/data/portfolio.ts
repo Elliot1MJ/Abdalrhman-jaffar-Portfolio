@@ -20,7 +20,6 @@ export interface PortfolioProject {
     featured?: boolean;
 }
 
-const upafaMedia = collectProjectMedia("upafa");
 const yogoKidsMedia = collectProjectMedia("yogoKids");
 const tareekAlshahbaMedia = collectProjectMedia("Tareek-alshahba");
 const ibtisamaMedia = collectProjectMedia("Ibtisama");
@@ -29,32 +28,14 @@ const tatabuMedia = collectProjectMedia("tatabu");
 
 export const projects: PortfolioProject[] = [
     {
-        slug: "upafa-university-digital-platform",
-        name: "UPAFA University Platform",
-        category: "react",
-        timeline: "Jan 1, 2026 - Feb 22, 2026",
-        description:
-            "Official university platform covering admissions, programs, and academic content in one structured frontend.",
-        codeSummary:
-            "Highlights: • Reusable modules for admissions and program pages. • Rendering and asset optimization for real performance gains. • One consistent content system across every core page.",
-        stack: ["React.js", "TypeScript", "TailwindCSS"],
-        image: upafaMedia.image,
-        gallery: upafaMedia.gallery,
-        codeGallery: upafaMedia.codeGallery,
-        productionSections: upafaMedia.productionSections,
-        githubUrl: "",
-        liveUrl: "https://upafa-edu.com/",
-        featured: true,
-    },
-    {
         slug: "yogo-kids-child-care-booking-platform",
         name: "Childcare Booking Platform",
         category: "next.js",
         timeline: "Dec 25, 2025 - Feb 1, 2026",
         description:
-            "Booking platform parents use to register children, manage schedules, and track class availability.",
+            "Context: A childcare provider needed to replace manual registration and scheduling with a system capable of managing capacity and availability in real time.",
         codeSummary:
-            "Highlights: • Clear booking flow from registration to confirmation. • Admin views for schedules, attendance, and capacity. • Reusable components that sped up every feature after the first.",
+            "Engineering Solution: A Next.js platform covering the full booking lifecycle — from registration through confirmation — backed by administrative views for schedules, attendance, and capacity, with a component architecture that reduced the cost of every subsequent feature.",
         stack: ["Next.js", "React.js", "TypeScript"],
         image: yogoKidsMedia.image,
         gallery: yogoKidsMedia.gallery,
@@ -70,9 +51,9 @@ export const projects: PortfolioProject[] = [
         category: "react",
         timeline: "Aug 2, 2025 - Oct 22, 2025",
         description:
-            "Operations dashboard for cargo registration, shipment tracking, and the customs workflow behind it.",
+            "Context: A logistics operation required visibility and control over shipment registration, tracking, and customs-related workflows, previously handled without a unified system.",
         codeSummary:
-            "Highlights: • QR-based shipment tracking built into the dashboard. • Cargo forms with full pricing and rules validation. • Export-ready views used daily in real logistics operations.",
+            "Engineering Solution: A React-based operations dashboard featuring QR-based shipment tracking, validated data entry for pricing and shipping rules, and export-ready views built for daily operational use.",
         stack: ["React.js", "TypeScript", "TailwindCSS"],
         image: tareekAlshahbaMedia.image,
         gallery: tareekAlshahbaMedia.gallery,

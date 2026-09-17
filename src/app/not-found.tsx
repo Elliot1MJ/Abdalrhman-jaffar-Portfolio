@@ -6,7 +6,7 @@ export default function NotFound() {
 
     return (
         <div className="mx-auto flex max-w-[1440px] flex-col items-center px-5 py-32 text-center sm:px-8">
-            <p className="font-mono text-sm text-primary">{text.error.code}</p>
+            <p className="font-mono text-sm text-accent-text">{text.error.code}</p>
             <h1 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
                 {text.error.title}
             </h1>
@@ -15,7 +15,7 @@ export default function NotFound() {
             </p>
             <Link
                 href="/"
-                className="mt-8 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                className="mt-8 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-accent-text-foreground transition-colors hover:bg-primary/90"
             >
                 {text.error.backHome}
             </Link>

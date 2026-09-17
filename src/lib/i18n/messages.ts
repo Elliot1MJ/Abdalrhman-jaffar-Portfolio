@@ -27,10 +27,15 @@ export interface MessageCatalog {
         navigate: string;
         openMenu: string;
         closeMenu: string;
-        toggleTheme: string;
         toggleLanguage: string;
         startProject: string;
         downloadCV: string;
+        skipToContent: string;
+        work: string;
+        courses: string;
+        openSidebar: string;
+        closeSidebar: string;
+        resume: string;
     };
     sectionAria: {
         home: string;
@@ -82,20 +87,24 @@ export interface MessageCatalog {
         title: string;
         description: string;
         orderCta: string;
-        openImage: string;
-        closePreview: string;
         whatsappTemplate: {
-            requestedServiceLabel: string;
-            serviceDetailsLabel: string;
-            customerRequestLabel: string;
-            customerRequestPlaceholder: string;
+            intro: string;
+            serviceLabel: string;
         };
         cards: Array<{
             title: string;
             description: string;
-            deliverable: string;
-            image: string;
-            imageAlt: string;
+            capabilities: string[];
+        }>;
+    };
+    principles: {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: Array<{
+            index: string;
+            title: string;
+            description: string;
         }>;
     };
     stats: Array<{
@@ -143,6 +152,42 @@ export interface MessageCatalog {
             imageAlt: string;
         };
         projectCopy: ProjectTranslationMap;
+    };
+    work: {
+        eyebrow: string;
+        title: string;
+        description: string;
+        filters: {
+            featured: string;
+            all: string;
+            tools: string;
+        };
+        filtersAria: string;
+        emptyTools: string;
+    };
+    courses: {
+        eyebrow: string;
+        title: string;
+        description: string;
+        durationLabel: string;
+        hoursUnit: string;
+        sessionUnit: string;
+        topicsLabel: string;
+        enroll: string;
+        bookConsultation: string;
+        levels: {
+            beginner: string;
+            intermediate: string;
+            "all-levels": string;
+        };
+        items: Record<
+            string,
+            { name: string; tagline: string; description: string }
+        >;
+        whatsappTemplate: {
+            intro: string;
+            courseLabel: string;
+        };
     };
     tools: {
         eyebrow: string;
@@ -231,26 +276,19 @@ export interface MessageCatalog {
 }
 
 const arabicProjectCopy: ProjectTranslationMap = {
-    "UPAFA University Platform": {
-        name: "منصة UPAFA الجامعية",
-        description:
-            "منصة جامعية رسمية، تحتوي صفحات القبول والبرامج والمحتوى الأكاديمي في بنية موحدة ومنظمة.",
-        codeSummary:
-            "النقاط الأبرز: • وحدات قابلة لإعادة الاستخدام لصفحات القبول والبرامج. • تحسين الأداء عبر ضبط التحميل وسلوك العرض. • بنية محتوى موحّدة عبر كل الصفحات الأساسية.",
-    },
     "Childcare Booking Platform": {
         name: "منصة حجز رعاية الأطفال",
         description:
-            "منصة حجز يستخدمها الأهل لتسجيل الأطفال، وتدير من خلالها الإدارة الجداول وتوفر الصفوف.",
+            "السياق: احتاجت جهة رعاية الأطفال إلى استبدال عمليات التسجيل والجدولة اليدوية بنظام قادر على إدارة السعة والتوفر في الزمن الفعلي.",
         codeSummary:
-            "النقاط الأبرز: • رحلة حجز واضحة من التسجيل حتى التأكيد. • لوحات إدارة للحضور والجداول والسعات. • مكونات قابلة لإعادة الاستخدام سرّعت إضافة الميزات الجديدة.",
+            "الحل الهندسي: منصة مبنية على Next.js تغطي دورة الحجز كاملة، من التسجيل حتى التأكيد، مدعومة بواجهات إدارية للجداول والحضور والسعة، ضمن بنية مكوّنات خفّضت تكلفة كل ميزة لاحقة أُضيفت للنظام.",
     },
     "Cargo Logistics System": {
         name: "نظام اللوجستيات والشحن",
         description:
-            "لوحة عمليات لتسجيل الشحنات وتتبعها، ومعالجة تدفقات العمل الجمركية المرتبطة بها.",
+            "السياق: احتاجت عملية لوجستية إلى رؤية شاملة وتحكم دقيق في تسجيل الشحنات وتتبعها ومعالجة إجراءاتها الجمركية، بعد أن كانت تُدار دون نظام موحّد.",
         codeSummary:
-            "النقاط الأبرز: • تتبع شحنات عبر QR داخل لوحة التحكم. • نماذج إدخال مع تحقق كامل من قواعد التسعير والشحن. • واجهات تصدير جاهزة للاستخدام اليومي في العمليات.",
+            "الحل الهندسي: لوحة تحكم تشغيلية قائمة على React، تتضمن تتبعاً للشحنات عبر رموز QR، وإدخال بيانات مُتحقَّق منه وفق قواعد التسعير والشحن، وواجهات جاهزة للتصدير مصمَّمة للاستخدام التشغيلي اليومي.",
     },
     "Dental Clinic Booking System": {
         name: "نظام حجز عيادة الأسنان",
@@ -290,10 +328,15 @@ export const messages: Record<Language, MessageCatalog> = {
             navigate: "Navigate",
             openMenu: "Open menu",
             closeMenu: "Close menu",
-            toggleTheme: "Toggle color theme",
             toggleLanguage: "Switch language",
             startProject: "Start a project",
             downloadCV: "View resume",
+            skipToContent: "Skip to content",
+            work: "Work",
+            courses: "Courses",
+            openSidebar: "Open menu",
+            closeSidebar: "Close menu",
+            resume: "Resume",
         },
         sectionAria: {
             home: "Home",
@@ -311,26 +354,25 @@ export const messages: Record<Language, MessageCatalog> = {
             location: "Damascus, Syria",
         },
         hero: {
-            badge: "Web Developer",
-            headingLine1: "Abdalrhman Jaffar",
+            badge: "Abdalrhman Jaffar — The Octopus",
+            headingLine1: "Web systems built to survive production.",
             summary:
-                "I build web products across all kinds of use cases — booking systems, dashboards, e-commerce, landing pages, and more — using React, Next.js, and modern web technologies.\n\nShipped to production, not left as demos.",
-            seeProjects: "View Projects",
-            downloadCV: "Download Resume",
+                "Platforms for teams that can't afford downtime.",
+            seeProjects: "View Case Studies",
+            downloadCV: "Request a Consultation",
             stack: "React.js • Next.js • TypeScript • Tailwind CSS",
             imageAlt: "Abdalrhman Jaffar portrait",
         },
         about: {
             eyebrow: "About",
-            title: "Professional Summary",
+            title: "Professional Philosophy",
             description:
-                "Web Developer building production-ready products across a wide range of use cases.",
+                "Systems built for production, not for demos.",
             paragraphOne:
-                "I build systems that ship to production and stay in daily use — not prototypes that stop at the demo.",
+                "Production is the only real test of engineering quality. Every architecture decision here is made against real conditions — concurrent users, data integrity, long-term maintenance — not against a demo.",
             paragraphTwo:
-                "I don't stick to one kind of project. Booking flows, admin dashboards, e-commerce stores, landing pages, logistics tools — whatever the product needs, I take on. React, Next.js, and TypeScript are the tools; understanding what each project actually needs is the job.",
-            paragraphThree:
-                "I'd rather spend an extra hour on the data flow and component structure now than debug it in production later. Clean architecture isn't a nice-to-have — it's what keeps a real product from breaking when it matters.",
+                "A shipped product must recover from failure, scale without a rewrite, and stay readable for the next engineer. That is the standard.",
+            paragraphThree: "",
             educationTitle: "Tech Stack",
             principlesTitle: "Skills",
             durationLabel: "Focus",
@@ -360,65 +402,81 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         services: {
-            eyebrow: "Services",
-            title: "My Services",
+            eyebrow: "Value Proposition",
+            title: "Engineering Solutions",
             description:
-                "Web development for teams and founders who need production-ready work, not a prototype.",
-            orderCta: "Order service",
-            openImage: "Open service image preview",
-            closePreview: "Close service image preview",
+                "Four things I build, measured by what they change operationally.",
+            orderCta: "Request this service",
             whatsappTemplate: {
-                requestedServiceLabel: "Service to request",
-                serviceDetailsLabel: "Service details",
-                customerRequestLabel: "Your request details",
-                customerRequestPlaceholder:
-                    "Write your request details down here",
+                intro: "Hi, I'd like to request:",
+                serviceLabel: "Service",
             },
             cards: [
                 {
-                    title: "Website Development",
+                    title: "Landing Pages with Next.js",
                     description:
-                        "Full websites built with React.js on the frontend and Node.js on the backend.",
-                    deliverable:
-                        "Deliverable: complete web app, clean UI, API wired up, ready to deploy.",
-                    image: "/images/services/Website%20Development.webp",
-                    imageAlt: "Website development service preview",
+                        "Conversion-focused pages that load fast and rank — server-rendered, responsive, and measured.",
+                    capabilities: [
+                        "Server-side rendering",
+                        "SEO & Core Web Vitals",
+                        "Responsive on every device",
+                    ],
                 },
                 {
-                    title: "Landing Page Development",
+                    title: "Systems with React.js",
                     description:
-                        "Landing pages built in Next.js and designed to convert, not just look good.",
-                    deliverable:
-                        "Deliverable: fast, SEO-ready, responsive landing page tuned for conversions.",
-                    image: "/images/services/Landing%20Page%20Development.webp",
-                    imageAlt: "Next.js landing page service preview",
+                        "Dashboards, booking flows and multi-role platforms built to stay stable as they grow.",
+                    capabilities: [
+                        "Role-based access control",
+                        "REST API integration",
+                        "Complex forms & validation",
+                    ],
                 },
                 {
-                    title: "E-commerce Store Development",
+                    title: "Stores with Shopify",
                     description:
-                        "Online stores built in Next.js, from product listing to checkout.",
-                    deliverable:
-                        "Deliverable: full store — product flow, cart, and checkout wired end to end.",
-                    image: "/images/services/E-commerce%20Store%20Development.webp",
-                    imageAlt: "Next.js e-commerce service preview",
+                        "Storefronts set up, themed and tuned for real selling — not a default template.",
+                    capabilities: [
+                        "Custom theme work",
+                        "Product & collection setup",
+                        "Checkout optimization",
+                    ],
                 },
                 {
-                    title: "Bot Development",
+                    title: "Bots & Automation",
                     description:
-                        "Node.js bots — automation bots and Telegram bots built to run unattended.",
-                    deliverable:
-                        "Deliverable: production-ready bot with clear commands and deployment handled.",
-                    image: "/images/services/Bots%20Development.webp",
-                    imageAlt: "Bot development service preview",
+                        "Scripts and bots that take the repetitive work off your team's hands.",
+                    capabilities: [
+                        "Workflow automation",
+                        "Third-party API wiring",
+                        "Scheduled jobs",
+                    ],
+                },
+            ],
+        },
+        principles: {
+            eyebrow: "Core Values",
+            title: "Three standards every system is held to",
+            description:
+                "The Octopus is a seal, not a logo — it marks work built this way from the first line.",
+            items: [
+                {
+                    index: "01",
+                    title: "Precision",
+                    description:
+                        "The details a user never sees decide whether a system holds under load.",
                 },
                 {
-                    title: "WordPress & Shopify Development",
+                    index: "02",
+                    title: "Integration",
                     description:
-                        "Sites and stores on WordPress and Shopify, set up and customized properly.",
-                    deliverable:
-                        "Deliverable: fully configured store or site, ready to launch.",
-                    image: "/images/services/wordpress-shopify-development.webp",
-                    imageAlt: "WordPress and Shopify service preview",
+                        "Every part speaks to every other part. No component is an island.",
+                },
+                {
+                    index: "03",
+                    title: "Smart Simplicity",
+                    description:
+                        "Complex problems, interfaces that feel effortless.",
                 },
             ],
         },
@@ -491,7 +549,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "Projects",
             title: "Featured Projects",
             description:
-                "A range of production platforms — booking systems, dashboards, and logistics tools among them.",
+                "Booking systems, dashboards, and logistics tools in daily use.",
             filters: {
                 featured: "Featured",
                 all: "All Projects",
@@ -523,11 +581,71 @@ export const messages: Record<Language, MessageCatalog> = {
             },
             projectCopy: {},
         },
+        work: {
+            eyebrow: "Work",
+            title: "Projects & Tools",
+            description:
+                "Production platforms and the utilities built alongside them.",
+            filters: {
+                featured: "Featured",
+                all: "All Projects",
+                tools: "Tools",
+            },
+            filtersAria: "Work filter tabs",
+            emptyTools: "No tools published yet.",
+        },
+        courses: {
+            eyebrow: "Learn",
+            title: "Courses & Mentoring",
+            description:
+                "Practical training built on the same stack I ship production work with.",
+            durationLabel: "Duration",
+            hoursUnit: "hours",
+            sessionUnit: "One session",
+            topicsLabel: "Covers",
+            enroll: "Ask about this course",
+            bookConsultation: "Book a session",
+            levels: {
+                beginner: "Beginner",
+                intermediate: "Intermediate",
+                "all-levels": "All levels",
+            },
+            items: {
+                frontend: {
+                    name: "Frontend Development",
+                    tagline: "From zero to production React",
+                    description:
+                        "Build and deploy real interfaces with React, Next.js and TypeScript — components, state, routing, and the deployment step most courses skip.",
+                },
+                backend: {
+                    name: "Backend Development",
+                    tagline: "APIs, data, and auth",
+                    description:
+                        "Design REST APIs with Node.js and Express, model data in MySQL, and implement authentication that holds up outside a tutorial.",
+                },
+                "programming-foundations": {
+                    name: "Programming Foundations",
+                    tagline: "The part that transfers between languages",
+                    description:
+                        "How programs actually work: logic, data structures, problem decomposition and Git — the base that makes every framework easier.",
+                },
+                consultation: {
+                    name: "Personal Consultation",
+                    tagline: "One-to-one, your code",
+                    description:
+                        "A focused session on whatever is blocking you — a code review, an architecture decision, or a career question. Bring the problem.",
+                },
+            },
+            whatsappTemplate: {
+                intro: "Hi, I'd like to ask about:",
+                courseLabel: "Course",
+            },
+        },
         tools: {
             eyebrow: "Tools",
             title: "Tools I've Built",
             description:
-                "Small utilities I've built and published for myself and other developers to use.",
+                "Small utilities I built and published.",
             viewOnNpm: "View on npm",
             viewRepo: "View repository",
         },
@@ -535,7 +653,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "Resume",
             title: "Professional Resume & Technical Profile",
             description:
-                "3+ years building web products that stay in daily use, not just demos.",
+                "3+ years of products that stay in daily use.",
             openCV: "Open resume",
             downloadPDF: "Download PDF",
             iframeTitle: "Abdalrhman resume",
@@ -546,7 +664,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "Contact",
             title: "Let's Talk",
             description:
-                "Have a project, a role, or just a technical question? Reach out through any of the channels below.",
+                "A project, a role, or a technical question — reach out.",
             fields: {
                 name: "Name",
                 email: "Email",
@@ -588,7 +706,7 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         footer: {
-            headline: "Products that work in the real world, not just in a demo.",
+            headline: "Building something that has to work? Let's talk.",
             description: "React, Next.js, and TypeScript, built to last.",
             contactLabel: "Contact",
             rightsReserved: "All rights reserved.",
@@ -631,10 +749,15 @@ export const messages: Record<Language, MessageCatalog> = {
             navigate: "التنقل",
             openMenu: "فتح القائمة",
             closeMenu: "إغلاق القائمة",
-            toggleTheme: "تبديل المظهر",
             toggleLanguage: "تبديل اللغة",
             startProject: "ابدأ مشروعك",
             downloadCV: "عرض السيرة",
+            skipToContent: "تخطَّ إلى المحتوى",
+            work: "الأعمال",
+            courses: "الكورسات",
+            openSidebar: "فتح القائمة",
+            closeSidebar: "إغلاق القائمة",
+            resume: "السيرة",
         },
         sectionAria: {
             home: "الرئيسية",
@@ -652,25 +775,25 @@ export const messages: Record<Language, MessageCatalog> = {
             location: "دمشق، سوريا",
         },
         hero: {
-            badge: "مطور ويب",
-            headingLine1: "عبد الرحمن جعفر",
+            badge: "عبد الرحمن جعفر — The Octopus",
+            headingLine1: "أنظمة ويب مصمَّمة لتصمد في الإنتاج.",
             summary:
-                "أنظمة حجز، لوحات تحكم، متاجر إلكترونية، صفحات هبوط — منتجات ويب حقيقية تصل لمستخدميها، لا نماذج تبقى على الورق.",
-            seeProjects: "عرض المشاريع",
-            downloadCV: "تحميل السيرة الذاتية",
+                "منصات لفرق لا تحتمل التعطّل.",
+            seeProjects: "عرض دراسات الحالة",
+            downloadCV: "طلب استشارة",
             stack: "React.js • Next.js • TypeScript • Tailwind CSS",
             imageAlt: "صورة عبد الرحمن جعفر",
         },
         about: {
             eyebrow: "نبذة",
-            title: "نبذة مهنية",
-            description: "أبني منتجات ويب تشتغل فعليًا، لا مجرد واجهات جميلة.",
+            title: "الفلسفة المهنية",
+            description:
+                "أنظمة تُبنى للإنتاج، لا للعرض.",
             paragraphOne:
-                "ما بلتزم بنوع واحد من المشاريع. حجز، لوحة تحكم، متجر، صفحة هبوط — أي شي يحتاجه المشروع، بشتغل عليه لحد ما يوصل لمرحلة الاستخدام الفعلي.",
+                "بيئة الإنتاج هي المحك الحقيقي الوحيد لجودة الهندسة. كل قرار معماري هنا يُتخذ وفق ظروف فعلية — تزامن المستخدمين، وسلامة البيانات، والصيانة طويلة الأمد — لا وفق عرض تجريبي.",
             paragraphTwo:
-                "React وNext.js وTypeScript هي الأدوات. الشغلة الحقيقية هي فهم احتياج كل مشروع بالضبط، وبناء الحل المناسب له بدون حشو أو تعقيد زايد.",
-            paragraphThree:
-                "بنية نظيفة من أول يوم توفر وقت ومشاكل لاحقًا. هاد مو رفاهية — هاد اللي بخلي المنتج يصمد لما يشتد الاستخدام عليه.",
+                "المنتج المنشور يجب أن يتعافى من الأعطال، وأن يتّسع دون إعادة بناء، وأن يبقى واضحاً للمهندس التالي. هذا هو المعيار.",
+            paragraphThree: "",
             educationTitle: "التقنيات",
             principlesTitle: "المهارات",
             durationLabel: "التركيز",
@@ -700,64 +823,81 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         services: {
-            eyebrow: "خدماتي",
-            title: "الخدمات التي أقدّمها",
+            eyebrow: "القيمة المقدَّمة",
+            title: "حلول هندسية",
             description:
-                "تنفيذ جاهز للإنتاج — للشركات وأصحاب المشاريع اللي بدهم شغل حقيقي، مو تجربة.",
+                "أربعة أنواع من العمل، يقيسها أثرها التشغيلي.",
             orderCta: "اطلب الخدمة",
-            openImage: "فتح معاينة صورة الخدمة",
-            closePreview: "إغلاق معاينة صورة الخدمة",
             whatsappTemplate: {
-                requestedServiceLabel: "الخدمة المراد طلبها",
-                serviceDetailsLabel: "تفاصيل الخدمة",
-                customerRequestLabel: "تفاصيل طلبك",
-                customerRequestPlaceholder: "اكتب تفاصيل طلبك أدناه",
+                intro: "مرحباً، أريد طلب:",
+                serviceLabel: "الخدمة",
             },
             cards: [
                 {
-                    title: "إنشاء مواقع إلكترونية",
+                    title: "صفحات هبوط بـ Next.js",
                     description:
-                        "مواقع متكاملة: React.js للواجهة، Node.js للخلفية.",
-                    deliverable:
-                        "المخرج: موقع كامل، واجهة نظيفة، API مربوط، جاهز للنشر.",
-                    image: "/images/services/Website%20Development.webp",
-                    imageAlt: "معاينة خدمة إنشاء المواقع",
+                        "صفحات مصمَّمة للتحويل، سريعة التحميل ومهيّأة لمحركات البحث.",
+                    capabilities: [
+                        "عرض من جهة الخادم",
+                        "تحسين SEO ومؤشرات الأداء",
+                        "تجاوب على كل الأجهزة",
+                    ],
                 },
                 {
-                    title: "إنشاء صفحات هبوط",
+                    title: "أنظمة بـ React.js",
                     description:
-                        "صفحات هبوط بـNext.js مصممة للتحويل، لا فقط للمظهر.",
-                    deliverable:
-                        "المخرج: صفحة سريعة، مهيأة لمحركات البحث، ومضبوطة لرفع التحويل.",
-                    image: "/images/services/Landing%20Page%20Development.webp",
-                    imageAlt: "معاينة خدمة صفحات الهبوط",
+                        "لوحات تحكم وأنظمة حجز ومنصات متعددة الأدوار، تبقى مستقرة مع النمو.",
+                    capabilities: [
+                        "صلاحيات قائمة على الأدوار",
+                        "ربط مع REST APIs",
+                        "نماذج معقّدة مع تحقّق",
+                    ],
                 },
                 {
-                    title: "إنشاء متجر إلكتروني",
+                    title: "متاجر بـ Shopify",
                     description:
-                        "متاجر إلكترونية بـNext.js، من صفحة المنتج حتى الدفع.",
-                    deliverable:
-                        "المخرج: متجر كامل — منتجات، سلة، وخطوات دفع مربوطة من طرف لطرف.",
-                    image: "/images/services/E-commerce%20Store%20Development.webp",
-                    imageAlt: "معاينة خدمة المتجر الإلكتروني",
+                        "متاجر تُبنى وتُنسَّق وتُضبط للبيع الفعلي، لا قالب جاهز كما هو.",
+                    capabilities: [
+                        "تخصيص القالب",
+                        "إعداد المنتجات والأقسام",
+                        "تحسين مسار الشراء",
+                    ],
                 },
                 {
-                    title: "إنشاء بوتات",
+                    title: "بوتات وأتمتة",
                     description:
-                        "بوتات Node.js — أتمتة عامة أو بوتات تلغرام، مصممة للعمل دون تدخل.",
-                    deliverable:
-                        "المخرج: بوت جاهز للإنتاج، أوامر واضحة، ونشر مُنجز بالكامل.",
-                    image: "/images/services/Bots%20Development.webp",
-                    imageAlt: "معاينة خدمة إنشاء البوتات",
+                        "بوتات وسكربتات تتكفّل بالمهام المتكررة بدل فريقك.",
+                    capabilities: [
+                        "أتمتة سير العمل",
+                        "ربط واجهات خارجية",
+                        "مهام مجدولة",
+                    ],
+                },
+            ],
+        },
+        principles: {
+            eyebrow: "القيم الجوهرية",
+            title: "ثلاثة معايير يُحتكم إليها في كل نظام",
+            description:
+                "The Octopus ختم لا شعار — يوضع على عمل بُني هكذا من أول سطر.",
+            items: [
+                {
+                    index: "01",
+                    title: "الدقة",
+                    description:
+                        "التفاصيل التي لا يراها المستخدم هي التي تحسم ثبات النظام.",
                 },
                 {
-                    title: "إنشاء مواقع ومتاجر عبر WordPress وShopify",
+                    index: "02",
+                    title: "التكامل",
                     description:
-                        "مواقع ومتاجر عبر WordPress وShopify، مُعدّة ومخصصة بشكل صحيح.",
-                    deliverable:
-                        "المخرج: متجر أو موقع مُهيأ بالكامل وجاهز للإطلاق.",
-                    image: "/images/services/wordpress-shopify-development.webp",
-                    imageAlt: "معاينة خدمة WordPress وShopify",
+                        "كل جزء يخاطب بقية الأجزاء. لا مكوّن يعمل بمعزل.",
+                },
+                {
+                    index: "03",
+                    title: "البساطة الذكية",
+                    description:
+                        "مسائل معقّدة، وواجهات تبدو بديهية.",
                 },
             ],
         },
@@ -830,7 +970,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "المشاريع",
             title: "أبرز المشاريع",
             description:
-                "مجموعة متنوعة من المنصات الإنتاجية — من ضمنها أنظمة حجز، لوحات تحكم، وأدوات لوجستية.",
+                "أنظمة حجز ولوحات تحكم وأدوات لوجستية قيد الاستخدام اليومي.",
             filters: {
                 featured: "مميزة",
                 all: "كل المشاريع",
@@ -862,11 +1002,71 @@ export const messages: Record<Language, MessageCatalog> = {
             },
             projectCopy: arabicProjectCopy,
         },
+        work: {
+            eyebrow: "الأعمال",
+            title: "المشاريع والأدوات",
+            description:
+                "منصات تعمل في بيئة الإنتاج، والأدوات التي بُنيت إلى جانبها.",
+            filters: {
+                featured: "مميزة",
+                all: "كل المشاريع",
+                tools: "الأدوات",
+            },
+            filtersAria: "تبويبات تصفية الأعمال",
+            emptyTools: "لا توجد أدوات منشورة بعد.",
+        },
+        courses: {
+            eyebrow: "تعلَّم",
+            title: "الكورسات والإرشاد",
+            description:
+                "تدريب عملي على نفس التقنيات التي أبني فيها مشاريع حقيقية.",
+            durationLabel: "المدة",
+            hoursUnit: "ساعة",
+            sessionUnit: "جلسة واحدة",
+            topicsLabel: "يغطي",
+            enroll: "استفسر عن الكورس",
+            bookConsultation: "احجز جلسة",
+            levels: {
+                beginner: "مبتدئ",
+                intermediate: "متوسط",
+                "all-levels": "كل المستويات",
+            },
+            items: {
+                frontend: {
+                    name: "تطوير الواجهات",
+                    tagline: "من الصفر إلى React جاهز للإنتاج",
+                    description:
+                        "بناء ونشر واجهات حقيقية بـ React وNext.js وTypeScript — المكوّنات والحالة والتوجيه، وخطوة النشر التي تتجاهلها معظم الكورسات.",
+                },
+                backend: {
+                    name: "تطوير الخلفية",
+                    tagline: "واجهات برمجية وبيانات ومصادقة",
+                    description:
+                        "تصميم REST APIs بـ Node.js وExpress، ونمذجة البيانات في MySQL، وبناء مصادقة تصمد خارج بيئة الدروس.",
+                },
+                "programming-foundations": {
+                    name: "أساسيات البرمجة",
+                    tagline: "الجزء الذي ينتقل بين اللغات",
+                    description:
+                        "كيف تعمل البرامج فعلياً: المنطق وبنى المعطيات وتفكيك المسائل وGit — الأساس الذي يجعل كل إطار عمل أسهل.",
+                },
+                consultation: {
+                    name: "استشارة شخصية",
+                    tagline: "جلسة فردية على كودك أنت",
+                    description:
+                        "جلسة مركّزة على ما يعطّلك: مراجعة كود، أو قرار معماري، أو سؤال مهني. أحضر المشكلة معك.",
+                },
+            },
+            whatsappTemplate: {
+                intro: "مرحباً، أريد الاستفسار عن:",
+                courseLabel: "الكورس",
+            },
+        },
         tools: {
             eyebrow: "الأدوات",
             title: "أدوات بنيتها",
             description:
-                "أدوات صغيرة بنيتها ونشرتها لاستخدامي الشخصي وليستخدمها مطورون آخرون.",
+                "أدوات صغيرة بنيتها ونشرتها.",
             viewOnNpm: "عرض على npm",
             viewRepo: "عرض المستودع",
         },
@@ -874,7 +1074,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "السيرة",
             title: "السيرة الذاتية والملف المهني التقني",
             description:
-                "خبرة تزيد عن 3 سنوات في بناء منتجات ويب تبقى قيد الاستخدام اليومي، لا مجرد عروض تجريبية.",
+                "أكثر من 3 سنوات من منتجات تبقى قيد الاستخدام اليومي.",
             openCV: "فتح السيرة",
             downloadPDF: "تحميل PDF",
             iframeTitle: "سيرة عبد الرحمن",
@@ -885,7 +1085,7 @@ export const messages: Record<Language, MessageCatalog> = {
             eyebrow: "تواصل",
             title: "دعنا نتحدث",
             description:
-                "لديك مشروع، فرصة عمل، أو سؤال تقني؟ تواصل معي عبر أي من القنوات أدناه.",
+                "مشروع، أو فرصة عمل، أو سؤال تقني — تواصل معي.",
             fields: {
                 name: "الاسم",
                 email: "البريد الإلكتروني",
@@ -927,7 +1127,7 @@ export const messages: Record<Language, MessageCatalog> = {
             },
         },
         footer: {
-            headline: "منتجات تشتغل بالعالم الحقيقي، مو بس بعرض تجريبي.",
+            headline: "عندك شي لازم يشتغل صح؟ خلينا نحكي.",
             description: "React وNext.js وTypeScript، مبنية لتدوم.",
             contactLabel: "تواصل",
             rightsReserved: "جميع الحقوق محفوظة.",

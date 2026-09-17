@@ -31,7 +31,9 @@ const TabsTrigger = React.forwardRef<
         className={cn(
             "relative px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
             "data-[state=active]:text-foreground",
-            "after:absolute after:inset-x-0 after:bottom-[-1px] after:h-[2px] after:origin-center after:scale-x-0 after:bg-primary after:transition-transform data-[state=active]:after:scale-x-100",
+            // The underline travels, so it takes the emphasis curve — the same one
+        // the subnav and sidebar panels use for movement.
+        "after:absolute after:inset-x-0 after:bottom-[-1px] after:h-[2px] after:origin-center after:scale-x-0 after:bg-primary after:transition-transform after:duration-(--duration-base) after:ease-(--ease-emphasis) data-[state=active]:after:scale-x-100",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             className,
         )}

@@ -9,6 +9,12 @@ export const profile = {
     instagram: "https://www.instagram.com/abdalrhman_jaffar/",
     gitlab: "https://gitlab.com/dev.elliot.j",
     whatsapp: "https://wa.me/message/6JSWUGX5ELVKB1",
+    /*
+     * E.164 form of the local number 0958759433: Syria is +963 and the leading
+     * trunk "0" is dropped. Used to build wa.me links that carry a prefilled
+     * message — the `whatsapp` short-link above cannot take a `?text=` payload.
+     */
+    whatsappNumber: "963958759433",
     khamsat: "https://khamsat.com/user/abdalrhman_jaffar_1m",
     mostaql: "https://mostaql.com/u/Abdalrhman1MJ",
     yearsOfExperience: "3",

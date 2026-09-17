@@ -24,24 +24,26 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
     );
 
     return (
-        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1440px] px-5 py-12 sm:px-8">
             <Link
-                href="/projects"
+                href="/work"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-                <FiArrowLeft />
+                <FiArrowLeft aria-hidden className="rtl:-scale-x-100" />
                 {text.projects.details.back}
             </Link>
 
             <MotionReveal>
-                <p className="mt-8 font-mono text-xs uppercase tracking-[0.15em] text-primary">
+                <p className="type-label mt-8 font-mono uppercase tracking-[0.15em] text-accent-text">
                     {text.projects.categories[project.category]}
                 </p>
-                <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                <h1 className="type-display mt-4 max-w-3xl text-foreground">
                     {localized.name}
                 </h1>
+                {/* `data-latin` on an inline run only — on the <p> its
+                    `direction: ltr` would flip the line's alignment in RTL. */}
                 <p className="mt-4 font-mono text-xs text-muted-foreground">
-                    {project.timeline}
+                    <span data-latin>{project.timeline}</span>
                 </p>
             </MotionReveal>
 
@@ -61,7 +63,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
 
             <MotionReveal delay={0.15} className="mt-12 grid gap-12 md:grid-cols-[2fr_1fr]">
                 <div>
-                    <h2 className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                    <h2 className="type-label font-mono uppercase tracking-[0.15em] text-muted-foreground">
                         {text.projects.details.aboutTitle}
                     </h2>
                     <p className="mt-4 text-base leading-relaxed text-foreground">
@@ -73,7 +75,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                 </div>
 
                 <div>
-                    <h2 className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                    <h2 className="type-label font-mono uppercase tracking-[0.15em] text-muted-foreground">
                         {text.projects.details.linksTitle}
                     </h2>
                     <div className="mt-4 flex flex-col gap-3">
@@ -103,13 +105,14 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                         )}
                     </div>
 
-                    <h2 className="mt-8 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                    <h2 className="type-label mt-8 font-mono uppercase tracking-[0.15em] text-muted-foreground">
                         Stack
                     </h2>
                     <div className="mt-4 flex flex-wrap gap-2">
                         {project.stack.map((tech) => (
                             <span
                                 key={tech}
+                                data-latin
                                 className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
                             >
                                 {tech}
@@ -125,7 +128,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                     delay={Math.min(index * 0.05, 0.2)}
                     className="mt-16"
                 >
-                    <h2 className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                    <h2 className="type-label font-mono uppercase tracking-[0.15em] text-muted-foreground">
                         {section.title}
                     </h2>
                     <div className="mt-4 grid gap-4 sm:grid-cols-2">

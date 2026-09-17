@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from "@/components/providers/theme-provider";
+import { OctopusMark } from "@/components/shared/octopus-mark";
 
 interface MarkSpec {
     top: string;
@@ -37,13 +37,7 @@ export function OctopusBackdrop({
     count = 3,
     seed = 7,
 }: OctopusBackdropProps = {}) {
-    const { theme } = useTheme();
     const markSpecs = seededMarks(count, seed);
-
-    const logoSrc =
-        theme === "light"
-            ? "/brand/octopus-mark-light.svg"
-            : "/brand/octopus-mark-dark.svg";
 
     return (
         <div
@@ -51,10 +45,8 @@ export function OctopusBackdrop({
             className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
         >
             {markSpecs.map((spec, index) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <OctopusMark
                     key={index}
-                    src={logoSrc}
                     alt=""
                     className="absolute select-none"
                     style={{
