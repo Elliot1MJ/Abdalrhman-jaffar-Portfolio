@@ -5,7 +5,7 @@ export const profile = {
     roleSummary:
         "I build frontend products across all kinds of use cases — booking systems, dashboards, e-commerce, landing pages, and more — using React and modern frontend technologies. Shipped to production, not left as demos.",
     location: "Damascus, Syria",
-    email: "dev.elliot.j@gmail.com",
+    email: "dev.abdalrhman.jaffar@gmail.com",
     instagram: "https://www.instagram.com/abdalrhman_jaffar/",
     gitlab: "https://gitlab.com/dev.elliot.j",
     whatsapp: "https://wa.me/message/6JSWUGX5ELVKB1",
